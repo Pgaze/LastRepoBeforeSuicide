@@ -24,11 +24,12 @@ public class Postule {
 				+ "WHERE IdUtilisateur=?  ");
 		select.setInt(1, user.getIdUser());
 		ResultSet resultSelect=select.executeQuery();
+		
 		while(resultSelect.next()){
 			Postule temp = new Postule();
 			temp.postulant = user;
-			temp.logement = Logement.getLogementById(resultSelect.getInt(1));
-			temp.hebergeur =Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt(1));
+			temp.logement = Logement.getLogementById(resultSelect.getInt("IdLogement"));
+			temp.hebergeur =Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
 			tablePostulation.add(temp);
 		}
 		return tablePostulation;

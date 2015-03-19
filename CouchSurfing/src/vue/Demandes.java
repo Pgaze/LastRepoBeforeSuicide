@@ -35,8 +35,6 @@ public class Demandes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request=Menu.afficherMenu(request, response);
 		Utilisateur user=(Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
-		System.out.println(user);
-		System.out.println(user.getIdUser());
 		List<Postule> demandeEnvoye,demandeRecu;
 		try {
 			demandeEnvoye = Postule.getPostulationsEnCoursByUser(user);
