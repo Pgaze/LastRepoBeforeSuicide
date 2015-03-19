@@ -1,0 +1,355 @@
+
+@CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Lato:100);
+
+/* */
+body
+{
+background-size: 135%;
+background-repeat: no-repeat;
+background-position: -193px;
+background-attachment: fixed;
+margin: 0;
+padding: 0;
+font-family: Verdana, Geneva, sans-serif;
+font-size: 13px;
+color: #666;
+}
+
+
+
+div#le_menu
+{
+background: white;
+width: 100%;
+/* margin-top: 0px; */
+height: 55px;
+margin-bottom: 17px;
+padding-top: 11px;
+padding-bottom: 10px;
+border-bottom: 2px solid black;
+}
+
+div#footer, div#menu
+{
+  padding: 11px;
+  margin: 0 auto;
+  background: white;
+  width: 86.5%;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#form_inscription input
+{
+  margin-bottom: 20px;
+  font-size: 14px;
+  width: 35%;
+  height: 18px;
+}
+
+#form_inscription
+{
+  height: 600px;
+}
+
+#form_inscription div
+{
+  position: relative;
+  width: 50%;
+  font-size: 16px;
+  margin-left: 50%;
+  padding-top: 29px;
+  height: 73%;
+  margin-right: -1px;
+}
+
+#form_inscription label
+{
+  width: 57%;
+  display: block;
+  float: left;
+  padding-right: 20px;
+}
+
+div#saisies_finscription
+{
+  margin: 0 auto;
+  width: 95%;
+}
+
+#form_inscription h5
+{
+  text-align: center;
+}
+
+#valI
+{
+  width: 134px;
+  height: 24px;
+  float: right;
+  margin-right: 16px;
+}
+
+#le_menu ul li
+{
+	display: table-cell;
+	text-decoration: none;
+	height: 20px;
+	width: 162px;
+	padding: 9px;
+	text-align: center;
+	border-right: 2px solid white;
+	/*background-color: #A0CE4E;*/
+}
+
+li a
+{
+  text-decoration: none;
+  color: black;
+}
+
+#le_menu ul li:hover a
+{
+  color: white;
+  
+}
+
+#le_menu ul li:hover
+{
+  background-color: #A0CE4E/*rgb(237, 109, 53)*/;
+  transition-property: background-color .6s linear 0s;
+  -moz-transition: background-color .6s linear 0s;
+  -webkit-transition: background-color .6s linear 0s;
+  -o-transition: background-color .6s linear 0s;
+}
+
+ul
+{
+	width: 84.9%;
+	margin: 0 auto;
+	height: 40px;
+	padding-top: 0.6%;
+}
+
+<<<<<<< HEAD
+/* formulaire nouvelle annonce */
+
+=======
+>>>>>>> branch 'master' of git@192.168.1.7:~/leBonRepo.git
+
+
+/* messagerie */
+
+#maBoite
+{
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+table#maBoite tr
+{
+  width: 5%;
+  background-color: rgba(124, 171, 187, 0.88);
+  height: 30px;
+}
+
+.cbMessagerie
+{
+  width: 10%;
+}
+
+.date, .expediteur
+{
+  width: 11%;
+}
+
+#titreMessagerie
+{
+	/*text-align:center;*/
+}
+
+
+/*
+#inputCherche
+{
+  width: 33%;
+}
+
+.date
+{
+  width: 13%;
+}
+
+#leFormRecherche #contenuFormRecherche
+{
+  margin: 0 auto;
+}
+
+#btCherche
+{
+  width: 90px;
+  border-radius: 0px !important;
+}
+
+#contenuFormRecherche input
+{
+  height: 20px;
+}
+
+/* demandes */
+
+.icon-cancel-1 {
+color:red;
+float: left;
+background-color: rgb(247, 241, 241);
+height: 60%;
+width: 50%;
+}
+
+.icon-ok {
+	
+float: left;
+color:green;
+background-color: rgb(247, 241, 241);
+height: 60%;
+width: 50%;
+}
+
+ol li {
+	padding-bottom:10px;
+}
+
+.detailsAnnonce {
+
+float: left;
+background-color: rgba(202, 176, 137, 0.29);
+width: 77%;
+}
+
+.confirmation {
+
+/* border: 1px solid blue; */
+float: left;
+width: 21%;
+height: 28%;
+}
+
+.uneDemande h3
+{
+background-color: mediumturquoise;
+padding: 8px;
+width: 124%;
+margin-top: 0;
+}
+
+li div.uneDemande
+{
+  height: 200px;
+  /*background-color: rgba(202, 176, 137, 0.29);*/
+}
+
+.uneDemande
+{
+position: relative;
+margin: 0 10px 0 0;
+width: 79%;
+}
+
+.uneImg
+{
+ /* height: 130px;*/
+  width: 16%;
+  position: inherit;
+  /*margin-left: 10px;*/
+  float: left;
+  border-radius: 25px;
+  border-style: dashed;
+}
+
+.txt
+{
+  height: 110px;
+  width: 73%;
+  float: right;
+  border-radius: 25px;
+  margin-right: 10px;
+  border-style: dashed;
+  padding: 9px;
+}
+
+#infosDemandes ol{
+	list-style: none;
+}
+
+/* accueil */
+
+/* div#testImg
+{
+  background-image: url("http://localhost:8080/CouchSurfing/ImageServlet");
+}
+ */
+.contentAccueil
+{
+  height: 350px;
+  border: 3px solid rgb(185, 177, 192);
+  margin-bottom: 25px;
+}
+
+#valLogin
+{
+  width: 156px;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+div#formConnexion
+{
+  padding-top: 100px;
+  padding-left: 50px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+#formConnexion input
+{
+  margin-bottom: 20px;
+/* width: 200px; */
+/* clear: both; */
+/* float: right; */
+  display: initial;
+  width: 150px;
+  margin-top: 15px;
+}
+
+#formConnexion input
+{
+  padding: 5px;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+/*.uneDemande:after {
+	
+	content: "";
+	border-top: 100px solid pink;
+	border-bottom: 100px solid pink;
+	border-left: 200px solid pink;
+	position: absolute;
+	right: -200px;
+	
+	/*content: "";
+	border-top: 100px solid pink;
+	border-bottom: 100px solid pink;
+	border-left: 200px solid blue;
+	position: absolute;
+	right: -100px;
+	top: 0;
+	border-top: 100px solid transparent;
+	border-bottom: 100px solid transparent;
+	border-left: 100px solid #3498db;*/
+}*/
+

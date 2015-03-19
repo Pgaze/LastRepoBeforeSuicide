@@ -1,0 +1,124 @@
+@CHARSET "ISO-8859-1";
+
+#containerEvaluation{
+width: 70%;
+border-radius: 10px;
+margin-left: 15%;
+padding: 10px 10px 10px 10px;
+height: 60%;
+background-color: rgb(228, 228, 228);
+}
+
+#contentEvaluation{
+	
+}
+
+ #containerIntitulePage{
+ width: 95%;
+margin-left: 2.5%;
+padding: 10px;
+border: solid 1px white;
+border-radius: 10px;
+background-color: rgb(203, 203, 203);
+height: 100px;
+ }
+ 
+ #imgPersonneNotee{
+ width: 100px;
+display: inline-block;
+border-radius: 5px;
+height: 100%;
+border: solid 1px rgb(166, 166, 166);
+background-color: white;
+}
+ 
+ #intitulePage{
+ display: inline-block;
+vertical-align: top;
+margin-top: 2%;
+font-size: 20px;
+margin-left: 15px;
+ }
+ 
+ #intitule{
+ }
+ 
+ #form_evaluation{
+width: 90%;
+margin-left: 5.6%;
+margin-top: 2%;
+border: solid 1px white;
+background-color: rgb(234, 234, 234);
+ }
+ 
+ #evaluation{
+ margin: 10px;
+background-color: rgb(215, 215, 215);
+padding: 10px;
+border: solid 1px rgb(247, 247, 247);
+ }
+ 
+ .containerEvaluation{
+background-color: rgb(229, 229, 229);
+width: 90%;
+padding: 15px;
+border-radius: 5px;
+margin-top: 5px;
+}
+ 
+ #containerNote{
+ }
+ 
+ #intituleNoteEvaluation{
+margin: 0;
+margin-bottom: 15px;
+display: inline;
+font-size: 19px;
+ }
+ 
+ #ipt_note{
+ width: 55px;
+vertical-align: top;
+text-align: right;
+line-height: 22px;
+font-size: 15px;
+margin-top: 2px;
+border:none;
+height: 20px;
+}
+
+#star{
+font-size: 25px;
+text-align: center;
+color: yellow;
+}
+
+#containerCommentaire{
+ }
+ 
+ #intituleCommentaireEvaluation{
+margin: 0;
+margin-bottom: 15px;
+font-size: 17px;
+ }
+ 
+ #ipt_comm{
+ font-size: 17px;
+width: 90%;
+height: 100px;
+resize:none;
+border:none;
+ }
+ 
+ #containerValider{
+
+ }
+ 
+ #validerNote{
+background-color: green;
+color: white;
+width: 15%;
+margin-left: 80%;
+height: 25px;
+border-radius: 5px;
+ }

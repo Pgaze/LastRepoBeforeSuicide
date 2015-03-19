@@ -1,0 +1,172 @@
+@CHARSET "UTF-8";
+
+#imgBackground{
+position: absolute;
+top: 77px;
+left: 0px;
+width: 100%;
+bottom: 0px;
+height: 100%;
+right: 0px;
+}
+
+div#testImg{
+	 background-repeat: no-repeat;
+background-position: center center;
+background-size: 100% 700px;
+}
+
+/* blabla */
+#presentation {
+	background-image: url('images/couchSurfing.jpg');
+}
+
+#profil_container {
+	border-radius: 20px;
+}
+
+.content-accueil {
+	height: 400px;
+	border: 2px solid rgb(185, 177, 192);
+	margin-bottom: 25px;
+	margin: 0 auto;
+	width: 88%;
+	background: radial-gradient(rgb(181, 184, 221), rgb(237, 244, 255));
+}
+
+#valLogin {
+	width: 156px;
+	height: 30px;
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
+
+#form_connexion {
+	padding-top: 100px;
+	padding-left: 50px;
+	width: 600px;
+	margin: 0 auto;
+}
+
+#form_connexion input {
+	margin-bottom: 20px;
+	/* width: 200px; */
+	/* clear: both; */
+	/* float: right; */
+	display: initial;
+	width: 150px;
+	margin-top: 15px;
+}
+
+#form_connexion input {
+	padding: 5px;
+	color: #333333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+div#le_menu {
+	margin: 0 auto;
+	width: 87.4%;
+	background: seashell;
+	height: 70px;
+	margin-bottom: 25px;
+}
+
+div#footer, div#le_menu, div#menu {
+	padding: 11px;
+	margin: 0 auto;
+	background: white;
+	width: 86.5%;
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+
+#form_inscription input {
+	margin-bottom: 20px;
+	font-size: 14px;
+	width: 35%;
+	height: 18px;
+}
+
+#form_inscription {
+	height: 600px;
+}
+
+#form_inscription div {
+	position: relative;
+	width: 50%;
+	font-size: 16px;
+	margin-left: 50%;
+	padding-top: 29px;
+	height: 73%;
+	margin-right: -1px;
+}
+
+#form_inscription label {
+	width: 57%;
+	display: block;
+	float: left;
+	padding-right: 20px;
+}
+
+div#saisies_finscription {
+	margin: 0 auto;
+	width: 95%;
+}
+
+#form_inscription h5 {
+	text-align: center;
+}
+
+#valI {
+	width: 134px;
+	height: 24px;
+	float: right;
+	margin-right: 16px;
+}
+
+ul li {
+	display: inline-block;
+	text-decoration: none;
+	padding-right: 10px;
+	padding-top: 11px;
+}
+
+/* formulaire nouvelle annonce */
+#saisies_propositionLogement label {
+	width: 40%;
+	margin-top: 15px;
+}
+
+#saisies_propositionLogement input {
+	margin-top: 15px;
+}
+
+#propoLogMidddle {
+	width: 400px;
+	display: inline-block;
+}
+
+#propoLogLeft {
+	width: 380px;
+	display: inline-block;
+}
+
+.alignLeft {
+	float: left;
+	margin-left: 30px;
+}
+
+.alignMiddle {
+	float: left;
+	margin-left: 30px;
+}
+
+/* messagerie */
+#maBoite {
+	border: 1px solid red;
+	width: 100%;
+}
+
+

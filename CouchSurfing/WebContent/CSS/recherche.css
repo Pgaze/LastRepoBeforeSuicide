@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+@CHARSET "ISO-8859-1";
+
+/* recherche */
+
+#inputCherche
+{
+  width: 33%;
+}
+
+#lienProfil{
+	font-size: 13px;
+color: rgb(79, 173, 231);
+}
+
+.date
+{
+  width: 17%;
+}
+
+#leFormRecherche #contenuFormRecherche
+{
+  margin: 0 auto;
+}
+
+#btCherche
+{
+  width: 90px;
+  border-radius: 0px !important;
+}
+
+#contenuFormRecherche input
+{
+ height: 20px;
+border-radius: 6px;
+margin-left: 15px;
+}
+
+

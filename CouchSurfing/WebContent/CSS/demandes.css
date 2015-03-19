@@ -1,0 +1,85 @@
+@CHARSET "ISO-8859-1";
+/* demandes */
+
+.icon-cancel {
+color:red;
+float: left;
+background-color: rgb(247, 241, 241);
+height: 60%;
+width: 50%;
+}
+
+.icon-check {
+	
+float: left;
+color:green;
+background-color: rgb(247, 241, 241);
+height: 60%;
+width: 50%;
+}
+
+ol li {
+	padding-bottom:10px;
+}
+
+.detailsAnnonce {
+
+float: left;
+background-color: rgba(202, 176, 137, 0.29);
+width: 77%;
+}
+
+.confirmation {
+
+/* border: 1px solid blue; */
+float: left;
+width: 21%;
+height: 28%;
+}
+
+.uneDemande h3
+{
+background-color: mediumturquoise;
+padding: 8px;
+width: 124%;
+margin-top: 0;
+}
+
+li div.uneDemande
+{
+  height: 200px;
+  /*background-color: rgba(202, 176, 137, 0.29);*/
+}
+
+.uneDemande
+{
+position: relative;
+margin: 0 10px 0 0;
+width: 79%;
+}
+
+.uneImg
+{
+ /* height: 130px;*/
+  width: 16%;
+  position: inherit;
+  /*margin-left: 10px;*/
+  float: left;
+  border-radius: 25px;
+  border-style: dashed;
+}
+
+.txt
+{
+  height: 110px;
+  width: 73%;
+  float: right;
+  border-radius: 25px;
+  margin-right: 10px;
+  border-style: dashed;
+  padding: 9px;
+}
+
+#infosDemandes ol{
+	list-style: none;
+}

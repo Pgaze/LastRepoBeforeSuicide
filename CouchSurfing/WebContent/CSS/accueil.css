@@ -1,0 +1,90 @@
+@CHARSET "ISO-8859-1";
+
+#container
+{
+margin-top: 80px !important;
+margin-bottom: 80px !important;
+margin: 0 auto;
+padding: 10px 10px 30px;
+background-color: #fff;
+border-radius: 30px;
+width: 60%;
+border: 30px solid rgb(188, 188, 188);
+}
+
+/* accueil */
+
+/* div#testImg
+{
+  background-image: url("http://localhost:8080/CouchSurfing/ImageServlet");
+}
+ */
+ 
+ #accueilBlock1{
+background-size: 100%;
+background-repeat: no-repeat;
+background-position: 0;
+ }
+ 
+ .contentAccueil
+{
+  height: 350px;
+  border: 3px solid rgb(185, 177, 192);
+  margin-bottom: 25px;
+}
+
+#valLogin
+{
+  width: 156px;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+div#formConnexion
+{
+  padding-top: 100px;
+  padding-left: 50px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+#formConnexion input
+{
+  margin-bottom: 20px;
+/* width: 200px; */
+/* clear: both; */
+/* float: right; */
+  display: initial;
+  width: 150px;
+  margin-top: 15px;
+}
+
+#formConnexion input
+{
+  padding: 5px;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+/*.uneDemande:after {
+	
+	content: "";
+	border-top: 100px solid pink;
+	border-bottom: 100px solid pink;
+	border-left: 200px solid pink;
+	position: absolute;
+	right: -200px;
+	
+	/*content: "";
+	border-top: 100px solid pink;
+	border-bottom: 100px solid pink;
+	border-left: 200px solid blue;
+	position: absolute;
+	right: -100px;
+	top: 0;
+	border-top: 100px solid transparent;
+	border-bottom: 100px solid transparent;
+	border-left: 100px solid #3498db;*/
+}
