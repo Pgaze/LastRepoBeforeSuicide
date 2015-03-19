@@ -37,17 +37,15 @@ public class Demandes extends HttpServlet {
 		Utilisateur user=(Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
 		System.out.println(user);
 		System.out.println(user.getIdUser());
-		List<Postule> laOuJePostule;
+		List<Postule> demandeEnvoye,demandeRecu;
 		try {
-			laOuJePostule = Postule.getPostulationsEnCoursByUser(user);
-			request.setAttribute("lesPostulations", laOuJePostule);
+			demandeEnvoye = Postule.getPostulationsEnCoursByUser(user);
+			request.setAttribute("demandeEnvoye", demandeEnvoye);
+			demandeRecu = Postule.getDemandeRecuByUser(user);
+			request.setAttribute("demandeRecu", demandeRecu);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-	
 		this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(request, response);
 	}
 

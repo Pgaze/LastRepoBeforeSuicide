@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Postule {
 	
@@ -20,14 +21,14 @@ public class Postule {
 	public static ArrayList<Postule> getPostulationsEnCoursByUser(Utilisateur user) throws Exception{
 		ArrayList<Postule> tablePostulation = new ArrayList<Postule>();
 		PreparedStatement select = Data.BDD_Connection.prepareStatement("SELECT IdLogement FROM Postule "
-				+ "WHERE IdUtilisateur=? AND DateInvalidite > CURDATE() ORDER BY DateInvalidite");
+				+ "WHERE IdUtilisateur=?  ");
 		select.setInt(1, user.getIdUser());
 		ResultSet resultSelect=select.executeQuery();
 		while(resultSelect.next()){
 			Postule temp = new Postule();
 			temp.postulant = user;
-			temp.logement = Logement.getLogementById(resultSelect.getInt("IdLogement"));
-			temp.hebergeur =Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
+			temp.logement = Logement.getLogementById(resultSelect.getInt(1));
+			temp.hebergeur =Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt(1));
 			tablePostulation.add(temp);
 		}
 		return tablePostulation;
@@ -109,6 +110,26 @@ public class Postule {
 
 	public Logement getLogement() {
 		return logement;
+	}
+
+	public static List<Postule> getDemandeRecuByUser(Utilisateur user) throws Exception {
+		List<Postule> result = new ArrayList<Postule>();
+		String sql = "select Postule.IdUtilisateur,Postule.IdLogement from Postule,Utilisateur "
+				+ "where Postule.IdLogement=Utilisateur.IdLogement "
+				+ "and Utilisateur.IdUtilisateur = ?";
+		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
+		select.setInt(1, user.getIdUser());
+		ResultSet resultSelect = select.executeQuery();
+		while(resultSelect.next()){
+			Postule temp = new Postule();
+			temp.hebergeur = user;
+			temp.postulant = Utilisateur.getUtilisateurById(resultSelect.getInt(1));
+			temp.logement = Logement.getLogementById(resultSelect.getInt(2));
+			result.add(temp);
+		}
+		
+		
+		return result;
 	}
 	
 }
