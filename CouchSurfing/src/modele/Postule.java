@@ -86,7 +86,6 @@ public class Postule {
 		Date today = new Date();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		String myDate = sdf.format(today);
-		
 		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DatePostule,Status) values(?,?,?,?)");
 		ps.setInt(1, this.postulant.getIdUser());
 		ps.setInt(2, this.logement.getIdLogement());
@@ -142,7 +141,5 @@ public class Postule {
 		else{
 			return false;
 		}
-		
 	}
-	
 }

@@ -8,6 +8,7 @@ import modele.Utilisateur;
 
 public abstract class SuperServlet extends HttpServlet {
 
+	private static final long serialVersionUID = -7832776795658834441L;
 
 	protected String getMailInCookie(HttpServletRequest request){
 		Cookie[] lesCookies=request.getCookies();
