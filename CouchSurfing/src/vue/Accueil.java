@@ -1,9 +1,11 @@
 package vue;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ import formulaire.FormulaireConnexion;
  * Servlet implementation class Accueil
  */
 @WebServlet("/Accueil")
-public class Accueil extends HttpServlet {
+public class Accueil extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -28,7 +30,18 @@ public class Accueil extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("sessionUtilisateur") == null) {
+		if(super.getMailInCookie(request)!= null){
+			try{
+				Utilisateur user = Utilisateur.getUtilisateurParMail(super.getMailInCookie(request));
+				request.getSession().setAttribute("sessionUtilisateur", user);
+				response.sendRedirect( "recherche" );
+				return;	
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		if (super.getUtiilisateurInSession(request) == null ) {
 			request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 		}else {
@@ -49,6 +62,7 @@ public class Accueil extends HttpServlet {
 			if (form.verificationCoupleMailMotDePasse()){
 				Utilisateur user= Utilisateur.getUtilisateurParMail(logA);
 				sessionUtilisateur.setAttribute("sessionUtilisateur", user);
+				response.addCookie(new Cookie("cookieUtilisateur", logA));
 				response.sendRedirect( "recherche" );
 				return;				
 
@@ -62,7 +76,6 @@ public class Accueil extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 
 	
 }
