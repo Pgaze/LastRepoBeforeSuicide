@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import modele.Image;
 import modele.Utilisateur;
-import classes.Menu;
 
 /**
  * Servlet implementation class ServletImageProfil

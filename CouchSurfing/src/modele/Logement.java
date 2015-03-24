@@ -20,7 +20,6 @@ public class Logement {
 	private int idLogement;
 	private Adresse adresse;
 	private List<Critere> lesCriteres;
-	private int idImageLogement;
 	private String dateDebut,dateFin;
 
 	/**
