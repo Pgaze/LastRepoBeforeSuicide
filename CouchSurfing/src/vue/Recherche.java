@@ -69,11 +69,16 @@ public class Recherche extends SuperServlet {
 			try {
 				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique(request));
 				Utilisateur user= super.getUtiilisateurInSession(request);
-				Postule.postulerAUneOffre(offrePostulee.getLogement().getIdLogement(), user.getIdUser());
-				Data.BDD_Connection.commit();
-				response.sendRedirect("demandes");
-			}catch(MySQLIntegrityConstraintViolationException e){
-				//TODO alerte js pour logement deja postule
+				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
+				if(!postule.existInBase()){
+					postule.postulerAUneOffre();
+					Data.BDD_Connection.commit();
+					response.sendRedirect("demandes");
+					return ;
+				}
+				else{
+					request.setAttribute("resultat", "Vous avez deja postule à cette offre");
+				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
