@@ -1,3 +1,5 @@
 /build
 pingouinTest
 .classpath
+.project
+/.settings
