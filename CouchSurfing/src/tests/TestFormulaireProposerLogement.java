@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import modele.Data;
 import modele.Utilisateur;
 
@@ -14,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilitaire.ConnectionMySQL;
+import utilitaire.CustomDate;
 import formulaire.FormulaireProposerLogement;
 
 public class TestFormulaireProposerLogement {
@@ -54,6 +57,16 @@ public class TestFormulaireProposerLogement {
 		assertEquals("Logement ajoute",this.form.procedureAjoutLogement());
 	}
 
+	@Test
+	public void testProcedureAjoutLogementAvecDate() throws SQLException, InvalidAttributeValueException, javax.management.InvalidAttributeValueException {
+		String dDebut = CustomDate.creerStringDate(2016, 12, 8);
+		String dFin = CustomDate.creerStringDate(2017, 3, 5);
+		this.form = new FormulaireProposerLogement("5", "38 Avenue Rangueil","42300", "Maaaaah", "", "Paris",
+				Utilisateur.getUtilisateurParMail("gg.le.clown@mail.com"));
+		this.form.procedureAjoutLogement();
+		this.form.procedureSpecDateLogement(dDebut, dFin);
+	}
+	
 	@Test
 	public void testAdresseToString() throws SQLException{
 		this.form = new FormulaireProposerLogement("1", "35 Avenue Rangueil","3140", "TaMere", "", "Toulouse", 

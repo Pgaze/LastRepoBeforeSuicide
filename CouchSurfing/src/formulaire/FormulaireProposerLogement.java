@@ -3,10 +3,13 @@ package formulaire;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import modele.Adresse;
 import modele.Data;
 import modele.Logement;
 import modele.Utilisateur;
+import utilitaire.CustomDate;
 
 public class FormulaireProposerLogement {
 	
@@ -19,6 +22,17 @@ public class FormulaireProposerLogement {
 	private Utilisateur user;
 	private String dateDebut,dateFin;
 	
+	/** Ne pas oublier d'utiliser setDateDebutFin !
+	 * @param batimentEscalier
+	 * @param numeroEtVoie
+	 * @param cp
+	 * @param residence
+	 * @param complementAdresse
+	 * @param ville
+	 * @param user
+	 * @param dateDebut
+	 * @param dateFin
+	 */
 	public FormulaireProposerLogement(String batimentEscalier,
 			String numeroEtVoie, String cp, String residence,
 			String complementAdresse, String ville, Utilisateur user) {
@@ -29,6 +43,14 @@ public class FormulaireProposerLogement {
 		this.setComplementAdresse(complementAdresse);
 		this.setVille(ville);
 		this.setUser(user);
+	}
+	
+	public void setDateDebutFin(String dateDebut,String dateFin) throws InvalidAttributeValueException {
+		String tempsDateD = CustomDate.checkFormatDate(dateDebut);
+		String tempsDateF = CustomDate.checkFormatDate(dateFin);
+		CustomDate.checkIntegriteDates(tempsDateD, tempsDateF);
+		this.dateDebut = tempsDateD;
+		this.dateFin = tempsDateF;
 	}
 	
 	public String getBatimentEscalier() {
@@ -78,6 +100,10 @@ public class FormulaireProposerLogement {
 		return this.cp.matches("[0-9]{5}");
 	}
 	
+	/** Ajoute un logement lie a un utilisateur/hebergeur
+	 * @return stateOfResult
+	 * @throws SQLException
+	 */
 	public String procedureAjoutLogement() throws SQLException{
 		String result="";
 		Logement l = this.getLogement();
@@ -89,9 +115,16 @@ public class FormulaireProposerLogement {
 		if (res==1 && resultatInsertionLogement){
 			result="Logement ajoute";
 		}else{
-			result="Echec crÃ©ation logement";
+			result="Echec création logement";
 		}
 		return result;
+	}
+	
+	public void procedureSpecDateLogement(String dateD, String dateF) throws InvalidAttributeValueException, javax.management.InvalidAttributeValueException, SQLException{
+		Logement logement = getLogement();
+		this.setDateDebutFin(dateD, dateF);
+		logement.setDateDebutFin(this.dateDebut, this.dateFin);
+		logement.updateDates();
 	}
 	
 	public Logement getLogement(){

@@ -1,6 +1,7 @@
 
 package modele;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,10 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import modele.Critere.TypeCritere;
+import utilitaire.CustomDate;
 
 public class Logement {
 
@@ -17,6 +21,7 @@ public class Logement {
 	private Adresse adresse;
 	private List<Critere> lesCriteres;
 	private int idImageLogement;
+	private String dateDebut,dateFin;
 
 	/**
 	 * @param adresse
@@ -145,21 +150,7 @@ public class Logement {
 		}
 		return result;
 	}
-	
-	public boolean setDateToNull() throws SQLException{
-		String sql= "UPDATE Logement set DateDebut=?,DateFin=? where IdLogement=?";
-		boolean result=false;
-		PreparedStatement update=Data.BDD_Connection.prepareStatement(sql);
-		update.setNull(1,Types.DATE);
-		update.setNull(2, Types.DATE);
-		update.setInt(3, this.idLogement);
-		if(update.executeUpdate()==1){
-			result=true;
-		}
-		return result;
-	}
-
-	
+		
 	public int getIdPhotoLogement() throws SQLException{
 		String sql = "SELECT IdImageLogement FROM Logement where IdLogement=?";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
@@ -185,4 +176,40 @@ public class Logement {
 		return result;
 	}
 
+		public void setDateDebutFin(String dateDebut,String dateFin) throws InvalidAttributeValueException {
+		String tempsDateD = CustomDate.checkFormatDate(dateDebut);
+		String tempsDateF = CustomDate.checkFormatDate(dateFin);
+		CustomDate.checkIntegriteDates(tempsDateD, tempsDateF);
+		this.dateDebut = tempsDateD;
+		this.dateFin = tempsDateF;
+	}
+	
+	public boolean setDateToNull() throws SQLException{
+		String sql= "UPDATE Logement set DateDebut=? AND DateFin=? WHERE IdLogement=?";
+		boolean result=false;
+		PreparedStatement update=Data.BDD_Connection.prepareStatement(sql);
+		update.setNull(1,Types.DATE);
+		update.setNull(2, Types.DATE);
+		update.setInt(3, this.idLogement);
+		if(update.executeUpdate()==1){
+			result=true;
+		}
+		return result;
+	}
+	
+	public boolean updateDates() throws SQLException, javax.management.InvalidAttributeValueException {
+		if(this.dateDebut== null || this.dateFin==null){
+			throw new javax.management.InvalidAttributeValueException("DateDebut ou DateFin n'a pas ete initialise ");
+		}
+		String sql="UPDATE Logement SET DateDebut=? AND DateFin=? WHERE IdLogement=?";
+		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
+		update.setDate(1, Date.valueOf(this.dateDebut));
+		update.setDate(2, Date.valueOf(this.dateFin));
+		update.setInt(3, this.idLogement);
+		boolean result=false;
+		if(update.executeUpdate()==1){
+			result=true;
+		}
+		return result;
+	}	
 }

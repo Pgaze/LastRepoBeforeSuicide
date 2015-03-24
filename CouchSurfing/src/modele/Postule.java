@@ -35,17 +35,13 @@ public class Postule {
 		return tablePostulation;
 	}
 	
-	/**
-	 * @return Liste des logements affectés
-	 * @throws SQLException
-	 */
-	public static ArrayList<Integer> deletePostulationsPerimees() throws SQLException{
+	/*public static ArrayList<Integer> deletePostulationsPerimees() throws SQLException{
 		ArrayList<Integer> table = getPostulationsPerimees();
 		//suppresion
 		PreparedStatement delete = Data.BDD_Connection.prepareStatement("DELETE FROM Postule WHERE DateInvalidite < CURDATE()");
 		delete.executeUpdate();
 		return table;
-	}
+	}*/
 	
 	/**
 	 * @return Liste des logements donc les postulations sont perimees
