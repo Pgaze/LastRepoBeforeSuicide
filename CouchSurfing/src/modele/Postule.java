@@ -78,14 +78,12 @@ public class Postule {
 	 * @return status
 	 * @throws SQLException
 	 */
-	@SuppressWarnings("deprecation")
 	public static boolean postulerAUneOffre(int idLogement, int theIdUser) throws SQLException {
 		Date today = new Date();
-		Date date = new Date(today.getYear(),today.getMonth()+2,today.getDay());
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-		String myDate = sdf.format(date);
+		String myDate = sdf.format(today);
 		
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DateInvalidite,Status) values(?,?,?,?)");
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DatePostule,Status) values(?,?,?,?)");
 		ps.setInt(1, theIdUser);
 		ps.setInt(2, idLogement);
 		ps.setString(3, myDate);

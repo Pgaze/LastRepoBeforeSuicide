@@ -36,17 +36,17 @@ public class TestCustomDate {
 	
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testcreerStringDateInvalideParametersMonthInfZero() throws InvalidAttributeValueException {
-		String date1 = CustomDate.creerStringDate(2010,00,02);
+		CustomDate.creerStringDate(2010,00,02);
 	}
 	
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testcreerStringDateInvalideParametersMonthSup12() throws InvalidAttributeValueException {
-		String date1 = CustomDate.creerStringDate(2010,13,02);
+		CustomDate.creerStringDate(2010,13,02);
 	}
 	
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testcreerStringDateInvalideParameterDaySup31() throws InvalidAttributeValueException {
-		String date1 = CustomDate.creerStringDate(2010,01,32);
+		CustomDate.creerStringDate(2010,01,32);
 	}
 	
 	@Test (expected = InvalidAttributeValueException.class)

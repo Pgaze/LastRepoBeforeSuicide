@@ -16,11 +16,9 @@ import org.junit.runners.Suite.SuiteClasses;
 				TestFormulaireRechercheAnnonce.class,
 				TestImage.class,
 				TestLogement.class,
-				TestUtilisateur.class,
+				TestOffre.class,
 				TestPostule.class,
-				TestImage.class,
-				TestCritereLogement.class,
-				TestOffre.class
+				TestUtilisateur.class,
 				})
 public class AllTests {
 
