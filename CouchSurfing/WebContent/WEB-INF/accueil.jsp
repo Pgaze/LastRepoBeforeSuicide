@@ -1,14 +1,17 @@
+
 <!DOCTYPE html>
 <html>
-<%@ include file="entete.jsp" %>
+	<%@ include file="entete.jsp" %>
 	<%@ include file="menu.jsp" %>
-
     <body style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
         <div id="container">	        	
 			<div class="contentAccueil" id="accueilBlock1" style="background-image:url(${pageContext.request.contextPath}/ImageServlet)">
 			</div>      	
 			<div class="contentAccueil" id="presentation">
-				<a href="evaluation"> Evaluation </a>
+				<p class="text_intro"> CouchSurfing est un service qui relie les membres d'une communauté française de voyageurs.</p>
+				<p class="text_intro"> Utilisez CouchSurfing pour trouver un endroit pour rester ou bien, de partager votre maison et ville natale avec les voyageurs.</p>
+				<p class="text_intro"> Les CouchSurfeurs organisent régulièrement des événements dans 200 000 villes à travers la France. Il ya toujours quelques choses à découvrir, de nouveaux amis à rencontrer.</p>
+				<p class="text_intro"> Venez vite les rencontrer ! </p>
 			</div>      	
 			<div class="contentAccueil" id="connexion">
 				<div id="formConnexion">
@@ -17,7 +20,7 @@
 						<input required type="password" name="mdp" placeholder="Votre mot de passe"/>
 						<input required type="Submit" name="valLogin"/>
 					</form>
-					<p>Vous n'avez pas de compte ? <a href="inscription">Inscrivez vous !</a></p>
+					<a href="inscription"> Vous n'avez pas de compte ? Inscrivez vous !</a>
 				</div>
 				${ resultat }
 			</div>

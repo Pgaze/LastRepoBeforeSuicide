@@ -8,6 +8,7 @@
 	<%@ include file="../CSS/profil.css" %>
 	<%@ include file="../CSS/styleDeSitan.css" %>
 	<%@ include file="../CSS/animation.css" %>
+	<%@ include file="../CSS/criteres.css" %>
 	<%@ include file="../CSS/accueil.css" %>
 	<%@ include file="../CSS/container.css" %>
 	<%@ include file="../CSS/demandes.css" %>

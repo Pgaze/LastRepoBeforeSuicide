@@ -3,6 +3,7 @@ package vue;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import modele.Utilisateur;
 
@@ -29,6 +30,10 @@ public abstract class SuperServlet extends HttpServlet {
 		else{
 			return null;
 		}
+	}
+	
+	protected void redirectIfNotConnected(HttpServletRequest request, HttpServletResponse response){
+		
 	}
 	
 

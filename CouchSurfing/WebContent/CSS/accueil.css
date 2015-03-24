@@ -29,7 +29,9 @@ background-position: 0;
  .contentAccueil
 {
   height: 350px;
-  border: 3px solid rgb(185, 177, 192);
+  border-radius: 50px;
+  background-color: rgb(244, 244, 244);
+  border: 1px solid rgb(185, 177, 192);
   margin-bottom: 25px;
 }
 
@@ -66,6 +68,17 @@ div#formConnexion
   color: #333333;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
+}
+
+#presentation{
+	padding:10px;
+}
+
+.text_intro{
+  font-size: 18px;
+  padding: 10px 100px 8px 100px;
+  border-radius: 31px;
+  background-color: rgb(221, 221, 221);
 }
 
 /*.uneDemande:after {
