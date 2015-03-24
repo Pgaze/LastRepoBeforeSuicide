@@ -89,11 +89,9 @@ public class Postule {
 	@SuppressWarnings("deprecation")
 	public  boolean postulerAUneOffre() throws SQLException {
 		Date today = new Date();
-		Date date = new Date(today.getYear(),today.getMonth()+2,today.getDay());
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-		String myDate = sdf.format(date);
-		
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DateInvalidite,Status) values(?,?,?,?)");
+		String myDate = sdf.format(today);
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DatePostule,Status) values(?,?,?,?)");
 		ps.setInt(1, this.postulant.getIdUser());
 		ps.setInt(2, this.logement.getIdLogement());
 		ps.setString(3, myDate);

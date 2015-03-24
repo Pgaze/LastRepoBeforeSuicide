@@ -45,7 +45,8 @@ public class TestPostule {
 		String dateDebut = CustomDate.creerStringDate(1901, 01, 01);
 		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
 		List<Offre> liste = new FormulaireRechercheAnnonce("Toulouse",dateDebut,dateFin).getListeOffre();
-		assertTrue(Postule.postulerAUneOffre(liste.get(0).getLogement().getIdLogement(), this.george.getIdUser()));
+		Postule p = new Postule(this.george, liste.get(0).getHebergeur(), liste.get(0).getLogement());
+		assertTrue(p.postulerAUneOffre());
 	}
 
 	@Test

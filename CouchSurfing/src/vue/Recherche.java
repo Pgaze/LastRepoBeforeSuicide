@@ -77,7 +77,8 @@ public class Recherche extends SuperServlet {
 					return ;
 				}
 				else{
-					request.setAttribute("resultat", "Vous avez deja postule à cette offre");
+					request.setAttribute("erreur", "Vous avez deja postule à cette offre");
+					this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(request, response);
 				}
 			}
 			catch (Exception e) {
