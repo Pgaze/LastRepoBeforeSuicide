@@ -20,7 +20,8 @@ public class Logement {
 	private int idLogement;
 	private Adresse adresse;
 	private List<Critere> lesCriteres;
-	private String dateDebut,dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 
 	/**
 	 * @param adresse
@@ -175,12 +176,10 @@ public class Logement {
 		return result;
 	}
 
-		public void setDateDebutFin(String dateDebut,String dateFin) throws InvalidAttributeValueException {
-		String tempsDateD = CustomDate.checkFormatDate(dateDebut);
-		String tempsDateF = CustomDate.checkFormatDate(dateFin);
-		CustomDate.checkIntegriteDates(tempsDateD, tempsDateF);
-		this.dateDebut = tempsDateD;
-		this.dateFin = tempsDateF;
+	public void setDateDebutFin(Date dateDebut,Date dateFin) throws InvalidAttributeValueException {
+		CustomDate.checkIntegriteDates(dateDebut, dateFin);
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 	}
 	
 	public boolean setDateToNull() throws SQLException{
@@ -202,8 +201,8 @@ public class Logement {
 		}
 		String sql="UPDATE Logement SET DateDebut=? AND DateFin=? WHERE IdLogement=?";
 		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
-		update.setDate(1, Date.valueOf(this.dateDebut));
-		update.setDate(2, Date.valueOf(this.dateFin));
+		update.setDate(1, this.dateDebut);
+		update.setDate(2, this.dateFin);
 		update.setInt(3, this.idLogement);
 		boolean result=false;
 		if(update.executeUpdate()==1){

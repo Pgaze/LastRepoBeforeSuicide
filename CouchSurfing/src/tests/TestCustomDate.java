@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.sql.Date;
+
 import javax.naming.directory.InvalidAttributeValueException;
 
 import org.junit.After;
@@ -81,8 +83,8 @@ public class TestCustomDate {
 	@Test
 	public void testCheckIntegriteDatesValide() {
 		try {
-			String date1 = CustomDate.creerStringDate(2016,02,02);
-			String date2 = CustomDate.creerStringDate(2016,02,03);
+			Date date1 = Date.valueOf("2016-02-02");
+			Date date2 = Date.valueOf("2016-02-03");
 			CustomDate.checkIntegriteDates(date1,date2);
 		} catch (InvalidAttributeValueException e) {
 			e.printStackTrace();
@@ -93,24 +95,22 @@ public class TestCustomDate {
 	
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testCheckIntegriteDatesInvalideBeforeToday() throws InvalidAttributeValueException{
-		String date1 = CustomDate.creerStringDate(2010,02,02);
-		String date2 = CustomDate.creerStringDate(2010,02,03);
+		Date date1 = Date.valueOf("2010-02-02");
+		Date date2 = Date.valueOf("2010-02-03");
 		CustomDate.checkIntegriteDates(date1,date2);
-		fail("Une excption �tait attendue");
 	}
 	
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testCheckIntegriteDatesInvalideEgale() throws InvalidAttributeValueException {
-		String date1 = CustomDate.creerStringDate(2010,01,01);
-		String date2 = CustomDate.creerStringDate(2010,01,01);
+		Date date1 = Date.valueOf("2010-01-01");
+		Date date2 = Date.valueOf("2010-01-01");
 		CustomDate.checkIntegriteDates(date1,date2);
-		fail("Une excption �tait attendue");
 	}
 
 	@Test (expected = InvalidAttributeValueException.class)
 	public void testCheckIntegriteDatesInvalideEndBefore() throws InvalidAttributeValueException {
-		String date1 = CustomDate.creerStringDate(2010,02,02);
-		String date2 = CustomDate.creerStringDate(2010,02,01);
+		Date date1 = Date.valueOf("2010-02-02");
+		Date date2 = Date.valueOf("2010-02-01");
 		CustomDate.checkIntegriteDates(date1,date2);
 	}
 	

@@ -60,7 +60,7 @@ public class FormulaireRechercheAnnonce {
 		while (rs.next()){
 			Logement l=Logement.getLogementById(rs.getInt(1));
 			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
-			result.add(new Offre(l, u, rs.getString(3), rs.getString(4)));
+			result.add(new Offre(l, u, rs.getDate(3), rs.getDate(4)));
 		}
 		if (result.isEmpty()){
 			throw new Exception("Aucun logement a "+this.ville);

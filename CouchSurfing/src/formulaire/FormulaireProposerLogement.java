@@ -1,5 +1,6 @@
 package formulaire;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -20,7 +21,7 @@ public class FormulaireProposerLogement {
 	private String complementAdresse;
 	private String ville;
 	private Utilisateur user;
-	private String dateDebut,dateFin;
+	private Date dateDebut,dateFin;
 	
 	/** Ne pas oublier d'utiliser setDateDebutFin !
 	 * @param batimentEscalier
@@ -45,12 +46,10 @@ public class FormulaireProposerLogement {
 		this.setUser(user);
 	}
 	
-	public void setDateDebutFin(String dateDebut,String dateFin) throws InvalidAttributeValueException {
-		String tempsDateD = CustomDate.checkFormatDate(dateDebut);
-		String tempsDateF = CustomDate.checkFormatDate(dateFin);
-		CustomDate.checkIntegriteDates(tempsDateD, tempsDateF);
-		this.dateDebut = tempsDateD;
-		this.dateFin = tempsDateF;
+	public void setDateDebutFin(Date dateDebut,Date dateFin) throws InvalidAttributeValueException {
+		CustomDate.checkIntegriteDates(dateDebut, dateFin);
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 	}
 	
 	public String getBatimentEscalier() {
@@ -120,7 +119,7 @@ public class FormulaireProposerLogement {
 		return result;
 	}
 	
-	public void procedureSpecDateLogement(String dateD, String dateF) throws InvalidAttributeValueException, javax.management.InvalidAttributeValueException, SQLException{
+	public void procedureSpecDateLogement(Date dateD, Date dateF) throws InvalidAttributeValueException, javax.management.InvalidAttributeValueException, SQLException{
 		Logement logement = getLogement();
 		this.setDateDebutFin(dateD, dateF);
 		logement.setDateDebutFin(this.dateDebut, this.dateFin);

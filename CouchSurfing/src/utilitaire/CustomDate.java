@@ -7,22 +7,16 @@ import javax.naming.directory.InvalidAttributeValueException;
 public class CustomDate {
 
 	/** Verifie l'integrite des dates debut et fin renseignées
-	 * @param strDateDebut
-	 * @param strDateFin
+	 * @param dateDebut
+	 * @param dateFin
 	 * @throws InvalidAttributeValueException
 	 */
-	public static void checkIntegriteDates(String strDateDebut, String strDateFin) throws InvalidAttributeValueException {
-		//reformatage de la date
-		Date newDateDebut,newDateFin;
-		newDateDebut = Date.valueOf(strDateDebut);
-		newDateFin = Date.valueOf(strDateFin);
-		//vérifications
-		if(!newDateFin.after(newDateDebut))
+	public static void checkIntegriteDates(Date dateDebut, Date dateFin) throws InvalidAttributeValueException {
+		//verifications
+		if(!dateFin.after(dateDebut))
 			throw new InvalidAttributeValueException("La date de fin n'est pas posterieure a la date de debut");
 		Date dateCourante = new Date(System.currentTimeMillis());
-		if(newDateDebut.before(dateCourante)) {
-			//clean plein de truc dégueux
-			//Offre.cleanAllLogementByPostulePerimees();
+		if(dateDebut.before(dateCourante)) {
 			throw new InvalidAttributeValueException("La date de debut est anterieure ou egale a la date actuelle");
 		}
 	}
