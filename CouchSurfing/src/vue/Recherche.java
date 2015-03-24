@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import modele.Data;
 import modele.Offre;
 import modele.Postule;
@@ -21,7 +23,7 @@ import formulaire.FormulaireRechercheAnnonce;
  * Servlet implementation class Recherche
  */
 @WebServlet("/Recherche")
-public class Recherche extends HttpServlet {
+public class Recherche extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -66,12 +68,14 @@ public class Recherche extends HttpServlet {
 			Offre offrePostulee;
 			try {
 				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique(request));
-				Utilisateur user= (Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
-				System.out.println(offrePostulee+" "+  user);
+				Utilisateur user= super.getUtiilisateurInSession(request);
 				Postule.postulerAUneOffre(offrePostulee.getLogement().getIdLogement(), user.getIdUser());
 				Data.BDD_Connection.commit();
 				response.sendRedirect("demandes");
-			} catch (Exception e) {
+			}catch(MySQLIntegrityConstraintViolationException e){
+				//TODO alerte js pour logement deja postule
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
