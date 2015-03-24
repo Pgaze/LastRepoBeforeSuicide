@@ -14,6 +14,16 @@ public class Postule {
 	private Utilisateur hebergeur;
 	private Logement logement;
 	
+	
+	
+	
+	public Postule(Utilisateur postulant, Utilisateur hebergeur, Logement logement) {
+		super();
+		this.postulant = postulant;
+		this.hebergeur = hebergeur;
+		this.logement = logement;
+	}
+
 	/**
 	 * @return Liste des Postulation de l'utilisateur qui sont encore valides
 	 * @throws Exception 
@@ -26,11 +36,9 @@ public class Postule {
 		ResultSet resultSelect=select.executeQuery();
 		
 		while(resultSelect.next()){
-			Postule temp = new Postule();
-			temp.postulant = user;
-			temp.logement = Logement.getLogementById(resultSelect.getInt("IdLogement"));
-			temp.hebergeur =Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
-			tablePostulation.add(temp);
+			Logement logement=Logement.getLogementById(resultSelect.getInt("IdLogement"));
+			Utilisateur hebergeur = Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
+			tablePostulation.add(new Postule(user, hebergeur, logement));
 		}
 		return tablePostulation;
 	}
@@ -79,15 +87,15 @@ public class Postule {
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("deprecation")
-	public static boolean postulerAUneOffre(int idLogement, int theIdUser) throws SQLException {
+	public  boolean postulerAUneOffre() throws SQLException {
 		Date today = new Date();
 		Date date = new Date(today.getYear(),today.getMonth()+2,today.getDay());
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		String myDate = sdf.format(date);
 		
 		PreparedStatement ps=Data.BDD_Connection.prepareStatement("INSERT INTO Postule (IdUtilisateur,IdLogement,DateInvalidite,Status) values(?,?,?,?)");
-		ps.setInt(1, theIdUser);
-		ps.setInt(2, idLogement);
+		ps.setInt(1, this.postulant.getIdUser());
+		ps.setInt(2, this.logement.getIdLogement());
 		ps.setString(3, myDate);
 		ps.setInt(4, 3);
 		
@@ -118,15 +126,29 @@ public class Postule {
 		select.setInt(1, user.getIdUser());
 		ResultSet resultSelect = select.executeQuery();
 		while(resultSelect.next()){
-			Postule temp = new Postule();
-			temp.hebergeur = user;
-			temp.postulant = Utilisateur.getUtilisateurById(resultSelect.getInt(1));
-			temp.logement = Logement.getLogementById(resultSelect.getInt(2));
-			result.add(temp);
+			Utilisateur postulant = Utilisateur.getUtilisateurById(resultSelect.getInt(1));
+			Logement logement = Logement.getLogementById(resultSelect.getInt(2));
+			result.add(new Postule(postulant, user, logement));
 		}
 		
 		
 		return result;
+	}
+	
+	public boolean existInBase() throws SQLException{
+		String sql = "SELECT count(*) from Postule where IdUtilisateur=? and IdLogement=? ";
+		PreparedStatement count = Data.BDD_Connection.prepareStatement(sql);
+		count.setInt(1,this.postulant.getIdUser());
+		count.setInt(2, this.logement.getIdLogement());
+		ResultSet resultcount = count.executeQuery();
+		resultcount.next();
+		if(resultcount.getInt(1)!=0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
 	}
 	
 }
