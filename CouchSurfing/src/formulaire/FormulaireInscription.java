@@ -17,7 +17,8 @@ public class FormulaireInscription {
 	private String mdp;
 	private String confirmMdp;
 	private String pseudo;
-	
+	private String[] retourInfos;
+	private int indice;
 	/**
 	 * @param nom
 	 * @param prenom
@@ -34,6 +35,7 @@ public class FormulaireInscription {
 		this.setMdp(mdp);
 		this.setConfirmMdp(confirmMdp);
 		this.setPseudo(pseudo);
+		this.indice = 0;
 	}
 
 	public FormulaireInscription() {}
@@ -72,6 +74,19 @@ public class FormulaireInscription {
 	}
 
 	public String procedureInscription() throws SQLException {
+		this.setRetourInfos(this.nom);
+		this.setRetourInfos(this.prenom);
+		this.setRetourInfos(this.pseudo);
+		if(this.testMailValide(this.mail)){
+			if(!this.testUtilisateurExistant(this.mail)){
+				if (this.testMotDePasseValide(mdp)){
+					if(this.confirmMdp.contentEquals(this.mdp)){
+						
+					}return "Probleme confirmation mot de passe";
+				}else return "Mot de passe invalide";
+			}else return "Utilisateur existant";
+		}//else return "Adresse mail invalide";
+		
 			if(!this.confirmMdp.contentEquals(this.mdp)){
 				return "Probleme confirmation mot de passe";
 			}
@@ -159,6 +174,12 @@ public class FormulaireInscription {
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
+	}
+
+	public void setRetourInfos(String info) {
+		this.retourInfos[this.indice] = pseudo;
+		this.indice++;
+		
 	}
 	
 }
