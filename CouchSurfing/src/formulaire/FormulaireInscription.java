@@ -77,24 +77,23 @@ public class FormulaireInscription {
 	}
 
 	public String procedureInscription() throws SQLException {
-		this.setRetourInfos(this.getPrenom());
+		this.setRetourInfos(this.prenom);
 		this.setRetourInfos(this.nom);
-		this.setRetourInfos(this.pseudo);			
+		this.setRetourInfos(this.pseudo);
+		this.setRetourInfos(this.tel);	
 
 			if(!this.testMailValide(this.mail)){
-				this.setRetourInfos(this.mail);		
-				this.setRetourInfos(this.tel);
 				return "Adresse mail invalide";
 			}
 			else if (this.testUtilisateurExistant(this.mail)){	
-				this.setRetourInfos(this.tel);
 				return "Utilisateur existant";
+			}
+			else if(!this.testMotDePasseValide(mdp)){
+				this.setRetourInfos(this.mail);
+				return "Mot de passe invalide";
 			}
 			else if(!this.confirmMdp.contentEquals(this.mdp)){
 				return "Probleme confirmation mot de passe";
-			}
-			else if(!this.testMotDePasseValide(mdp)){
-				return "Mot de passe invalide";
 			}
 			else{
 				this.getUtilisateur().insererDansLaBase();
