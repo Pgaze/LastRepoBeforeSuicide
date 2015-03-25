@@ -23,8 +23,9 @@
 					<input	placeholder="Votre email" required name="mail" id="mail"
 						type="email"value="${infosRetenus[4]}"></input></br>
 					<label for="tel">Tel :</label>
-					<input placeholder="Votre tel" required name="tel" id="tel"
-						type="text"value="${infosRetenus[3]}"></input></br>
+					<input placeholder="Votre tel" type="text"
+						 required value="${infosRetenus[3]}" name="tel" id="tel" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
+					</br>
 					<label for="mdp">Mot de passe (Avec 1 majuscule, 1 minuscule, 1 chiffre) :</label>
 					<input placeholder="Votre mot de passe" required name="mdp" id="mdp"
 						type="password"></input></br>
