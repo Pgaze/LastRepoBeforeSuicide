@@ -186,7 +186,7 @@ public class Logement {
 		String sql= "UPDATE Logement set DateDebut=? AND DateFin=? WHERE IdLogement=?";
 		boolean result=false;
 		PreparedStatement update=Data.BDD_Connection.prepareStatement(sql);
-		update.setNull(1,Types.DATE);
+		update.setNull(1, Types.DATE);
 		update.setNull(2, Types.DATE);
 		update.setInt(3, this.idLogement);
 		if(update.executeUpdate()==1){
@@ -199,13 +199,13 @@ public class Logement {
 		if(this.dateDebut== null || this.dateFin==null){
 			throw new javax.management.InvalidAttributeValueException("DateDebut ou DateFin n'a pas ete initialise ");
 		}
-		String sql="UPDATE Logement SET DateDebut=? AND DateFin=? WHERE IdLogement=?";
+		String sql="UPDATE Logement SET DateDebut=? , DateFin=? WHERE IdLogement=?";
 		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
 		update.setDate(1, this.dateDebut);
 		update.setDate(2, this.dateFin);
 		update.setInt(3, this.idLogement);
 		boolean result=false;
-		if(update.executeUpdate()==1){
+		if(update.execute()){
 			result=true;
 		}
 		return result;
