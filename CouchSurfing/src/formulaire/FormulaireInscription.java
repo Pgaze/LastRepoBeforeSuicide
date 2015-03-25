@@ -3,6 +3,8 @@ package formulaire;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import modele.Data;
 import modele.Utilisateur;
@@ -17,8 +19,8 @@ public class FormulaireInscription {
 	private String mdp;
 	private String confirmMdp;
 	private String pseudo;
-	private String[] retourInfos;
-	private int indice;
+	private String tel;
+	private List<String> retourInfos;
 	/**
 	 * @param nom
 	 * @param prenom
@@ -28,14 +30,15 @@ public class FormulaireInscription {
 	 * @param pseudo
 	 */
 	public FormulaireInscription(String nom, String prenom, String mail,
-			String mdp, String confirmMdp, String pseudo) {
+			String mdp, String confirmMdp, String pseudo, String tel) {
 		this.setNom(nom);
 		this.setPrenom(prenom);
 		this.setMail(mail);
 		this.setMdp(mdp);
 		this.setConfirmMdp(confirmMdp);
 		this.setPseudo(pseudo);
-		this.indice = 0;
+		this.setTel(tel);
+		this.retourInfos = new ArrayList<String>();;
 	}
 
 	public FormulaireInscription() {}
@@ -74,27 +77,21 @@ public class FormulaireInscription {
 	}
 
 	public String procedureInscription() throws SQLException {
+		this.setRetourInfos(this.getPrenom());
 		this.setRetourInfos(this.nom);
-		this.setRetourInfos(this.prenom);
-		this.setRetourInfos(this.pseudo);
-		if(this.testMailValide(this.mail)){
-			if(!this.testUtilisateurExistant(this.mail)){
-				if (this.testMotDePasseValide(mdp)){
-					if(this.confirmMdp.contentEquals(this.mdp)){
-						
-					}return "Probleme confirmation mot de passe";
-				}else return "Mot de passe invalide";
-			}else return "Utilisateur existant";
-		}//else return "Adresse mail invalide";
-		
-			if(!this.confirmMdp.contentEquals(this.mdp)){
-				return "Probleme confirmation mot de passe";
-			}
-			else if(!this.testMailValide(this.mail)){
+		this.setRetourInfos(this.pseudo);			
+
+			if(!this.testMailValide(this.mail)){
+				this.setRetourInfos(this.mail);		
+				this.setRetourInfos(this.tel);
 				return "Adresse mail invalide";
 			}
-			else if (this.testUtilisateurExistant(this.mail)){
+			else if (this.testUtilisateurExistant(this.mail)){	
+				this.setRetourInfos(this.tel);
 				return "Utilisateur existant";
+			}
+			else if(!this.confirmMdp.contentEquals(this.mdp)){
+				return "Probleme confirmation mot de passe";
 			}
 			else if(!this.testMotDePasseValide(mdp)){
 				return "Mot de passe invalide";
@@ -147,6 +144,14 @@ public class FormulaireInscription {
 		return pseudo;
 	}
 
+	public String getTel() {
+		return tel;
+	}
+
+	public List<String> getRetourInfos() {
+		return retourInfos;
+	}
+
 
 	private Utilisateur getUtilisateur() throws SQLException {
 		return new Utilisateur(this.mail, this.mdp, this.nom, this.prenom, this.pseudo);
@@ -176,10 +181,11 @@ public class FormulaireInscription {
 		this.pseudo = pseudo;
 	}
 
-	public void setRetourInfos(String info) {
-		this.retourInfos[this.indice] = pseudo;
-		this.indice++;
-		
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
-	
+
+	public void setRetourInfos(String info) {
+			this.retourInfos.add(info);
+	}	
 }
