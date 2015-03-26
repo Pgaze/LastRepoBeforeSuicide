@@ -44,7 +44,7 @@ public class Deconnexion extends SuperServlet {
 		request.getSession().invalidate();
 		for( Cookie c : request.getCookies()){
 			if(c.getName().equals("cookieUtilisateur"));
-			c.setMaxAge(0);
+			c.setMaxAge(-1);
 			break;
 		}
 	}
