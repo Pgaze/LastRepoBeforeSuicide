@@ -47,15 +47,21 @@ public class FormulaireRechercheAnnonce {
 	 */
 	public List<Offre> getListeOffre() throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
-		PreparedStatement s = Data.BDD_Connection.prepareStatement(
-					"select distinct Logement.IdLogement,Utilisateur.IdUtilisateur,Logement.DateDebut,Logement.DateFin from Utilisateur,Logement "
-					+ "where Logement.IdLogement=Utilisateur.IdLogement and Logement.ville = ?"
-					+ (this.dateDebut!=null && this.dateFin!=null ? "AND (Logement.DateDebut <= ? AND Logement.DateFin >= ?)" : ""));
+		String strReq = "SELECT DISTINCT Logement.IdLogement,Utilisateur.IdUtilisateur,Logement.DateDebut,Logement.DateFin "
+				+ "FROM Utilisateur,Logement,Postule "
+				+ "WHERE (Logement.IdLogement=Utilisateur.IdLogement AND Logement.ville = ?) ";
+		
+		if(this.dateDebut!=null && this.dateFin!=null){
+			strReq += "AND (Logement.DateDebut <= ? AND Logement.DateFin >= ?) ";
+		}
+		//strReq += " AND ";
+		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
 		s.setString(1, this.ville);
 		if(this.dateDebut!=null && this.dateFin!=null){
 			s.setDate(2, Date.valueOf(this.dateFin));
 			s.setDate(3, Date.valueOf(this.dateDebut));
 		}
+		
 		ResultSet rs=s.executeQuery();
 		while (rs.next()){
 			Logement l=Logement.getLogementById(rs.getInt(1));
