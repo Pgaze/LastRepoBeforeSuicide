@@ -27,6 +27,7 @@ public class Deconnexion extends SuperServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		destroyCookieAndSession(request);
 		response.sendRedirect("accueil");
@@ -36,6 +37,7 @@ public class Deconnexion extends SuperServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
@@ -44,7 +46,7 @@ public class Deconnexion extends SuperServlet {
 		request.getSession().invalidate();
 		for( Cookie c : request.getCookies()){
 			if(c.getName().equals("cookieUtilisateur"));
-			c.setMaxAge(0);
+			c.setMaxAge(-1);
 			break;
 		}
 	}

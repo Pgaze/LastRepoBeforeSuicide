@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilitaire.CustomDate;
 import modele.Data;
 import modele.Logement;
 import modele.Offre;
 import modele.Utilisateur;
+import utilitaire.CustomDate;
 
 public class FormulaireRechercheAnnonce {
 	
@@ -54,7 +54,9 @@ public class FormulaireRechercheAnnonce {
 		if(this.dateDebut!=null && this.dateFin!=null){
 			strReq += "AND (Logement.DateDebut <= ? AND Logement.DateFin >= ?) ";
 		}
-		//strReq += " AND ";
+		/*if(estOffrePostulee()){
+			strReq += " AND ";
+		}*/
 		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
 		s.setString(1, this.ville);
 		if(this.dateDebut!=null && this.dateFin!=null){
@@ -74,4 +76,12 @@ public class FormulaireRechercheAnnonce {
 		return result;
 	}
 	
+	/*private static boolean estOffrePostulee() throws SQLException {
+		String strReq = "SELECT DISTINCT Logement.IdLogement,Utilisateur.IdUtilisateur,Logement.DateDebut,Logement.DateFin "
+				+ "FROM Utilisateur,Logement,Postule "
+				+ "WHERE (Logement.IdLogement=Utilisateur.IdLogement AND Logement.ville = ?) ";
+		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
+		ResultSet rs=s.executeQuery();
+		return rs.next();
+	}*/
 }

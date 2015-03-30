@@ -119,6 +119,7 @@ public class Logement {
 		return result;
 	}
 	
+	
 	public void addCritere(Critere crit){
 		this.lesCriteres.add(crit);
 	}
@@ -210,4 +211,23 @@ public class Logement {
 		}
 		return result;
 	}	
+	
+	public boolean updateListCritere() throws SQLException{
+		String sql= "update Logement set ListCriteres=? where IdLogement=?";
+		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
+		update.setObject(1, this.lesCriteres);
+		update.setInt(2, this.idLogement);
+		if (update.executeUpdate() == 1){
+			return true;
+		}
+		return false;
+	}
+
+	public static void delete(int idLogement) throws SQLException {
+		String sql="delete from Logement where IdLogement=?";
+		PreparedStatement delete = Data.BDD_Connection.prepareStatement(sql);
+		delete.setInt(1, idLogement);
+		delete.executeUpdate();
+	}
+	
 }

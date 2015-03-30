@@ -28,6 +28,7 @@ public class Evaluation extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("sessionUtilisateur") == null) {
 			request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
@@ -38,6 +39,7 @@ public class Evaluation extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		request=Menu.afficherMenu(request, response);

@@ -18,8 +18,8 @@
 		    				<input placeholder="Commerces" type="text" name="crCommerce" id="crCommerce"/>
 		    			</li>
 						<li>
-							<label for="crHopiteux" class="icon-h-sigh criteresjsp_service"></label>
-							<input placeholder="Soins" type="text" name="crHopiteux" id="crHopiteux"/>
+							<label for="crHopitaux" class="icon-h-sigh criteresjsp_service"></label>
+							<input placeholder="Soins" type="text" name="crHopitaux" id="crHopitaux"/>
 						</li>
 						<li>
 							<label for="crRestaurants" class="icon-food criteresjsp_service"></label>
@@ -49,7 +49,7 @@
 						</li>
 						<li>
 							<label for="crFumeurs" class="icon-bus criteresjsp_service"></label>
-							<input placeholder="Fumeurs" type="text" name="crFumeurs" id="crFumeurs"/>
+							<input placeholder="Fumeurs" type="text" name="crFumeur" id="crFumeurs"/>
 						</li>
 						<li>
 							<label for="crParking" class="icon-paw criteresjsp_service"></label>
