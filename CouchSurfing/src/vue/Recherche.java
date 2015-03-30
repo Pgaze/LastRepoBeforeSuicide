@@ -68,7 +68,7 @@ public class Recherche extends SuperServlet {
 			Offre offrePostulee;
 			try {
 				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique(request));
-				Utilisateur user= super.getUtiilisateurInSession(request);
+				Utilisateur user= super.getUtilisateurInSession(request);
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
 					postule.postulerAUneOffre();

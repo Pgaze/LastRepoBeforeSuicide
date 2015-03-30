@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -31,13 +32,22 @@ public class TestFormulaireRechercheAnnonce {
 	}
 
 	@Test
-	public void testLogementToulouse() throws Exception {
+	public void testLogementStd() throws Exception {
 		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
 		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
-		this.form=new FormulaireRechercheAnnonce("Toulouse",dateDebut,dateFin);
+		this.form=new FormulaireRechercheAnnonce("Lyon",dateDebut,dateFin);
 		List<Offre> l = this.form.getListeOffre();
-		assertEquals(0, l.get(0).getLogement().getIdLogement());
+		assertEquals(2, l.get(0).getLogement().getIdLogement());
 	}
+	
+	/*@Test
+	public void testLogementPostulePlein() throws Exception {
+		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
+		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
+		this.form=new FormulaireRechercheAnnonce("Orange",dateDebut,dateFin);
+		List<Offre> l = this.form.getListeOffre();
+		assertTrue(l.isEmpty());
+	}*/
 	
 	@Test(expected = Exception.class)
 	public void testLogementInconnu() throws Exception {

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.Critere;
 import modele.Data;
 import modele.Image;
 import modele.Logement;
@@ -93,7 +94,6 @@ public class Profil extends HttpServlet {
 				Data.BDD_Connection.commit();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -135,12 +135,20 @@ public class Profil extends HttpServlet {
 	
 	private HttpServletRequest afficherLogementUser(HttpServletRequest request, Utilisateur user) throws Exception {
 		Logement logementUtilisateur = Logement.getLogementById(user.getIdLogement());
-		if (Logement.getLogementById(user.getIdLogement()) != null) {
+		if (logementUtilisateur != null) {
+			request= setCritereOnRequest(request, logementUtilisateur);
 			request.setAttribute("adresseLogement", logementUtilisateur.getAdresse().toString());
 		} else {
 			request.setAttribute(
 					"adresseLogement",
 					"<p>Vous n'avez pas de logement enregistr�. <a href='nouvelle'>Cr�ez en un !</a></p>");
+		}
+		return request;
+	}
+	
+	private HttpServletRequest setCritereOnRequest(HttpServletRequest request, Logement l){
+		for (Critere c : l.getLesCriteres()){
+			request.setAttribute(c.getNomCritere(), c.getDescription());
 		}
 		return request;
 	}

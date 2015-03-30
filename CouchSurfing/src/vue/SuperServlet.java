@@ -23,7 +23,7 @@ public abstract class SuperServlet extends HttpServlet {
 		return null;
 	}
 
-	protected Utilisateur getUtiilisateurInSession(HttpServletRequest request){
+	protected Utilisateur getUtilisateurInSession(HttpServletRequest request){
 		if(request.getSession().getAttribute("sessionUtilisateur") !=null){
 			return (Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
 		}
@@ -36,6 +36,6 @@ public abstract class SuperServlet extends HttpServlet {
 		
 	}
 	
-
+	
 
 }

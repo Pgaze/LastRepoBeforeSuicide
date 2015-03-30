@@ -88,6 +88,11 @@ public class Logement {
 	public Adresse getAdresse() {
 		return adresse;
 	}
+	
+	
+	public List<Critere> getLesCriteres() {
+		return lesCriteres;
+	}
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
@@ -100,7 +105,7 @@ public class Logement {
 	 */
 	public static Logement getLogementById(int idLogement) throws Exception{
 		Logement result= new Logement();
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville from Logement where IdLogement=?");
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville,ListCriteres from Logement where IdLogement=?");
 		ps.setInt(1, idLogement);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()){
@@ -112,6 +117,12 @@ public class Logement {
 			String ville = rs.getString(6);
 			result=new Logement(new Adresse(batimentEscalier, numeroEtVoie, cp, residence, complementAdresse, ville));
 			result.setIdLogement(idLogement);
+			Object temp = rs.getObject("ListCriteres");
+			List<Critere> listCritere = (List<Critere>)temp;
+			if(listCritere!=null){
+				result.lesCriteres = listCritere;
+			}
+			System.out.println("lesCriteres:"+result.lesCriteres);
 		}
 		else{
 			throw new Exception("Id inexistant");
@@ -215,6 +226,7 @@ public class Logement {
 	public boolean updateListCritere() throws SQLException{
 		String sql= "update Logement set ListCriteres=? where IdLogement=?";
 		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
+		System.out.println(this.lesCriteres);
 		update.setObject(1, this.lesCriteres);
 		update.setInt(2, this.idLogement);
 		if (update.executeUpdate() == 1){
@@ -229,5 +241,6 @@ public class Logement {
 		delete.setInt(1, idLogement);
 		delete.executeUpdate();
 	}
+
 	
 }

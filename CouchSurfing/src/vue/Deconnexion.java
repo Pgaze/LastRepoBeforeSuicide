@@ -21,7 +21,6 @@ public class Deconnexion extends SuperServlet {
 	 */
 	public Deconnexion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
