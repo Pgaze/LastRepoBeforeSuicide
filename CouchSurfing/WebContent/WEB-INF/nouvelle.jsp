@@ -3,12 +3,12 @@
 <html>
 	<%@ include file="entete.jsp" %>
 	<%@ include file="menu.jsp" %>
-    <body style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
+    <body onload="redirectionCriteres()" style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
         <div id="container">
 	        <form id="form_nouvelleAnnonce" method="post" action="nouvelle">
 	    		<h5>Nouvelle annonce !</h5>
 	    		<div id="form_in_propositionLogement">
-	    		${ resultat }
+	    		<!-- ${ resultat }  -->
 			    	<div id="saisies_propositionLogement">
 				        <div id="propoLogLeft">
 				        	<label class="alignLeft" for="batimentEscalier">Batiment/Escalier :</label><input name="batimentEscalier" id="batimentEscalier" type="text"></input>
