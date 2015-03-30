@@ -47,7 +47,7 @@ public class Menu {
 		membre.addLien("Annonces", false);
 		membre.addLien("Demandes", false);
 		membre.addLien("Profil", false);
-		membre.addLien("Messagerie", false);
+		//membre.addLien("Messagerie", false);
 		membre.addLien("Nouvelle", false);
 		membre.addLien("Recherche", false);
 		return membre;

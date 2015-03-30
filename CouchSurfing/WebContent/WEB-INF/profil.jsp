@@ -130,5 +130,6 @@
 			</div>
 		</div>
 	</div>
+<%@ include file="basdepage.jsp"%>
 </body>
 </html>
