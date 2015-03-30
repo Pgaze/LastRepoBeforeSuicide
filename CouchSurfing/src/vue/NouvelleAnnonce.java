@@ -55,7 +55,7 @@ public class NouvelleAnnonce extends HttpServlet {
 				String result = form.procedureAjoutLogement();
 				if(result.contentEquals("Logement ajoute")){
 					Data.BDD_Connection.commit();
-					response.sendRedirect("criteres");
+					//response.sendRedirect("criteres");
 				}else {
 					request.setAttribute("resultat", result);
 					this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(request, response);
