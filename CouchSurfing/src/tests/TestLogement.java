@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import modele.Adresse;
 import modele.Data;
 import modele.Logement;
@@ -14,6 +14,7 @@ import utilitaire.ConnectionMySQL;
 public class TestLogement {
 
 	
+	
 	@Before
 	public void setUp() throws Exception {
 		ConnectionMySQL.switchBDD_or_BDDTest(true);
@@ -25,15 +26,7 @@ public class TestLogement {
 	}
 
 	@Test
-	public void testSetIDExistant() throws Exception {
-		Logement l= new Logement(new Adresse("1", "35 Avenue Rangueil", "31400","Les Pigeons", "", "Toulouse"));
-		assertEquals(1,l.getIdLogement());
+	public void testUpdateListCriteres() throws Exception {
+		assertTrue(true);
 	}
-	
-	@Test
-	public void testSetIdNonExistant() throws Exception {
-		Logement l2= new Logement(new Adresse("10", "35 Rue Rangueil", "31400","Les oies", "0", "Toulouse"));
-		assertEquals(4,l2.getIdLogement());
-	}
-
 }

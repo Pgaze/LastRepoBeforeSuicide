@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +29,13 @@ public class Logement {
 	public Logement(Adresse adresse) throws SQLException {
 		this.setAdresse(adresse);
 		this.lesCriteres = new ArrayList<Critere>();
-		this.setId();
 	}
 
 	public Logement() {
 		this.lesCriteres = new ArrayList<Critere>();
 	}
 
-	private void setId() throws SQLException {
+/*	private void setId() throws SQLException {
 		PreparedStatement select=Data.BDD_Connection.prepareStatement("SELECT IdLogement FROM Logement WHERE"
 				+ " BatimentEscalier=? AND NumeroEtVoie=? AND CodePostal=? AND Residence=? "
 				+ "AND ComplementAdresse=? AND Ville=?");
@@ -57,21 +55,23 @@ public class Logement {
 			this.idLogement=resultMax.getInt(1)+1;
 		}
 
-	}
+	}*/
 
 	public boolean insererDansLaBase() throws SQLException{
-		PreparedStatement insert= Data.BDD_Connection.prepareStatement(""
-				+ "insert into Logement (IdLogement,BatimentEscalier,NumeroEtVoie,CodePostal,Residence,ComplementAdresse,Ville)"
-				+ "values (?,?,?,?,?,?,?)");
-		insert.setInt(1, this.idLogement);
-		insert.setString(2, this.adresse.getBatimentEscalier());
-		insert.setString(3,this.adresse.getNumeroEtVoie());
-		insert.setString(4, this.adresse.getCp());
-		insert.setString(5, this.adresse.getResidence());
-		insert.setString(6, this.adresse.getComplementAdresse());
-		insert.setString(7,this.adresse.getVille());
+		String sql = "insert into Logement (BatimentEscalier,NumeroEtVoie,CodePostal,Residence,ComplementAdresse,Ville)"
+					+ "values (?,?,?,?,?,?)";
+		PreparedStatement insert= Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		insert.setString(1, this.adresse.getBatimentEscalier());
+		insert.setString(2,this.adresse.getNumeroEtVoie());
+		insert.setString(3, this.adresse.getCp());
+		insert.setString(4, this.adresse.getResidence());
+		insert.setString(5, this.adresse.getComplementAdresse());
+		insert.setString(6,this.adresse.getVille());
 		int res=insert.executeUpdate();
 		if (res==1){
+			ResultSet rs = insert.getGeneratedKeys();
+			rs.next();
+			this.idLogement = rs.getInt(1);
 			return true;
 		}
 		return false;
@@ -216,30 +216,22 @@ public class Logement {
 		update.setDate(1, this.dateDebut);
 		update.setDate(2, this.dateFin);
 		update.setInt(3, this.idLogement);
-		boolean result=false;
-		if(update.execute()){
-			result=true;
-		}
-		return result;
+		return update.executeUpdate() ==1;
 	}	
 	
 	public boolean updateListCritere() throws SQLException{
 		String sql= "update Logement set ListCriteres=? where IdLogement=?";
 		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
-		System.out.println(this.lesCriteres);
 		update.setObject(1, this.lesCriteres);
 		update.setInt(2, this.idLogement);
-		if (update.executeUpdate() == 1){
-			return true;
-		}
-		return false;
+		return update.executeUpdate() ==1;
 	}
 
-	public static void delete(int idLogement) throws SQLException {
+	public static int delete(int idLogement) throws SQLException {
 		String sql="delete from Logement where IdLogement=?";
 		PreparedStatement delete = Data.BDD_Connection.prepareStatement(sql);
 		delete.setInt(1, idLogement);
-		delete.executeUpdate();
+		return delete.executeUpdate();
 	}
 
 	

@@ -14,29 +14,19 @@ import utilitaire.Password;
 public class TestUtilisateur {
 
 	private Utilisateur dubois;
-	private Utilisateur dupont;
 	
 	@Before
 	public void setUp() throws Exception {
 		ConnectionMySQL.switchBDD_or_BDDTest(true);
-
 		this.dubois=new Utilisateur("duboispaul@mail.com","motDePasse1","Dubois","Paul","Paulo");
-		this.dupont=new Utilisateur("dupont.pierre@mail.com","motDePasse1","Dupont","Pierre","Pierrot");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		this.dubois=null;
-		this.dupont=null;
 		Data.BDD_Connection.rollback();
 	}
 
-	@Test
-	public void testSetID() throws Exception {
-		assertEquals(0,this.dubois.getIdUser());
-		assertEquals(4,this.dupont.getIdUser());	
-	}
-	
 	@Test
 	public void testGetUtilisateurParMail() throws Exception {
 		this.dubois=Utilisateur.getUtilisateurParMail("duboispaul@mail.com");
@@ -48,13 +38,13 @@ public class TestUtilisateur {
 	
 	@Test
 	public void testGetUtilisateurById() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals("Dubois",dubois.getName());
 	}
 	
 	@Test
 	public void testUpdConfiance() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals(0,this.dubois.getAvgConfiance());
 		this.dubois.voteConfiance(5);
 		this.dubois.updateConfiance();
@@ -63,12 +53,10 @@ public class TestUtilisateur {
 	
 	@Test
 	public void testUpdtConfort() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals(0,this.dubois.getAvgConfort());
 		this.dubois.voteConfort(3);
 		this.dubois.updateConfort();
 		assertEquals(3,this.dubois.getAvgConfort());
 	}
-	
-	
 }

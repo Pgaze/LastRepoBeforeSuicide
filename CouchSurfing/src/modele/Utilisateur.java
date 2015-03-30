@@ -40,7 +40,6 @@ public class Utilisateur {
 		this.setIndiceConfort(0);
 		this.setNbVoteConfiance(0);
 		this.setNbVoteConfort(0);
-		this.setId();
 	}
 
 	public Utilisateur(String mail){
@@ -52,23 +51,23 @@ public class Utilisateur {
 	public static Utilisateur getUtilisateurParMail(String mail) throws SQLException{
 		Utilisateur result = new Utilisateur(mail);
 		PreparedStatement select = Data.BDD_Connection.prepareStatement("" +
-				"select Nom,Prenom,Mdp,Pseudo,IdLogement,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance from Utilisateur where Mail=?");
+				"select IdUtilisateur,Nom,Prenom,Mdp,Pseudo,IdLogement,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance from Utilisateur where Mail=?");
 		select.setString(1, mail);
 		ResultSet rs=select.executeQuery();
 		if(rs.next()){
-			result.setName(rs.getString(1));
-			result.setFirstName(rs.getString(2));
-			result.setPassword(rs.getString(3));
-			result.setPseudo(rs.getString(4));
-			result.setIdLogement(rs.getInt(5));
-			result.setIndiceConfort(rs.getInt(6));
-			result.setNbVoteConfort(rs.getInt(7));
-			result.setIndiceConfiance(rs.getInt(8));
-			result.setNbVoteConfiance(rs.getInt(9));
-			result.setId();
+			result.idUser = rs.getInt(1);
+			result.setName(rs.getString(2));
+			result.setFirstName(rs.getString(3));
+			result.setPassword(rs.getString(4));
+			result.setPseudo(rs.getString(5));
+			result.setIdLogement(rs.getInt(6));
+			result.setIndiceConfort(rs.getInt(7));
+			result.setNbVoteConfort(rs.getInt(8));
+			result.setIndiceConfiance(rs.getInt(9));
+			result.setNbVoteConfiance(rs.getInt(10));
 		}
-		else{
-			result =null;
+		else {
+			result = null;
 		}
 		return result;
 	}
@@ -95,7 +94,7 @@ public class Utilisateur {
 			result.setNbVoteConfort(rs.getInt(8));
 			result.setIndiceConfiance(rs.getInt(9));
 			result.setNbVoteConfiance(rs.getInt(10));
-			result.setId();
+			result.idUser = idUtilisateur;
 		}
 		else{
 			result =null;
@@ -305,7 +304,7 @@ public class Utilisateur {
 		return name + " " + firstName  ;
 	}
 
-	private void setId() throws SQLException {
+	/*private void setId() throws SQLException {
 		PreparedStatement select=Data.BDD_Connection.prepareStatement("select IdUtilisateur from Utilisateur where Mail=? and Nom=?");
 		select.setString(1, this.mail);
 		select.setString(2,this.name);
@@ -320,17 +319,20 @@ public class Utilisateur {
 			this.idUser=resultMax.getInt(1)+1;
 
 		}
-	}
+	}*/
 
 	public boolean insererDansLaBase() throws SQLException{
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("insert into Utilisateur (IdUtilisateur,Nom,Prenom,Mail,Pseudo,Mdp) values(?,?,?,?,?,?)");
-		ps.setInt(1, this.idUser);
-		ps.setString(2, this.name);
-		ps.setString(3, this.firstName);
-		ps.setString(4, this.mail);
-		ps.setString(5, this.pseudo);
-		ps.setString(6, Password.encrypt(this.password));
+		String sql = "insert into Utilisateur (Nom,Prenom,Mail,Pseudo,Mdp) values(?,?,?,?,?)";
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		ps.setString(1, this.name);
+		ps.setString(2, this.firstName);
+		ps.setString(3, this.mail);
+		ps.setString(4, this.pseudo);
+		ps.setString(5, Password.encrypt(this.password));
 		if(ps.executeUpdate() ==1){
+			ResultSet rs= ps.getGeneratedKeys();
+			rs.next();
+			this.idUser=rs.getInt(1);
 			return true;
 		}
 		return false;

@@ -37,7 +37,7 @@ public class Demandes extends HttpServlet {
 		Utilisateur user=(Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
 		List<Postule> demandeEnvoye,demandeRecu;
 		try {
-			demandeEnvoye = Postule.getPostulationsEnCoursByUser(user);
+			demandeEnvoye = Postule.getDemandeEnvoyeByUser(user);
 			request.setAttribute("demandeEnvoye", demandeEnvoye);
 			demandeRecu = Postule.getDemandeRecuByUser(user);
 			request.setAttribute("demandeRecu", demandeRecu);
