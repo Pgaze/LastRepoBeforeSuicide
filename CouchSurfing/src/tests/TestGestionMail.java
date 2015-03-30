@@ -4,6 +4,7 @@ import modele.Data;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilitaire.ConnectionMySQL;
@@ -21,7 +22,7 @@ public class TestGestionMail {
 		Data.BDD_Connection.rollback();
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testMail (){	
 		String from = "Le programme de test";
 		String to = "clicknsleep@gmail.com";
