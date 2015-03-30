@@ -44,6 +44,10 @@
 							<p class="intitule_profil">Pseudo</p>
 							<p class="info_profil">${ utilisateurProfil.pseudo }</p>
 						</div>
+						<div class="infoSessionContainer">
+							<p class="intitule_profil"> Tel </p>
+							<p class="info_profil"> 0672914568 </p>
+						</div>
 					</div>
 
 
@@ -51,25 +55,38 @@
 
 				<div class="infoSession">
 					<div class="infoSessionContainer">
-
-						<p class="intitule_profil_service">Adresse</p>
-						<p class="info_profil_service">${ adresseLogement }</p>
+						
+						<div id="serviceAdresse" class="serviceDiv">
+							<p class="intitule_profil_service">Adresse</p>
+							<p class="info_profil_service">${ adresseLogement }</p>
+						</div>
 						<p id="intituleService">Service à proximité</p>
 						<div id="serviceContainer">
-							<p class="icon-basket-1 intitule_profil_service">Commerce</p>
-							<p class="info_profil_service">Supermarché à 300m</p>
-							<p class="icon-h-sigh intitule_profil_service">Soins</p>
-							<p class="info_profil_service">Docteur en bas de la rue,
-								hopital a 5min de metro</p>
-							<p class="icon-food intitule_profil_service">Restaurant</p>
-							<p class="info_profil_service">1 pizzeria, 1 macdo a 200m</p>
-							<p class="icon-bus intitule_profil_service">Transport</p>
-							<p class="info_profil_service">le métro a 200m</p>
-							<p class="icon-paw intitule_profil_service">Animaux acceptés
-							</p>
-							<p class="info_profil_service">Oui</p>
-							<p class="icon-signal intitule_profil_service">Internet</p>
-							<p class="info_profil_service">Oui</p>
+							<div id="serviceCommerce" class="serviceDiv">
+								<p class="icon-basket-1 intitule_profil_service">Commerce</p>
+								<p class="info_profil_service">Supermarché à 300m</p>
+							</div>
+							<div id="serviceSoins" class="serviceDiv">
+								<p class="icon-h-sigh intitule_profil_service">Soins</p>
+								<p class="info_profil_service">Docteur en bas de la rue,
+									hopital a 5min de metro</p>
+							</div>
+							<div id="serviceRestaurant" class="serviceDiv">
+								<p class="icon-food intitule_profil_service">Restaurant</p>
+								<p class="info_profil_service">1 pizzeria, 1 macdo a 200m</p>
+							</div>
+							<div id="serviceTransport" class="serviceDiv">
+								<p class="icon-bus intitule_profil_service">Transport</p>
+								<p class="info_profil_service">le métro a 200m</p>
+							</div>
+							<div id="serviceCAnimaux" class="serviceDiv">
+								<p class="icon-paw intitule_profil_service">Animaux</p>
+								<p class="info_profil_service">Oui</p>
+							</div>
+							<div id="serviceInternet" class="serviceDiv">
+								<p class="icon-signal intitule_profil_service">Internet</p>
+								<p class="info_profil_service">Oui</p>
+							</div>
 						</div>
 					</div>
 				</div>
