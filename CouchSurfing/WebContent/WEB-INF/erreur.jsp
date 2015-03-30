@@ -10,10 +10,13 @@
 <%@ include file="menu.jsp" %>	
 <body style="background-image:url(/CouchSurfing/ServletBackground)">
 	<div id="container" class="content-accueil">
-		<h1 id="titre_erreur"> Ooooups... !!</h1>
+		<p id="titre_erreur"> Ooooups... !!</p>
 		<div id="containerErreur">
-			 Il y a une erreur.. !
+			 Il y a une erreur : <p style="font-weight: bold;">String</p>
 		</div>
+		<p>
+			Retour à <a href="accueil">l'accueil.</a>
+		</p>
 	</div>
 </body>
 </html>
