@@ -1,12 +1,8 @@
 package formulaire;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.naming.directory.InvalidAttributeValueException;
 
-import utilitaire.CustomDate;
 import modele.Critere;
 import modele.Critere.TypeCritere;
 import modele.Logement;

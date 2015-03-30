@@ -31,6 +31,7 @@ public class Criteres extends SuperServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request=Menu.afficherMenu(request, response);
 		System.out.println(super.getUtilisateurInSession(request));
@@ -41,6 +42,7 @@ public class Criteres extends SuperServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FormulaireCritere form = new FormulaireCritere(
 				request.getParameter("crCommerce"), request.getParameter("crHopitaux"), 

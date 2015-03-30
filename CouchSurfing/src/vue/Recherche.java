@@ -34,6 +34,7 @@ public class Recherche extends SuperServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//if (request.getSession().getAttribute("sessionUtilisateur") == null) {
 		if (request.getSession().getAttribute("sessionUtilisateur") != null) {
@@ -45,6 +46,7 @@ public class Recherche extends SuperServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Cas du bouton recherche
 		if (request.getParameter("btCherche")!=null){
