@@ -41,14 +41,6 @@
     <url-pattern>/annonces</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Messagerie</servlet-name>
-    <servlet-class>vue.Messagerie</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Messagerie</servlet-name>
-    <url-pattern>/messagerie</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Profil</servlet-name>
     <servlet-class>vue.Profil</servlet-class>
   </servlet>

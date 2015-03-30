@@ -11,7 +11,7 @@
 		    		<label>Date de début </label><input class="date" type="date" name="dateDebut">
 		    		<label>Date de fin </label><input class="date" type="date" name="dateFin">
 	    		</div>
-	    		<div id="services">
+	    		<div id="services1">
 	    			<ul>
 		    			<li> 
 		    				<label for="crCommerce" class="icon-basket-1 crCommerce criteresjsp_service"></label>
@@ -33,7 +33,13 @@
 							<label for="crAnimaux" class="icon-paw criteresjsp_service"></label>
 							<input placeholder="Animaux" type="text" name="crAnimaux" id="crAnimaux"/>
 						</li>
-							<li>
+							
+	    			</ul>
+	    			
+	    		</div>
+	    		<div id="services2">
+	    			<ul>
+	    				<li>
 							<label for="crInternet" class="icon-signal criteresjsp_service"></label>
 							<input placeholder="Internet" type="text" name="crInternet" id="crInternet"/>
 						</li>
