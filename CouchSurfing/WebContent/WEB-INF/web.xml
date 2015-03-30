@@ -17,14 +17,6 @@
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Nouvelle</servlet-name>
-    <servlet-class>vue.Nouvelle</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Nouvelle</servlet-name>
-    <url-pattern>/nouvelle</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Deconnexion</servlet-name>
     <servlet-class>vue.Deconnexion</servlet-class>
   </servlet>
@@ -71,6 +63,14 @@
   <servlet-mapping>
     <servlet-name>Criteres</servlet-name>
     <url-pattern>/criteres</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Nouvelle</servlet-name>
+    <servlet-class>vue.Nouvelle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Nouvelle</servlet-name>
+    <url-pattern>/nouvelle</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
