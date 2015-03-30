@@ -31,11 +31,6 @@ public class TestUtilisateur {
 		Data.BDD_Connection.rollback();
 	}
 
-	@Test
-	public void testSetID() throws Exception {
-		assertEquals(0,this.dubois.getIdUser());
-		assertEquals(3,this.dupont.getIdUser());	
-	}
 	
 	@Test
 	public void testGetUtilisateurParMail() throws Exception {
@@ -48,13 +43,13 @@ public class TestUtilisateur {
 	
 	@Test
 	public void testGetUtilisateurById() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals("Dubois",dubois.getName());
 	}
 	
 	@Test
 	public void testUpdConfiance() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals(0,this.dubois.getAvgConfiance());
 		this.dubois.voteConfiance(5);
 		this.dubois.updateConfiance();
@@ -63,7 +58,7 @@ public class TestUtilisateur {
 	
 	@Test
 	public void testUpdtConfort() throws Exception {
-		this.dubois=Utilisateur.getUtilisateurById(0);
+		this.dubois=Utilisateur.getUtilisateurById(4);
 		assertEquals(0,this.dubois.getAvgConfort());
 		this.dubois.voteConfort(3);
 		this.dubois.updateConfort();

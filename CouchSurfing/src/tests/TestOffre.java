@@ -20,7 +20,7 @@ public class TestOffre {
 	@Before
 	public void setUp() throws Exception {
 		ConnectionMySQL.switchBDD_or_BDDTest(true);
-		offre = Offre.getOffreByIdLogement(0);
+		offre = Offre.getOffreByIdLogement(4);
 	}
 
 	@After
@@ -31,8 +31,8 @@ public class TestOffre {
 
 	@Test
 	public void getOffreByIdLogement() throws Exception {
-		Offre o=Offre.getOffreByIdLogement(0);
-		assertEquals(0, o.getLogement().getIdLogement());
+		Offre o=Offre.getOffreByIdLogement(4);
+		assertEquals(4, o.getLogement().getIdLogement());
 		assertEquals(1, o.getHebergeur().getIdUser());
 	}
 	

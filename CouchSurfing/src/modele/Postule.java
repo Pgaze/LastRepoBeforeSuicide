@@ -24,11 +24,14 @@ public class Postule {
 	 * @return Liste des Postulation de l'utilisateur qui sont encore valides
 	 * @throws Exception 
 	 */
-	public static ArrayList<Postule> getPostulationsEnCoursByUser(Utilisateur user) throws Exception{
+	public static ArrayList<Postule> getDemandeEnvoyeByUser(Utilisateur user) throws Exception{
 		ArrayList<Postule> tablePostulation = new ArrayList<Postule>();
-		PreparedStatement select = Data.BDD_Connection.prepareStatement("SELECT IdLogement FROM Postule "
-				+ "WHERE IdUtilisateur=?  ");
+		String sql = "SELECT IdLogement FROM Postule "
+				+ "WHERE IdUtilisateur=?  ";
+		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
+		System.out.println("Test: "+ user.getIdUser());
 		select.setInt(1, user.getIdUser());
+		
 		ResultSet resultSelect=select.executeQuery();
 		
 		while(resultSelect.next()){
@@ -47,24 +50,6 @@ public class Postule {
 		return table;
 	}*/
 	
-	/**
-	 * @return Liste des logements donc les postulations sont perimees
-	 */
-	public static ArrayList<Integer> getPostulationsPerimees() {
-		ArrayList<Integer> tablePostulation = new ArrayList<Integer>();
-		//Selection des entrées a supprimer	
-		PreparedStatement select;
-		try {
-			select = Data.BDD_Connection.prepareStatement("SELECT IdLogement FROM Postule WHERE DateInvalidite < CURDATE() ORDER BY DateInvalidite");
-			ResultSet resultSelect=select.executeQuery();
-			while(resultSelect.next()){
-				tablePostulation.add(resultSelect.getInt(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return tablePostulation;
-	}
 	
 	/**
 	 * @return element supprimé
