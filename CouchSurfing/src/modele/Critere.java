@@ -1,6 +1,10 @@
 package modele;
 
-public class Critere {
+import java.io.Serializable;
+
+public class Critere implements Serializable {
+
+	private static final long serialVersionUID = -8425933680785263266L;
 
 	public enum TypeCritere {
 		COMMERCE, SOINS, RESTAURANT, INTERNET, HANDICAPE, TRANSPORT, FUMEUR, ANIMAUX, PARKING

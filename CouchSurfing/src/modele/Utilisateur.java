@@ -383,6 +383,17 @@ public class Utilisateur {
 		}
 		return result;
 	}
+
+	public boolean aUnLogement() throws SQLException {
+		String sql="select IdLogement from Utilisateur where IdUtilisateur = ?";
+		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
+		select.setInt(1, this.idUser);
+		ResultSet resultSelect = select.executeQuery();
+		if(resultSelect.next()){
+			return true;
+		}
+		return false;
+	}
 	
 		
 }

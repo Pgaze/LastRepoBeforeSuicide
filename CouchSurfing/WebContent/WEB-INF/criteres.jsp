@@ -43,7 +43,7 @@
 						</li>
 						<li>
 							<label for="crFumeurs" class="icon-bus criteresjsp_service"></label>
-							<input placeholder="Fumeurs" type="text" name="crFumeurs" id="crFumeurs"/>
+							<input placeholder="Fumeurs" type="text" name="crFumeur" id="crFumeurs"/>
 						</li>
 						<li>
 							<label for="crParking" class="icon-paw criteresjsp_service"></label>

@@ -1,6 +1,7 @@
 package vue;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +39,11 @@ public class Inscription extends HttpServlet {
 			String mdp=request.getParameter("mdp");
 			String confirmMdp=request.getParameter("mdpC");
 			String pseudo = request.getParameter("pseudo");
-			FormulaireInscription form=new FormulaireInscription(nom,prenom,mail,mdp,confirmMdp,pseudo);
+			String tel = request.getParameter("tel");
+			FormulaireInscription form=new FormulaireInscription(nom,prenom,mail,mdp,confirmMdp,pseudo,tel);
 			String resultatInscription=form.procedureInscription();
+			List<String> infosRetenus = form.getRetourInfos();
+			request.setAttribute("infosRetenus", infosRetenus);
 			request.setAttribute("resultat", resultatInscription);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
 			

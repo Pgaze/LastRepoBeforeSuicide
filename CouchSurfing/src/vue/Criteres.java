@@ -49,9 +49,17 @@ public class Criteres extends SuperServlet {
 				request.getParameter("crParking"),request.getParameter("dateDebut"),
 				request.getParameter("dateFin"));
 		Utilisateur user= super.getUtiilisateurInSession(request);
+		System.out.println(user);
 		try {
 			Logement l = Logement.getLogementById(user.getIdLogement());
 			form.setCritereOnLogement(l);
+			if(l.updateListCritere()){
+				response.sendRedirect("profil");
+				return;
+			}
+			else{
+				System.out.print("Erreur");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
