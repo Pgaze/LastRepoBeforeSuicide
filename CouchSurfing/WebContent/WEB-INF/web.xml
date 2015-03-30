@@ -9,6 +9,14 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Erreur</servlet-name>
+    <servlet-class>vue.Erreur</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Erreur</servlet-name>
+    <url-pattern>/erreur</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Inscription</servlet-name>
     <servlet-class>vue.Inscription</servlet-class>
   </servlet>
