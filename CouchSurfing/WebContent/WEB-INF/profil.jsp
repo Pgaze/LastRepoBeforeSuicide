@@ -103,6 +103,27 @@
 									<p class="info_profil_service">${crInternet }</p>
 								</div>
 							</c:if>
+							<c:if test="${crParking !=null}">
+
+								<div id="serviceParking" class="serviceDiv">
+									<p class="icon-cab intitule_profil_service">Parking</p>
+									<p class="info_profil_service">${crParking }</p>
+								</div>
+							</c:if>
+							<c:if test="${crFumeur !=null}">
+
+								<div id="serviceParking" class="serviceDiv">
+									<p class="icon-fire intitule_profil_service">Fumeur</p>
+									<p class="info_profil_service">${crFumeur }</p>
+								</div>
+							</c:if>
+							<c:if test="${crHandicape !=null}">
+
+								<div id="serviceHandicape" class="serviceDiv">
+									<p class="icon-wheelchair intitule_profil_service">Handicape</p>
+									<p class="info_profil_service">${crHandicape }</p>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
