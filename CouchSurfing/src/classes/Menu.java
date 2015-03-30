@@ -60,6 +60,12 @@ public class Menu {
 		return invite;
 	}
 	
+	public static Menu getMenuInscription(){
+		Menu inscription = new Menu("inscription");
+		inscription.addLien("Accueil", false);
+		return inscription;
+	}
+	
 	public static HttpServletRequest afficherMenu(HttpServletRequest request,HttpServletResponse response){
 		if (request.getSession().getAttribute("sessionUtilisateur") != null) {
 			request.setAttribute("menu", Menu.getMenuMembre().getLiensMenu());
