@@ -40,14 +40,14 @@ public class TestFormulaireRechercheAnnonce {
 		assertEquals(2, l.get(0).getLogement().getIdLogement());
 	}
 	
-	/*@Test
+	@Test
 	public void testLogementPostulePlein() throws Exception {
 		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
 		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
 		this.form=new FormulaireRechercheAnnonce("Orange",dateDebut,dateFin);
 		List<Offre> l = this.form.getListeOffre();
 		assertTrue(l.isEmpty());
-	}*/
+	}
 	
 	@Test(expected = Exception.class)
 	public void testLogementInconnu() throws Exception {

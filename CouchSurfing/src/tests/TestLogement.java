@@ -33,7 +33,7 @@ public class TestLogement {
 	@Test
 	public void testSetIdNonExistant() throws Exception {
 		Logement l2= new Logement(new Adresse("10", "35 Rue Rangueil", "31400","Les oies", "0", "Toulouse"));
-		assertEquals(2,l2.getIdLogement());
+		assertEquals(4,l2.getIdLogement());
 	}
 
 }

@@ -84,7 +84,7 @@ public class FormulaireRechercheAnnonce {
 		return result;
 	}
 	
-	/*private List<Offre> getOffreAvecPostulationMaisAvecReste(boolean dateSpecifiee) throws Exception {
+	private List<Offre> getOffreAvecPostulationMaisAvecReste(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 
 		String strReq = "SELECT DISTINCT Logement.IdLogement,Utilisateur.IdUtilisateur,Logement.DateDebut,Logement.DateFin "
@@ -111,5 +111,5 @@ public class FormulaireRechercheAnnonce {
 			throw new Exception("Aucun logement a "+this.ville);
 		}
 		return result;
-	}*/
+	}
 }

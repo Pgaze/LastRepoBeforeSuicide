@@ -34,7 +34,7 @@ public class TestUtilisateur {
 	@Test
 	public void testSetID() throws Exception {
 		assertEquals(0,this.dubois.getIdUser());
-		assertEquals(3,this.dupont.getIdUser());	
+		assertEquals(4,this.dupont.getIdUser());	
 	}
 	
 	@Test
