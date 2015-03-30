@@ -51,25 +51,34 @@
 
 				<div class="infoSession">
 					<div class="infoSessionContainer">
-
 						<p class="intitule_profil_service">Adresse</p>
 						<p class="info_profil_service">${ adresseLogement }</p>
 						<p id="intituleService">Service à proximité</p>
 						<div id="serviceContainer">
-							<p class="icon-basket-1 intitule_profil_service">Commerce</p>
-							<p class="info_profil_service">Supermarché à 300m</p>
-							<p class="icon-h-sigh intitule_profil_service">Soins</p>
-							<p class="info_profil_service">Docteur en bas de la rue,
-								hopital a 5min de metro</p>
+							<c:if test="${crCommerce !=null}">
+								<p class="icon-basket-1 intitule_profil_service">Commerce</p>
+								<p class="info_profil_service">${crCommerce}</p>
+							</c:if>
+       <c:if test="${crSoins !=null}">							
+							 <p class="icon-h-sigh intitule_profil_service">Soins</p>
+							 <p class="info_profil_service">${crSoins }</p>
+							</c:if>
+							<c:if test="${crRestaurants !=null}">
 							<p class="icon-food intitule_profil_service">Restaurant</p>
-							<p class="info_profil_service">1 pizzeria, 1 macdo a 200m</p>
+							<p class="info_profil_service">${crRestaurants }</p>
+							</c:if>
+							<c:if test="${crTransports !=null}">
 							<p class="icon-bus intitule_profil_service">Transport</p>
-							<p class="info_profil_service">le métro a 200m</p>
-							<p class="icon-paw intitule_profil_service">Animaux acceptés
-							</p>
-							<p class="info_profil_service">Oui</p>
+							<p class="info_profil_service">${crTransports }</p>
+							</c:if>
+							<c:if test="${crAnimaux !=null}">
+							<p class="icon-paw intitule_profil_service">Animaux acceptés</p>
+							<p class="info_profil_service">${crAnimaux }</p>
+							</c:if>
+							<c:if test="${crInternet !=null}">
 							<p class="icon-signal intitule_profil_service">Internet</p>
-							<p class="info_profil_service">Oui</p>
+							<p class="info_profil_service">${crInternet }</p>
+							</c:if>
 						</div>
 					</div>
 				</div>

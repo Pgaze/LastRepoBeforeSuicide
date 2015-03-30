@@ -115,6 +115,7 @@ public class FormulaireProposerLogement {
 		update.setInt(2, this.getUser().getIdUser());
 		int res = update.executeUpdate();
 		if (res==1 && resultatInsertionLogement){
+			user.setIdLogement(l.getIdLogement());
 			result="Logement ajoute";
 		}else{
 			result="Echec cr�ation logement";

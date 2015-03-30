@@ -26,7 +26,6 @@ public class Demandes extends HttpServlet {
 	 */
 	public Demandes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

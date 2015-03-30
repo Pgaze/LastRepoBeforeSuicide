@@ -19,7 +19,7 @@ import formulaire.FormulaireProposerLogement;
  * Servlet implementation class Nouvelle
  */
 @WebServlet("/Nouvelle")
-public class NouvelleAnnonce extends HttpServlet {
+public class NouvelleAnnonce extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
