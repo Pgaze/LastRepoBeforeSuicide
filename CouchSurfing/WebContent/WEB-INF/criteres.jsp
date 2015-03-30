@@ -22,7 +22,7 @@
 							<input placeholder="Soins" type="text" name="crHopitaux" id="crHopitaux"/>
 						</li>
 						<li>
-							<label for="crRestaurants" class="icon-food criteresjsp_service"></label>
+							<label for="crRestaurants" class="icon-restaurant criteresjsp_service"></label>
 							<input placeholder="Restaurants" type="text" name="crRestaurants" id="crRestaurants"/>
 						</li>
 						<li>
@@ -44,15 +44,15 @@
 							<input placeholder="Internet" type="text" name="crInternet" id="crInternet"/>
 						</li>
 						<li> 
-							<label for="crHandicapes" class="icon-food criteresjsp_service"></label>
+							<label for="crHandicapes" class="icon-wheelchair criteresjsp_service"></label>
 							<input placeholder="Handicapes" type="text" name="crHandicapes" id="crHandicapes"/>
 						</li>
 						<li>
-							<label for="crFumeurs" class="icon-bus criteresjsp_service"></label>
+							<label for="crFumeurs" class="icon-fire criteresjsp_service"></label>
 							<input placeholder="Fumeurs" type="text" name="crFumeur" id="crFumeurs"/>
 						</li>
 						<li>
-							<label for="crParking" class="icon-paw criteresjsp_service"></label>
+							<label for="crParking" class="icon-cab criteresjsp_service"></label>
 							<input placeholder="Parking" type="text" name="crParking" id="crParking"/>
 						</li>
 							

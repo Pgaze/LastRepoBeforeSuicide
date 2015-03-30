@@ -7,16 +7,16 @@ div#services1 {
   float: left;
   display: inline-block;
   padding-top: 3%;
-  height: 80%;
+  height: 70%;
   background-color: #b0eada;
 }
 
 div#services2 {
-  height: 80%;
+  height: 70%;
   width: 45%;
   margin-left: 5px;
   margin-right: 5px;
-  float: right;
+  float: left;
   padding-top: 3%;
   /* margin-top: 2%; */
   background-color: #b0eada;
@@ -64,11 +64,9 @@ padding-top: 0%;
 }
 
 #form_criteres > input{
-	
-position: absolute;
-margin-top: -30px;
-height: 35px;
-width: 59px;
+  float: left;
+  height: 35px;
+  width: 70px;
 }
 
 #form_criteres {
