@@ -13,11 +13,11 @@ function redirectionAccueil(){
 } 
 
 function redirectionCriteres(){
-	   var valeur = "${resultat}";
-	   if(valeur != ""){
-		   alert("${resultat}");
-		   if(valeur == "Logement ajoute"){
-			   window.location = "criteres";
-		   }
-	   }
-	} 
+	var valeur = "${resultat}";
+	if(valeur != ""){
+		alert("${resultat}");
+		if(valeur == "Logement ajoute"){
+			window.location = "criteres";
+		}
+	}
+} 

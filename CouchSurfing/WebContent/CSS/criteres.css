@@ -8,7 +8,7 @@ div#services1 {
   display: inline-block;
   padding-top: 3%;
   height: 70%;
-  background-color: #b0eada;
+  background-color: rgba(156, 174, 169, 0.71);
 }
 
 div#services2 {
@@ -19,7 +19,7 @@ div#services2 {
   float: left;
   padding-top: 3%;
   /* margin-top: 2%; */
-  background-color: #b0eada;
+  background-color: rgba(156, 174, 169, 0.71);
 	
 background-color:#b0eada;
 }
@@ -52,7 +52,7 @@ padding-top: 0%;
 	vertical-align: top;
 	line-height: 29px;
 	margin: 0;
-	background-color: rgb(215, 215, 215);
+	background-color: white;
 	font-family: monospace;
 	display: list-item;
 	border-radius: 5px;

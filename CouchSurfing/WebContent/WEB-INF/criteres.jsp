@@ -59,7 +59,7 @@
 	    			</ul>
 	    			
 	    		</div>
-	    		<input type="Submit" class="icon-food" value=""></input>
+	    		<input type="Submit" value="OK"></input>
 			</form>
         </div>
     </body>
