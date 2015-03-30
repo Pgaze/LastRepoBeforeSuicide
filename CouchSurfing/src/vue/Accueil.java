@@ -40,7 +40,7 @@ public class Accueil extends SuperServlet {
 				e.printStackTrace();
 			}
 		}
-		if (super.getUtiilisateurInSession(request) == null ) {
+		if (super.getUtilisateurInSession(request) == null ) {
 			request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
 		}else {

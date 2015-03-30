@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.Data;
 import modele.Logement;
 import modele.Utilisateur;
 import classes.Menu;
@@ -25,7 +26,6 @@ public class Criteres extends SuperServlet {
      */
     public Criteres() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,6 +34,7 @@ public class Criteres extends SuperServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request=Menu.afficherMenu(request, response);
+		System.out.println(super.getUtilisateurInSession(request));
 		this.getServletContext().getRequestDispatcher("/WEB-INF/criteres.jsp").forward(request, response);
 		
 	}
@@ -50,12 +51,14 @@ public class Criteres extends SuperServlet {
 				request.getParameter("crHandicapes"), request.getParameter("crFumeur"), 
 				request.getParameter("crParking"),request.getParameter("dateDebut"),
 				request.getParameter("dateFin"));
-		Utilisateur user= super.getUtiilisateurInSession(request);
-		System.out.println(user);
+		Utilisateur user= super.getUtilisateurInSession(request);
+		System.out.println("User dans do post Criteres: "+user);
 		try {
 			Logement l = Logement.getLogementById(user.getIdLogement());
+			System.out.println("Logement dans doPost Criteres: "+l );
 			form.setCritereOnLogement(l);
 			if(l.updateListCritere()){
+				Data.BDD_Connection.commit();
 				response.sendRedirect("profil");
 				return;
 			}
@@ -63,7 +66,6 @@ public class Criteres extends SuperServlet {
 				System.out.print("Erreur");
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
