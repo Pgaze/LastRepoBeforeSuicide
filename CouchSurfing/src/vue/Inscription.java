@@ -25,7 +25,7 @@ public class Inscription extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
+		//request=Menu.afficherMenu(request, response);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
 	}
 
