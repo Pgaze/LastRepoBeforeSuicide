@@ -55,7 +55,7 @@ public class Image {
 	public boolean insererDansLaBase() throws Exception{
 		String sql= "INSERT INTO Image (Nom,Image) VALUES (?,?)";
 		boolean result=false;
-		PreparedStatement insert = Data.BDD_Connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement insert = Data.BDD_Connection.prepareStatement(sql,java.sql.Statement.RETURN_GENERATED_KEYS);
 		insert.setString(1, this.nom);
 		FileInputStream inputStream= new FileInputStream(this.image);
 		insert.setBinaryStream(2, inputStream);

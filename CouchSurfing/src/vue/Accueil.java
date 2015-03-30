@@ -27,6 +27,7 @@ public class Accueil extends SuperServlet {
 	}
 
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(super.getMailInCookie(request)!= null){
 			try{
@@ -49,6 +50,7 @@ public class Accueil extends SuperServlet {
 	}
 
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request=Menu.afficherMenu(request, response);
 		HttpSession sessionUtilisateur = request.getSession();
