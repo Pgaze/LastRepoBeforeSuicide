@@ -28,6 +28,7 @@ public class FormulaireInscription {
 	 * @param mdp
 	 * @param confirmMdp
 	 * @param pseudo
+	 * @param tel
 	 */
 	public FormulaireInscription(String nom, String prenom, String mail,
 			String mdp, String confirmMdp, String pseudo, String tel) {
@@ -50,6 +51,7 @@ public class FormulaireInscription {
 	 * @param nom
 	 * @param pseudo
 	 * @param mail
+	 * @param tel
 	 * @param motDePasse
 	 * @return status
 	 * @throws SQLException

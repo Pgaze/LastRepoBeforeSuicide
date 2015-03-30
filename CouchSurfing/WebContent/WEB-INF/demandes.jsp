@@ -5,7 +5,7 @@
 	<%@ include file="menu.jsp" %>
     <body style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
         <div id="container">
-	        <h3>Demande envoyé</h3>
+	        <h3>Demande(s) envoyé(s)</h3>
 	        	
 			<div id="demandes">
 			    <div id="infosDemandes">
@@ -30,7 +30,7 @@
 			</div>
         </div>
               <div id="container">
-	        <h3>Demande recus</h3>
+	        <h3>Demande(s) recu(s)</h3>
 	        	
 			<div id="demandes">
 			    <div id="infosDemandes">
