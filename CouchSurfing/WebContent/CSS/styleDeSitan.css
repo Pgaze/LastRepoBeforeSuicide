@@ -22,7 +22,6 @@ div#le_menu
 {
 background: white;
 width: 100%;
-/* margin-top: 0px; */
 height: 55px;
 margin-bottom: 17px;
 padding-top: 11px;
@@ -126,7 +125,7 @@ li a
 
 ul
 {
-	width: 84.9%;
+	width: 70.9%;
 	margin: 0 auto;
 	height: 40px;
 	padding-top: 0.6%;
