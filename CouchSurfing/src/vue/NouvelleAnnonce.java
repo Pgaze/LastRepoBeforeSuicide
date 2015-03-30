@@ -53,11 +53,11 @@ public class NouvelleAnnonce extends SuperServlet {
 					request.getParameter("complementAdresse"), request.getParameter("ville"), user);
 			if(form.verificationCp()){
 				String result = form.procedureAjoutLogement();
+				request.setAttribute("resultat", result);
 				if(result.contentEquals("Logement ajoute")){
 					Data.BDD_Connection.commit();
 					response.sendRedirect("criteres");
 				}else {
-					request.setAttribute("resultat", result);
 					this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(request, response);
 				}
 			}

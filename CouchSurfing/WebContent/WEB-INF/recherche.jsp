@@ -2,8 +2,8 @@
 
 <!DOCTYPE html>
 <html>
-<%@ include file="entete.jsp"%>
-<%@ include file="menu.jsp"%>
+<%@ include file="../WEB-INF/entete.jsp"%>
+<%@ include file="../WEB-INF/menu.jsp"%>
 <body style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
 	<div id="container">
 		<div id="containerRecherche">
@@ -57,6 +57,6 @@
 
 </body>
 
-<%@ include file="basdepage.jsp"%>
+<%@ include file="../WEB-INF/basdepage.jsp"%>
 </html>
 

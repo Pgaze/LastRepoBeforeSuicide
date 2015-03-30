@@ -2,7 +2,7 @@
 
 //afficher popup resulat
 //si popup resulat = ok redirection
-function redirection(){
+function redirectionAccueil(){
    var valeur = "${resultat}";
    if(valeur != ""){
 	   alert("${resultat}");
@@ -10,4 +10,14 @@ function redirection(){
 		   window.location = "accueil#connexion";
 	   }
    }
+} 
+
+function redirectionCriteres(){
+	var valeur = "${resultat}";
+	if(valeur != ""){
+		alert("${resultat}");
+		if(valeur == "Logement ajoute"){
+			window.location = "criteres";
+		}
+	}
 } 
