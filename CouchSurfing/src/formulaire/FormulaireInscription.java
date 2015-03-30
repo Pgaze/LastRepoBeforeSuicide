@@ -31,6 +31,7 @@ public class FormulaireInscription {
 	 */
 	public FormulaireInscription(String nom, String prenom, String mail,
 			String mdp, String confirmMdp, String pseudo, String tel) {
+		this();
 		this.setNom(nom);
 		this.setPrenom(prenom);
 		this.setMail(mail);
@@ -38,10 +39,11 @@ public class FormulaireInscription {
 		this.setConfirmMdp(confirmMdp);
 		this.setPseudo(pseudo);
 		this.setTel(tel);
-		this.retourInfos = new ArrayList<String>();;
 	}
 
-	public FormulaireInscription() {}
+	public FormulaireInscription() {
+		this.retourInfos = new ArrayList<String>();
+	}
 
 	/**
 	 * @param prenom
@@ -185,6 +187,6 @@ public class FormulaireInscription {
 	}
 
 	public void setRetourInfos(String info) {
-			this.retourInfos.add(info);
+		this.retourInfos.add(info);
 	}	
 }
