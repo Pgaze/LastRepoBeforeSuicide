@@ -39,16 +39,8 @@ public class FormulaireCritere {
 		this.dateFin = dateFin;
 	}
 
-	public FormulaireCritere() {
-		super();
-	}
 	
-	public String modifierCritere(){
-		String result="";
-		return result;
-	}
-	
-	public void setCritereOnLogement(Logement l) throws InvalidAttributeValueException{
+	public void setCritereOnLogement(Logement l) {
 		this.addCritere(l, TypeCritere.ANIMAUX, this.crAnimaux);
 		this.addCritere(l, TypeCritere.COMMERCE, this.crCommerce);
 		this.addCritere(l, TypeCritere.FUMEUR, this.crFumeur);
@@ -58,6 +50,9 @@ public class FormulaireCritere {
 		this.addCritere(l, TypeCritere.RESTAURANT, this.crRestaurants);
 		this.addCritere(l, TypeCritere.SOINS, this.crHopitaux);
 		this.addCritere(l, TypeCritere.TRANSPORT, this.crTransports);
+	}
+	
+	public void setDateOnLogement(Logement l)throws InvalidAttributeValueException{
 		if(!(this.dateDebut.equals("") && this.dateFin.equals(""))){
 			l.setDateDebutFin(Date.valueOf(this.dateDebut), Date.valueOf(this.dateFin));	
 		}

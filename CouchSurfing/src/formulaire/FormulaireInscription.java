@@ -46,22 +46,9 @@ public class FormulaireInscription {
 		this.retourInfos = new ArrayList<String>();
 	}
 
-	/**
-	 * @param prenom
-	 * @param nom
-	 * @param pseudo
-	 * @param mail
-	 * @param tel
-	 * @param motDePasse
-	 * @return status
-	 * @throws SQLException
-	 */
-	public boolean verificationDonnesInscription(String prenom,String nom,String pseudo,String mail,String motDePasse) throws SQLException{
-		boolean result = true;
-		Utilisateur aTester=new Utilisateur(mail, motDePasse, nom, prenom, pseudo);
-		result=this.testMotDePasseValide(aTester.getPassword());
-		result=this.testMailValide(aTester.getMail());
-		return result;
+
+	public boolean testTelValide(String tel) {
+		return tel.matches("[0-9]{10}");
 	}
 
 	public boolean testMailValide(String mailATester) {
@@ -98,6 +85,9 @@ public class FormulaireInscription {
 			}
 			else if(!this.confirmMdp.contentEquals(this.mdp)){
 				return "Probleme confirmation mot de passe";
+			}
+			else if (!this.testTelValide(tel)){
+				return "Numero de téléphone invalide";
 			}
 			else{
 				this.getUtilisateur().insererDansLaBase();
@@ -157,7 +147,7 @@ public class FormulaireInscription {
 
 
 	private Utilisateur getUtilisateur() throws SQLException {
-		return new Utilisateur(this.mail, this.mdp, this.nom, this.prenom, this.pseudo);
+		return new Utilisateur(this.mail, this.mdp, this.nom, this.prenom, this.pseudo,this.tel);
 	}
 
 	public void setNom(String nom) {

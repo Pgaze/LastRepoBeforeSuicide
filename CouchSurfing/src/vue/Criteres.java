@@ -52,12 +52,20 @@ public class Criteres extends SuperServlet {
 				request.getParameter("crParking"),request.getParameter("dateDebut"),
 				request.getParameter("dateFin"));
 		Utilisateur user= super.getUtilisateurInSession(request);
-		System.out.println("User dans do post Criteres: "+user);
 		try {
+			boolean result=false ;
 			Logement l = Logement.getLogementById(user.getIdLogement());
-			System.out.println("Logement dans doPost Criteres: "+l );
+			if(!(request.getParameter("dateDebut").equals("") && request.getParameter("dateFin").equals(""))){
+				form.setDateOnLogement(l);
+				if(l.updateDates()){
+					result=true;
+				}
+			}
 			form.setCritereOnLogement(l);
 			if(l.updateListCritere()){
+				result= result && true;
+			}
+			if(result){
 				Data.BDD_Connection.commit();
 				response.sendRedirect("profil");
 				return;

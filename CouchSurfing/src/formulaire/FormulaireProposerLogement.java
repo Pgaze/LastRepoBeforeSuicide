@@ -107,7 +107,7 @@ public class FormulaireProposerLogement {
 		String result="";
 		Logement l = this.getLogement();
 		if(this.user.aUnLogement()){
-			Logement.delete(user.getIdLogement());
+			Logement.deleteFromBase(user.getIdLogement());
 		}
 		boolean resultatInsertionLogement = l.insererDansLaBase();
 		PreparedStatement update = Data.BDD_Connection.prepareStatement("UPDATE Utilisateur SET IdLogement=? WHERE IdUtilisateur=?");
