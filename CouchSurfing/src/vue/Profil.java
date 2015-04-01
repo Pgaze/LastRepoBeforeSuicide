@@ -51,26 +51,33 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 		Utilisateur user = null;
 		//TODO Utiliser la servlet Hebergeur  a la place
 		if (this.request.getParameter("id") == null) {
-			if (super.getUtilisateurInSession(this.request) != null) {
-				user = super.getUtilisateurInSession(this.request);
+			if (super.getUtilisateurInSession() != null) {
+				user = super.getUtilisateurInSession();
 			}
 		} else {
 			try {
 				int idUrl = Integer.valueOf(this.request.getParameter("id"));
 				user = Utilisateur.getUtilisateurById(idUrl);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				this.request.setAttribute("errorMessage",e.getMessage());
+				this.response.sendRedirect("erreur");
+				return ;
+
 			}
 		}
 		this.request.setAttribute("utilisateurProfil", user);
 		try {
 			afficherLogementUser( user);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
+			.forward(this.request, this.response);
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+			return ;
+
 		}
 
-		this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
-				.forward(this.request, this.response);
 
 	}
 
@@ -82,7 +89,7 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
-		Utilisateur user = super.getUtilisateurInSession(this.request);
+		Utilisateur user = super.getUtilisateurInSession();
 		this.request.setAttribute("utilisateurProfil", user);
 		try {
 			this.afficherLogementUser(user);
@@ -93,13 +100,17 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 				boolean test2 = user.setIdAvatar(imageUploaded.getIdImage());
 				System.out.println("userUpdated:"+test2);
 				Data.BDD_Connection.commit();
+				this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
+				.forward(this.request, this.response);
+
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+			return ;
+
 		}
 
-		this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
-				.forward(this.request, this.response);
 	}
 
 

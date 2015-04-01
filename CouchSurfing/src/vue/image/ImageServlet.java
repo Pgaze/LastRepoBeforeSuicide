@@ -22,7 +22,6 @@ public class ImageServlet extends HttpServlet {
      */
     public ImageServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/*

@@ -22,7 +22,6 @@ public class Evaluation extends LaBifleDuMoyenAgeANosJours {
      */
     public Evaluation() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

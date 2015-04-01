@@ -58,7 +58,10 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 				this.request.setAttribute("lesOffres", lesOffres);
 			}
 			catch (Exception e){
-				this.request.setAttribute("erreur", e.getMessage());
+				this.request.setAttribute("errorMessage",e.getMessage());
+				this.response.sendRedirect("erreur");
+				return ;
+
 			}
 			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 		}
@@ -67,7 +70,7 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 			Offre offrePostulee;
 			try {
 				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique());
-				Utilisateur user= super.getUtilisateurInSession(request);
+				Utilisateur user= super.getUtilisateurInSession();
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
 					postule.postulerAUneOffre();
@@ -81,7 +84,10 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 				}
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				this.request.setAttribute("errorMessage",e.getMessage());
+				this.response.sendRedirect("erreur");
+				return ;
+
 			}
 		}
 	}

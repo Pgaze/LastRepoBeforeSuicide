@@ -51,7 +51,7 @@ public class Criteres extends LaBifleDuMoyenAgeANosJours {
 				this.request.getParameter("crHandicapes"), this.request.getParameter("crFumeur"), 
 				this.request.getParameter("crParking"),this.request.getParameter("dateDebut"),
 				this.request.getParameter("dateFin"));
-		Utilisateur user= super.getUtilisateurInSession(this.request);
+		Utilisateur user= super.getUtilisateurInSession();
 		try {
 			boolean result=false ;
 			Logement l = Logement.getLogementById(user.getIdLogement());
@@ -71,11 +71,14 @@ public class Criteres extends LaBifleDuMoyenAgeANosJours {
 				return;
 			}
 			else{
-				//TODO Mettre en place l'affichage de la page d'erreur
-				System.out.print("Erreur");
+				this.request.setAttribute("errorMessage","Probleme base de donnees");
+				this.response.sendRedirect("erreur");
+
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+
 		}
 	}
 

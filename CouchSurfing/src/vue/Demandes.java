@@ -35,17 +35,19 @@ public class Demandes extends LaBifleDuMoyenAgeANosJours {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		this.afficherMenu();
-		Utilisateur user=super.getUtilisateurInSession(this.request);
+		Utilisateur user=super.getUtilisateurInSession();
 		List<Postule> demandeEnvoye,demandeRecu;
 		try {
 			demandeEnvoye = Postule.getDemandeEnvoyeByUser(user);
 			this.request.setAttribute("demandeEnvoye", demandeEnvoye);
 			demandeRecu = Postule.getDemandeRecuByUser(user);
 			this.request.setAttribute("demandeRecu", demandeRecu);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(this.request, this.response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+			return ;
 		}
-		this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(this.request, this.response);
 	}
 
 

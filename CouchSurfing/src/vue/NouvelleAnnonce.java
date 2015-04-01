@@ -48,7 +48,7 @@ public class NouvelleAnnonce extends LaBifleDuMoyenAgeANosJours {
 		super.afficherMenu();
 		try{
 			HttpSession utilisateurSession = this.request.getSession();
-			Utilisateur user= super.getUtilisateurInSession(this.request);
+			Utilisateur user= super.getUtilisateurInSession();
 			FormulaireProposerLogement form=new FormulaireProposerLogement(
 					this.request.getParameter("batimentEscalier"), this.request.getParameter("numeroEtVoie"), 
 					this.request.getParameter("cp"), this.request.getParameter("residence"), 
@@ -65,7 +65,10 @@ public class NouvelleAnnonce extends LaBifleDuMoyenAgeANosJours {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+			return ;
+
 		}
 	}
 

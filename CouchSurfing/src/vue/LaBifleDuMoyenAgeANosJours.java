@@ -1,5 +1,8 @@
 package vue;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +28,9 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 		}
 		return null;
 	}
-	//TODO Virer le parametre
-	protected Utilisateur getUtilisateurInSession(HttpServletRequest request){
-		if(request.getSession().getAttribute("sessionUtilisateur") !=null){
-			return (Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
+	protected Utilisateur getUtilisateurInSession(){
+		if(this.request.getSession().getAttribute("sessionUtilisateur") !=null){
+			return (Utilisateur)this.request.getSession().getAttribute("sessionUtilisateur");
 		}
 		else{
 			return null;
@@ -63,19 +65,9 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 		inscription.addLien("Accueil", false);
 		return inscription;
 	}
-	/*
-	public HttpServletRequest afficherMenu(HttpServletRequest request,HttpServletResponse response){
-		if (this.getUtilisateurInSession(request) != null) {
-			request.setAttribute("menu", getMenuMembre().getLiensMenu());
-		}
-		else{
-			request.setAttribute("menu", getMenuAcceuil().getLiensMenu());
-		}
-		return request;
-	}*/
 	
 	public void afficherMenu(){
-		if (this.getUtilisateurInSession(this.request) != null) {
+		if (this.getUtilisateurInSession() != null) {
 			this.request.setAttribute("menu", getMenuMembre().getLiensMenu());
 		}
 		else{
@@ -87,6 +79,18 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 		this.request = request;
 		this.response = response;
 	}
+	
+
+	public void afficherPageErreur(String e){
+		this.request.setAttribute("errorMessage", e);
+		try {
+			this.response.sendRedirect("erreur");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+
 }
 
 

@@ -19,7 +19,6 @@ public class Erreur extends LaBifleDuMoyenAgeANosJours {
      */
     public Erreur() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

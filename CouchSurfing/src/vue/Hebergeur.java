@@ -19,7 +19,6 @@ public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
      */
     public Hebergeur() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -28,9 +27,7 @@ public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("hebergeur") != null){
-			//traitement affichage de la page de profil lors du clic sur un profil truv� dans une annonce
-			//getInfos(idHebergeurDeLAnnonce)
-			//affiche profil
+			//TODO traitement affichage de la page de profil lors du clic sur un profil truv� dans une annonce
 			this.getServletContext().getRequestDispatcher("/WEB-INF/profilH.jsp").forward(request, response);
 		}
 	}

@@ -38,10 +38,12 @@ public class Accueil extends LaBifleDuMoyenAgeANosJours {
 				return;	
 			}
 			catch(SQLException e){
-				e.printStackTrace();
+				this.request.setAttribute("errorMessage",e.getMessage());
+				this.response.sendRedirect("erreur");
+
 			}
 		}
-		if (super.getUtilisateurInSession(request) == null ) {
+		if (super.getUtilisateurInSession() == null ) {
 			this.afficherMenu();
 			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(this.request, this.response);
 		}else {
@@ -75,7 +77,8 @@ public class Accueil extends LaBifleDuMoyenAgeANosJours {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(this.request, this.response);
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
 		}
 	}
 

@@ -22,7 +22,6 @@ public class ServletBackground extends HttpServlet {
      */
     public ServletBackground() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

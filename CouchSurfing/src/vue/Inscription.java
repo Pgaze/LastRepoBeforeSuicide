@@ -52,7 +52,10 @@ public class Inscription extends LaBifleDuMoyenAgeANosJours {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(this.request, this.response);
 			
 		} catch(Exception e){
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
+			return ;
+
 		}
 	}
 
