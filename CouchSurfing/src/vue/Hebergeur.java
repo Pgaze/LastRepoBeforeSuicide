@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Hebergeur
  */
 @WebServlet("/Hebergeur")
-public class Hebergeur extends HttpServlet {
+public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -28,7 +28,7 @@ public class Hebergeur extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("hebergeur") != null){
-			//traitement affichage de la page de profil lors du clic sur un profil truvé dans une annonce
+			//traitement affichage de la page de profil lors du clic sur un profil truvï¿½ dans une annonce
 			//getInfos(idHebergeurDeLAnnonce)
 			//affiche profil
 			this.getServletContext().getRequestDispatcher("/WEB-INF/profilH.jsp").forward(request, response);
@@ -40,7 +40,7 @@ public class Hebergeur extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

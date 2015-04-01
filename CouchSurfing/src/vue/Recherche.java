@@ -21,7 +21,7 @@ import formulaire.FormulaireRechercheAnnonce;
  * Servlet implementation class Recherche
  */
 @WebServlet("/Recherche")
-public class Recherche extends SuperServlet {
+public class Recherche extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,11 +36,9 @@ public class Recherche extends SuperServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//if (request.getSession().getAttribute("sessionUtilisateur") == null) {
-		if (request.getSession().getAttribute("sessionUtilisateur") != null) {
-			request.setAttribute("menu", Menu.getMenuMembre().getLiensMenu());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(request, response);
-		}
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(request, response);
 	}
 
 	/**
@@ -48,37 +46,38 @@ public class Recherche extends SuperServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.initAttribut(request, response);
+		super.afficherMenu();
 		//Cas du bouton recherche
 		if (request.getParameter("btCherche")!=null){
-			request.setAttribute("menu", Menu.getMenuMembre().getLiensMenu());
 			try{
-				FormulaireRechercheAnnonce form= new FormulaireRechercheAnnonce(request.getParameter("ville"),
-																				request.getParameter("dateDebut"),
-																				request.getParameter("dateFin"));
+				FormulaireRechercheAnnonce form= 
+						new FormulaireRechercheAnnonce(this.request.getParameter("ville"),
+								this.request.getParameter("dateDebut"),this.request.getParameter("dateFin"));
 				List<Offre> lesOffres=form.getListeOffre();
-				request.setAttribute("lesOffres", lesOffres);
+				this.request.setAttribute("lesOffres", lesOffres);
 			}
 			catch (Exception e){
-				request.setAttribute("erreur", e.getMessage());
+				this.request.setAttribute("erreur", e.getMessage());
 			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 		}
 		//Appui sur un autre bouton
 		else{
 			Offre offrePostulee;
 			try {
-				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique(request));
+				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique());
 				Utilisateur user= super.getUtilisateurInSession(request);
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
 					postule.postulerAUneOffre();
 					Data.BDD_Connection.commit();
-					response.sendRedirect("demandes");
+					this.response.sendRedirect("demandes");
 					return ;
 				}
 				else{
-					request.setAttribute("erreur", "Vous avez deja postule à cette offre");
-					this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(request, response);
+					this.request.setAttribute("erreur", "Vous avez deja postule à cette offre");
+					this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 				}
 			}
 			catch (Exception e) {
@@ -87,16 +86,13 @@ public class Recherche extends SuperServlet {
 		}
 	}
 	
-	private int getBoutonClique(HttpServletRequest request){
-		Map<String,String[]> mapParameter = request.getParameterMap();
+	private int getBoutonClique(){
+		Map<String,String[]> mapParameter = this.request.getParameterMap();
 		for (Map.Entry<String, String[]> entry : mapParameter.entrySet()){
-			System.out.println(entry.getKey() + " "+entry.getValue()[0]);
 			if(entry.getValue()[0].contentEquals("Postuler")){
 				return Integer.parseInt(entry.getKey());
 			}
 		}
 		return -1;
-		
-
 	}
 }

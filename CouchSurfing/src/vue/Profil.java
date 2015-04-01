@@ -28,7 +28,7 @@ import classes.Menu;
  * Servlet implementation class Profil
  */
 @WebServlet("/Profil")
-public class Profil extends HttpServlet {
+public class Profil extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,31 +46,31 @@ public class Profil extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		request = Menu.afficherMenu(request, response);
+		super.initAttribut(request, response);
+		super.afficherMenu();
 		Utilisateur user = null;
-		if (request.getParameter("id") == null) {
-			if (request.getSession().getAttribute("sessionUtilisateur") != null) {
-				user = (Utilisateur) request.getSession().getAttribute(
-						"sessionUtilisateur");
+		//TODO Utiliser la servlet Hebergeur  a la place
+		if (this.request.getParameter("id") == null) {
+			if (super.getUtilisateurInSession(this.request) != null) {
+				user = super.getUtilisateurInSession(this.request);
 			}
 		} else {
 			try {
-				int idUrl = Integer.valueOf(request.getParameter("id"));
+				int idUrl = Integer.valueOf(this.request.getParameter("id"));
 				user = Utilisateur.getUtilisateurById(idUrl);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("utilisateurProfil", user);
+		this.request.setAttribute("utilisateurProfil", user);
 		try {
-			request = afficherLogementUser(request, user);
+			afficherLogementUser( user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
-				.forward(request, response);
+				.forward(this.request, this.response);
 
 	}
 
@@ -80,12 +80,13 @@ public class Profil extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request = Menu.afficherMenu(request, response);
-		Utilisateur user = (Utilisateur) request.getSession().getAttribute("sessionUtilisateur");
-		request.setAttribute("utilisateurProfil", user);
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		Utilisateur user = super.getUtilisateurInSession(this.request);
+		this.request.setAttribute("utilisateurProfil", user);
 		try {
-			request = afficherLogementUser(request, user);
-			Image imageUploaded = getFileFromRequest(request);
+			this.afficherLogementUser(user);
+			Image imageUploaded = getFileFromRequest();
 			if(imageUploaded!=null){
 				boolean test = imageUploaded.insererDansLaBase();
 				System.out.println("imageInseré:"+test);
@@ -98,12 +99,12 @@ public class Profil extends HttpServlet {
 		}
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
-				.forward(request, response);
+				.forward(this.request, this.response);
 	}
 
 
 
-	private Image getFileFromRequest(HttpServletRequest request) {
+	private Image getFileFromRequest() {
 		Image result = null;
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletContext servletContext = this.getServletConfig()
@@ -113,7 +114,7 @@ public class Profil extends HttpServlet {
 		factory.setRepository(repository);
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		try {
-			List<FileItem> items = upload.parseRequest(request);
+			List<FileItem> items = upload.parseRequest(this.request);
 			if (items != null && items.size() > 0) {
 				// iterates over form's fields
 				for (FileItem item : items) {
@@ -133,23 +134,21 @@ public class Profil extends HttpServlet {
 	}
 
 	
-	private HttpServletRequest afficherLogementUser(HttpServletRequest request, Utilisateur user) throws Exception {
+	private void afficherLogementUser(Utilisateur user) throws Exception {
 		Logement logementUtilisateur = Logement.getLogementById(user.getIdLogement());
 		if (logementUtilisateur != null) {
-			request= setCritereOnRequest(request, logementUtilisateur);
-			request.setAttribute("adresseLogement", logementUtilisateur.getAdresse().toString());
+			this.setCritereOnRequest(logementUtilisateur);
+			this.request.setAttribute("adresseLogement", logementUtilisateur.getAdresse().toString());
 		} else {
-			request.setAttribute(
+			this.request.setAttribute(
 					"adresseLogement",
 					"<p>Vous n'avez pas de logement enregistr�. <a href='nouvelle'>Cr�ez en un !</a></p>");
 		}
-		return request;
 	}
 	
-	private HttpServletRequest setCritereOnRequest(HttpServletRequest request, Logement l){
+	private void setCritereOnRequest(Logement l){
 		for (Critere c : l.getLesCriteres()){
-			request.setAttribute(c.getNomCritere(), c.getDescription());
+			this.request.setAttribute(c.getNomCritere(), c.getDescription());
 		}
-		return request;
 	}
 }

@@ -19,7 +19,7 @@ import formulaire.FormulaireProposerLogement;
  * Servlet implementation class Nouvelle
  */
 @WebServlet("/Nouvelle")
-public class NouvelleAnnonce extends SuperServlet {
+public class NouvelleAnnonce extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -34,8 +34,9 @@ public class NouvelleAnnonce extends SuperServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(request, response);
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(this.request, this.response);
 	}
 
 	/**
@@ -43,22 +44,23 @@ public class NouvelleAnnonce extends SuperServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
+		super.initAttribut(request, response);
+		super.afficherMenu();
 		try{
-			HttpSession utilisateurSession = request.getSession();
-			Utilisateur user= (Utilisateur)utilisateurSession.getAttribute("sessionUtilisateur");
+			HttpSession utilisateurSession = this.request.getSession();
+			Utilisateur user= super.getUtilisateurInSession(this.request);
 			FormulaireProposerLogement form=new FormulaireProposerLogement(
-					request.getParameter("batimentEscalier"), request.getParameter("numeroEtVoie"), 
-					request.getParameter("cp"), request.getParameter("residence"), 
-					request.getParameter("complementAdresse"), request.getParameter("ville"), user);
+					this.request.getParameter("batimentEscalier"), this.request.getParameter("numeroEtVoie"), 
+					this.request.getParameter("cp"), this.request.getParameter("residence"), 
+					this.request.getParameter("complementAdresse"), this.request.getParameter("ville"), user);
 			if(form.verificationCp()){
 				String result = form.procedureAjoutLogement();
-				request.setAttribute("resultat", result);
+				this.request.setAttribute("resultat", result);
 				if(result.contentEquals("Logement ajoute")){
 					Data.BDD_Connection.commit();
-					response.sendRedirect("criteres");
+					this.response.sendRedirect("criteres");
 				}else {
-					this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(request, response);
+					this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(this.request, this.response);
 				}
 			}
 		}

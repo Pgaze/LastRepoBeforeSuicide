@@ -18,7 +18,7 @@ import classes.Menu;
  * Servlet implementation class Demandes
  */
 @WebServlet("/Demandes")
-public class Demandes extends HttpServlet {
+public class Demandes extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -33,18 +33,19 @@ public class Demandes extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
-		Utilisateur user=(Utilisateur)request.getSession().getAttribute("sessionUtilisateur");
+		super.initAttribut(request, response);
+		this.afficherMenu();
+		Utilisateur user=super.getUtilisateurInSession(this.request);
 		List<Postule> demandeEnvoye,demandeRecu;
 		try {
 			demandeEnvoye = Postule.getDemandeEnvoyeByUser(user);
-			request.setAttribute("demandeEnvoye", demandeEnvoye);
+			this.request.setAttribute("demandeEnvoye", demandeEnvoye);
 			demandeRecu = Postule.getDemandeRecuByUser(user);
-			request.setAttribute("demandeRecu", demandeRecu);
+			this.request.setAttribute("demandeRecu", demandeRecu);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(this.request, this.response);
 	}
 
 
@@ -53,9 +54,6 @@ public class Demandes extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
-		response.sendRedirect("demandes");
-
 	}
 }
 

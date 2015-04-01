@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Erreur
  */
 @WebServlet("/Erreur")
-public class Erreur extends HttpServlet {
+public class Erreur extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -26,7 +26,8 @@ public class Erreur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+		super.initAttribut(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
 	}
 
 	/**
