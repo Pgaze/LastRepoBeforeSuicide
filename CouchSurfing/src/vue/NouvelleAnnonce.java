@@ -8,11 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modele.Data;
 import modele.Utilisateur;
-import classes.Menu;
 import formulaire.FormulaireProposerLogement;
 
 /**
@@ -47,7 +45,6 @@ public class NouvelleAnnonce extends LaBifleDuMoyenAgeANosJours {
 		super.initAttribut(request, response);
 		super.afficherMenu();
 		try{
-			HttpSession utilisateurSession = this.request.getSession();
 			Utilisateur user= super.getUtilisateurInSession();
 			FormulaireProposerLogement form=new FormulaireProposerLogement(
 					this.request.getParameter("batimentEscalier"), this.request.getParameter("numeroEtVoie"), 

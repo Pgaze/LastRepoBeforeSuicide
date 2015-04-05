@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modele.Utilisateur;
-import classes.Menu;
 import formulaire.FormulaireConnexion;
 
 /**

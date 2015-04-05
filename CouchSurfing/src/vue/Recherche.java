@@ -14,7 +14,6 @@ import modele.Data;
 import modele.Offre;
 import modele.Postule;
 import modele.Utilisateur;
-import classes.Menu;
 import formulaire.FormulaireRechercheAnnonce;
 
 /**

@@ -28,12 +28,9 @@ public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.request =request;
-		this.response = response;
-		destroyCookieAndSession();
-		request=this.request;
-		response=this.response;
-		response.sendRedirect("accueil");
+		super.initAttribut(request, response);
+		this.response.addCookie(this.destroyCookieAndSession());
+		this.response.sendRedirect("accueil");
 		return;
 	}
 
@@ -45,13 +42,16 @@ public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
 
 	}
 
-	private void destroyCookieAndSession(){
+	private Cookie destroyCookieAndSession(){
 		this.request.getSession().invalidate();
 		for( Cookie c : this.request.getCookies()){
-			if(c.getName().equals("cookieUtilisateur"));
-			c.setMaxAge(-1);
-			break;
+			if(c.getName().equals("cookieUtilisateur")){
+				c.setMaxAge(0);
+				return c;
+			}
 		}
+		return null;
 	}
+	
 
 }

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import modele.Postule;
 import modele.Utilisateur;
-import classes.Menu;
 
 /**
  * Servlet implementation class Demandes

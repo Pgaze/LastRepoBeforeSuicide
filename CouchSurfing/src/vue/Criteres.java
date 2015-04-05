@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import modele.Data;
 import modele.Logement;
 import modele.Utilisateur;
-import classes.Menu;
 import formulaire.FormulaireCritere;
 
 /**

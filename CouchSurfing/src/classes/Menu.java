@@ -3,9 +3,6 @@ package classes;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 public class Menu {
 	private String nom;
 	private Map<String,String> liensMenu;

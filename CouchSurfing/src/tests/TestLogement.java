@@ -1,16 +1,16 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import modele.Adresse;
 import modele.Critere;
+import modele.Critere.TypeCritere;
 import modele.Data;
 import modele.Logement;
-import modele.Critere.TypeCritere;
 
 import org.junit.After;
 import org.junit.Before;
