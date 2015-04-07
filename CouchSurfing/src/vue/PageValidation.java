@@ -14,7 +14,7 @@ import classes.Menu;
  * Servlet implementation class PageValidation
  */
 //@WebServlet("/pageValidation")
-public class PageValidation extends HttpServlet {
+public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -29,7 +29,8 @@ public class PageValidation extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
+		super.initAttribut(request, response);
+		super.afficherMenu();
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(request, response);
 	}
 
