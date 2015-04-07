@@ -47,13 +47,14 @@
 																		Date: 31/01/2015-01/02/2015
 												</div>
 											</div>
+											<input style="height:39px;padding-left: 10px;" type="image" src="${pageContext.request.contextPath}/ServletValidationDemande" name="${demande.postulant.idUser }" value="accepter"/>
+											<input style="height:31px;padding-left: 15px;" type="image" src="${pageContext.request.contextPath}/ServletRefusDemande" name="${demande.postulant.idUser }" value="refuser"/>
+				
 										</div>
 									</li>
 							</c:forEach>
 						</ol>
 				    </div>
-                    <input type="image" src="images/suppphoto.png" name="valide" value="ID_DEMANDE_A_METTRE"/>
-                    <input type="image" src="images/suppphoto.png" name="refuse" value="ID_DEMANDE_A_METTRE"/>
 				</div>
 			</form>
 		</div>
