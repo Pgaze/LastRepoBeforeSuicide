@@ -61,9 +61,7 @@ public class Criteres extends LaBifleDuMoyenAgeANosJours {
 				}
 			}
 			form.setCritereOnLogement(l);
-			if(l.updateListCritere()){
-				result= result && true;
-			}
+			result = result && l.updateListCritere();
 			if(result){
 				Data.BDD_Connection.commit();
 				this.response.sendRedirect("profil");

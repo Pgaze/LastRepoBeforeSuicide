@@ -2,6 +2,7 @@ package vue;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,14 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 	protected HttpServletResponse response;
 
 	private static final long serialVersionUID = -7832776795658834441L;
+	
+	@Override
+	protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
+	
+	@Override
+	protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
 
 	protected String getMailInCookie(HttpServletRequest request){
 		Cookie[] lesCookies=request.getCookies();
