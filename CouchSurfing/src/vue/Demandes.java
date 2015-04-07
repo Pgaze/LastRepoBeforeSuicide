@@ -45,8 +45,10 @@ public class Demandes extends LaBifleDuMoyenAgeANosJours {
 			this.request.setAttribute("demandeRecu", demandeRecu);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(this.request, this.response);
 		} catch (Exception e) {
-			super.afficherPageErreur(e.getMessage());
-			return ;
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
+			//this.response.sendRedirect("erreur");
+			//return ; //Servlet Erreur.java inutile ?
 		}
 	}
 

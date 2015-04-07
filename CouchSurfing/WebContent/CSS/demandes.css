@@ -54,8 +54,8 @@ height: 28%;
 .uneDemande h3
 {
 background-color: mediumturquoise;
-padding: 8px;
-width: 124%;
+padding: 13px;
+width: 120%;
 margin-top: 0;
 }
 
@@ -110,7 +110,4 @@ width: 79%;
 }
 
 .demandes {
-	
-  background-color: rgb(22, 57, 87);
-  height: 150px;
 }

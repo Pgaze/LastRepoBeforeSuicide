@@ -50,24 +50,24 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 	
 	public Menu getMenuMembre(){
 		Menu membre = new Menu("membre");
-		membre.addLien("Deconnexion", false);
-		membre.addLien("Demandes", false);
-		membre.addLien("Profil", false);
-		membre.addLien("Nouvelle", false);
-		membre.addLien("Recherche", false);
+		membre.addLien("Deconnexion", "deconnexion");
+		membre.addLien("Mes demandes", "demandes");
+		membre.addLien("Profil", "profil");
+		membre.addLien("Nouvelle annonce", "nouvelle");
+		membre.addLien("Recherche", "recherche");
 		return membre;
 	}
 	
 	public Menu getMenuAcceuil(){
 		Menu invite = new Menu("invite");
-		invite.addLien("Connexion", true);
-		invite.addLien("Presentation", true);
+		invite.addLien("Connexion", "#connexion");
+		invite.addLien("Presentation", "#presentation");
 		return invite;
 	}
 	
 	public Menu getMenuInscription(){
 		Menu inscription = new Menu("inscription");
-		inscription.addLien("Accueil", false);
+		inscription.addLien("Accueil", "accueil");
 		return inscription;
 	}
 	
