@@ -30,7 +30,7 @@
 				    </div>
 				</div>
 	        
-		        <h3>Demande(s) recu(s)</h3>
+		        <h3>Demande(s) recue(s)</h3>
 		        	
 				<div class="demandes">
 				    <div class="infosDemandes">

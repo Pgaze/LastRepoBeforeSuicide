@@ -58,8 +58,9 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 			}
 			catch (Exception e){
 				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
-				return ;
+				this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
+				//this.request.setAttribute("errorMessage",e.getMessage());
+				//this.response.sendRedirect("erreur");
 
 			}
 			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
@@ -84,8 +85,9 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 			}
 			catch (Exception e) {
 				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
-				return ;
+				this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
+				//this.request.setAttribute("errorMessage",e.getMessage());
+				//this.response.sendRedirect("erreur");
 
 			}
 		}
