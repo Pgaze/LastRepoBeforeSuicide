@@ -25,7 +25,7 @@ public class Inscription extends LaBifleDuMoyenAgeANosJours {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
-		this.request.setAttribute("menu", super.getMenuInscription());
+		super.afficherMenu();
 		this.getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
 	}
 
@@ -52,8 +52,9 @@ public class Inscription extends LaBifleDuMoyenAgeANosJours {
 			
 		} catch(Exception e){
 			this.request.setAttribute("errorMessage",e.getMessage());
-			this.response.sendRedirect("erreur");
-			return ;
+			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
+			//this.request.setAttribute("errorMessage",e.getMessage());
+			//this.response.sendRedirect("erreur");
 
 		}
 	}

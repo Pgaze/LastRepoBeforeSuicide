@@ -22,10 +22,24 @@ ol li {
 	padding-bottom:10px;
 }
 
-.detailsAnnonce {
+.detailsAnnonce2 {
 
 float: left;
 background-color: rgba(202, 176, 137, 0.29);
+width: 77%;
+}
+
+.detailsAnnonce0 {
+
+float: left;
+background-color: rgba(255, 0, 0, 0.29);
+width: 77%;
+}
+
+.detailsAnnonce1 {
+
+float: left;
+background-color: rgba(0, 255, 23, 0.29);
 width: 77%;
 }
 
@@ -40,15 +54,14 @@ height: 28%;
 .uneDemande h3
 {
 background-color: mediumturquoise;
-padding: 8px;
-width: 124%;
+padding: 13px;
+width: 120%;
 margin-top: 0;
 }
 
 li div.uneDemande
 {
   height: 200px;
-  /*background-color: rgba(202, 176, 137, 0.29);*/
 }
 
 .uneDemande
@@ -69,23 +82,32 @@ width: 79%;
   border-style: dashed;
 }
 
-.txt
+.txtDemandesRecu
 {
-  height: 110px;
-  width: 73%;
-  float: right;
-  border-radius: 25px;
-  margin-right: 10px;
-  border-style: dashed;
-  padding: 9px;
+  height: 70px;
+  width: 79%;
+  margin-right: 60px;
+  padding: 1px;
+  margin-left: 15px;
+  font-size: 16px;
+
 }
 
+.txtDemandesEnvoye
+{
+  height: 130px;
+  width: 79%;
+  margin-right: 60px;
+  padding: 1px;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+
+#infosDemandes ol{
 .infosDemandes ol{
 	list-style: none;
 }
 
 .demandes {
-	
-  background-color: rgb(22, 57, 87);
-  height: 150px;
 }

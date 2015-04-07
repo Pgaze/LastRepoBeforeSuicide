@@ -10,20 +10,22 @@
 		<div id="containerInfoPersonnel">
 			<div id="blockImage"></div>
 			<div id="blockNomPrenom">
-				<p class="infoPerso"> Benac</p>
-				<p class="infoPerso"> Florian</p>
-				<p id="tel"> 0645213645 </p>
+				<p class="infoPerso"> ${postule.hebergeur.name }</p>
+				<p class="infoPerso"> ${postule.hebergeur.firstName }</p>
+				<p id="tel"> ${postule.hebergeur.tel } </p>
 			</div>
 		</div>
 		<div id="containerInfoLogement">
 			<div class="unServiceContainer">
 				<p class="libelleService"> Adresse : </p>
-				<p class="service"> 502 rue du portail vert prés du port</p>
+				<p class="service"> ${postule.logement.adresse }</p>
 			</div>
-			<div class="unServiceContainer">
-				<p class="libelleService"> Fumeur :</p>
-				<p class="service"> Oui </p>
+			<c:forEach items="${postule.logement.lesCriteres }" var="unCritere">
+				<div class="unServiceContainer">
+					<p class="libelleService"> Fumeur :</p>
+					<p class="service"> ${unCritere.description } </p>
 			</div>
+			</c:forEach>
 		</div>
 		<div id="reservationContainer">
 			<form id="formPostulationValidation" method="post">

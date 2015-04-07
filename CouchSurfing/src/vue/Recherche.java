@@ -47,50 +47,40 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
-		//Cas du bouton recherche
-		if (request.getParameter("btCherche")!=null){
-			try{
+		try{
+			//Cas du bouton recherche
+			if (request.getParameter("btCherche")!=null){
 				FormulaireRechercheAnnonce form= 
 						new FormulaireRechercheAnnonce(this.request.getParameter("ville"),
 								this.request.getParameter("dateDebut"),this.request.getParameter("dateFin"));
 				List<Offre> lesOffres=form.getListeOffre();
 				this.request.setAttribute("lesOffres", lesOffres);
-			}
-			catch (Exception e){
-				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
-				return ;
+				this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
+
 
 			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
-		}
-		//Appui sur un autre bouton
-		else{
-			Offre offrePostulee;
-			try {
+			//Appui sur un autre bouton
+			else{
+				Offre offrePostulee;
 				offrePostulee = Offre.getOffreByIdLogement(getBoutonClique());
 				Utilisateur user= super.getUtilisateurInSession();
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
-					postule.postulerAUneOffre();
-					Data.BDD_Connection.commit();
-					this.response.sendRedirect("demandes");
-					return ;
+					this.request.setAttribute("postule", postule);
+					this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(this.request, this.response);
 				}
 				else{
 					this.request.setAttribute("erreur", "Vous avez deja postule à cette offre");
 					this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 				}
 			}
-			catch (Exception e) {
-				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
-				return ;
-
-			}
+		}
+		catch (Exception e){
+			this.request.setAttribute("erreur", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 		}
 	}
-	
+
 	private int getBoutonClique(){
 		Map<String,String[]> mapParameter = this.request.getParameterMap();
 		for (Map.Entry<String, String[]> entry : mapParameter.entrySet()){

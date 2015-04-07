@@ -63,8 +63,9 @@ public class NouvelleAnnonce extends LaBifleDuMoyenAgeANosJours {
 		}
 		catch(SQLException e){
 			this.request.setAttribute("errorMessage",e.getMessage());
-			this.response.sendRedirect("erreur");
-			return ;
+			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
+			//this.request.setAttribute("errorMessage",e.getMessage());
+			//this.response.sendRedirect("erreur");
 
 		}
 	}
