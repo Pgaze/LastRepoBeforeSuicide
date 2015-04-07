@@ -80,6 +80,6 @@ width: 79%;
   padding: 9px;
 }
 
-#infosDemandes ol{
+.infosDemandes ol{
 	list-style: none;
 }
