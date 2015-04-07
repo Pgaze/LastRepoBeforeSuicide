@@ -13,7 +13,7 @@ import classes.Menu;
 /**
  * Servlet implementation class PageValidation
  */
-@WebServlet("/PageValidation")
+//@WebServlet("/pageValidation")
 public class PageValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

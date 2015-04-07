@@ -94,14 +94,4 @@
       <include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
-  <servlet>
-    <description></description>
-    <display-name>pageValidation</display-name>
-    <servlet-name>pageValidation</servlet-name>
-    <servlet-class>vue.Annonces</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>pageValidation</servlet-name>
-    <url-pattern>/pageValidation</url-pattern>
-  </servlet-mapping>
 </web-app>
