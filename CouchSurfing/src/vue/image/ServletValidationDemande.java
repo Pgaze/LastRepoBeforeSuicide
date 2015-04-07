@@ -1,39 +1,37 @@
-package vue;
+package vue.image;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Deconnexion
+ * Servlet implementation class imageServlet
  */
-@WebServlet("/Deconnexion")
-public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
+@WebServlet("/ServletValidationDemande")
+public class ServletValidationDemande extends ServletImage {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletValidationDemande() {
+        super();
+        this.name = "valDemande";
+        this.type = "png";
+    }
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Deconnexion() {
-		super();
-	}
-
-	/**
+	/*
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		super.initAttribut(request, response);
-		this.response.addCookie(this.destroyCookieAndSession());
-		this.response.sendRedirect("accueil");
-		return;
+		super.doGet(request, response);
 	}
 
 	/**
@@ -43,17 +41,5 @@ public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
-
-	private Cookie destroyCookieAndSession(){
-		this.request.getSession().invalidate();
-		for( Cookie c : this.request.getCookies()){
-			if(c.getName().equals("cookieUtilisateur")){
-				c.setMaxAge(0);
-				return c;
-			}
-		}
-		return null;
-	}
-	
 
 }
