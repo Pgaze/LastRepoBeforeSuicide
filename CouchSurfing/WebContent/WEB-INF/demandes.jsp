@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-	    <div>
+	    <div class="container">
 	    <form method="post" action="demandes">
 		    <h3>Demande(s) recue(s)</h3>
 		        	

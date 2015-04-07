@@ -44,7 +44,6 @@ public class Menu {
 	public static Menu getMenuMembre(){
 		Menu membre = new Menu("membre");
 		membre.addLien("Deconnexion", false);
-		membre.addLien("Annonces", false);
 		membre.addLien("Demandes", false);
 		membre.addLien("Profil", false);
 		membre.addLien("Nouvelle", false);
