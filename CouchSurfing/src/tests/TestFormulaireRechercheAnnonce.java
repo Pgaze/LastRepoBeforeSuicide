@@ -33,21 +33,32 @@ public class TestFormulaireRechercheAnnonce {
 
 	@Test
 	public void testLogementStd() throws Exception {
-		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
-		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
+		String dateDebut = CustomDate.creerStringDate(1901, 2, 1);
+		String dateFin = CustomDate.creerStringDate(2020, 1, 1);
 		this.form=new FormulaireRechercheAnnonce("Lyon",dateDebut,dateFin);
 		List<Offre> l = this.form.getListeOffre();
 		assertEquals(2, l.get(0).getLogement().getIdLogement());
 	}
 	
 	@Test
+	public void testLogementPostulePasPlein() throws Exception {
+		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
+		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
+		this.form=new FormulaireRechercheAnnonce("Toulouse",dateDebut,dateFin);
+		List<Offre> l = this.form.getListeOffre();
+		assertTrue(l.size() == 1);
+	}
+	
+	/*@Test
 	public void testLogementPostulePlein() throws Exception {
 		String dateDebut = CustomDate.creerStringDate(1901, 02, 01);
 		String dateFin = CustomDate.creerStringDate(2020, 01, 01);
-		this.form=new FormulaireRechercheAnnonce("Orange",dateDebut,dateFin);
+		this.form=new FormulaireRechercheAnnonce("Toulouse",dateDebut,dateFin);
 		List<Offre> l = this.form.getListeOffre();
-		assertTrue(l.isEmpty());
-	}
+		Postule p = new Postule(Utilisateur.getUtilisateurParMail("gg.le.clown@mail.com"), l.get(0).getHebergeur(), l.get(0).getLogement());
+		p.postulerAUneOffre();//TODO: ajouter les date auxquelle on veut postuler !!
+		assertTrue(this.form.getListeOffre().isEmpty());
+	}*/
 	
 	@Test(expected = Exception.class)
 	public void testLogementInconnu() throws Exception {
