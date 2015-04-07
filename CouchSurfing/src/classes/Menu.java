@@ -67,7 +67,7 @@ public class Menu {
 	}
 	
 	public static HttpServletRequest afficherMenu(HttpServletRequest request,HttpServletResponse response){
-		if (request.getSession().getAttribute("sessionUtilisateur") != null) {
+		if (request.getSession().getAttribute("sessionUtilisateur") == null) {
 			request.setAttribute("menu", Menu.getMenuMembre().getLiensMenu());
 		}
 		else{

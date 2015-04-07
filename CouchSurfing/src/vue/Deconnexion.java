@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Deconnexion
@@ -29,8 +30,11 @@ public class Deconnexion extends SuperServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		destroyCookieAndSession(request);
+		HttpSession session = request.getSession();
+		
+        session.invalidate();
 		response.sendRedirect("accueil");
-		return;
+	    return;
 	}
 
 	/**

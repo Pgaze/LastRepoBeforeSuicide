@@ -10,23 +10,23 @@
 	        
 				<div class="demandes">
 				    <div class="infosDemandes">
-				    <div id="ical"></div>
-					<ol>
-						<c:forEach items="${demandeEnvoye }" var="postule">
-								<li>
-									<div class="uneDemande" id="">
-										<div class="detailsAnnonce">
-											
-											<h3>Logement de ${postule.hebergeur } à ${postule.logement.adresse.ville }</h3>
-									<!-- 		<div class="uneImg">Img ?</div>   -->
-											<div class="txt">Adresse: ${postule.logement.adresse }</br>
-																	Date: 31/01/2015-01/02/2015
+					    <div id="ical"></div>
+						<ol>
+							<c:forEach items="${demandeEnvoye }" var="postule">
+									<li>
+										<div class="uneDemande" id="">
+											<div class="detailsAnnonce">
+												
+												<h3>Logement de ${postule.hebergeur } à ${postule.logement.adresse.ville }</h3>
+										<!-- 		<div class="uneImg">Img ?</div>   -->
+												<div class="txt">Adresse: ${postule.logement.adresse }</br>
+																		Date: 31/01/2015-01/02/2015
+												</div>
 											</div>
 										</div>
-									</div>
-								</li>
-						</c:forEach>
-					</ol>
+									</li>
+							</c:forEach>
+						</ol>
 				    </div>
 				</div>
 	        
@@ -34,26 +34,26 @@
 		        	
 				<div class="demandes">
 				    <div class="infosDemandes">
-				    <div id="ical"></div>
-					<ol>
-						<c:forEach items="${demandeRecu }" var="demande">
-								<li>
-									<div class="uneDemande" id="">
-										<div class="detailsAnnonce">
-											
-											<h3>Demande de ${demande.postulant }</h3>
-									<!-- 		<div class="uneImg">Img ?</div>   -->
-											<div class="txt">
-																	Date: 31/01/2015-01/02/2015
+					    <div id="ical"></div>
+						<ol>
+							<c:forEach items="${demandeRecu }" var="demande">
+									<li>
+										<div class="uneDemande" id="">
+											<div class="detailsAnnonce">
+												
+												<h3>Demande de ${demande.postulant }</h3>
+										<!-- 		<div class="uneImg">Img ?</div>   -->
+												<div class="txt">
+																		Date: 31/01/2015-01/02/2015
+												</div>
 											</div>
 										</div>
-									</div>
-								</li>
-						</c:forEach>
-					</ol>
+									</li>
+							</c:forEach>
+						</ol>
 				    </div>
-                    <input type="image" src="images/suppphoto.png" name="valide" value="ID_DEMANDE"/>
-                    <input type="image" src="images/suppphoto.png" name="refuse" value="ID_DEMANDE"/>
+                    <input type="image" src="images/suppphoto.png" name="valide" value="ID_DEMANDE_A_METTRE"/>
+                    <input type="image" src="images/suppphoto.png" name="refuse" value="ID_DEMANDE_A_METTRE"/>
 				</div>
 			</form>
 		</div>

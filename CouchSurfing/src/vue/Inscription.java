@@ -33,7 +33,6 @@ public class Inscription extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request=Menu.afficherMenu(request, response);
 		request.setAttribute("menu", Menu.getMenuInscription().getLiensMenu());
 		try{
 			String nom=request.getParameter("nom");
