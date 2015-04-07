@@ -80,6 +80,12 @@ width: 79%;
   padding: 9px;
 }
 
-#infosDemandes ol{
+.infosDemandes ol{
 	list-style: none;
+}
+
+.demandes {
+	
+  background-color: rgb(22, 57, 87);
+  height: 150px;
 }

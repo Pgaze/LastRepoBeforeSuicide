@@ -5,7 +5,7 @@
 	<%@ include file="menu.jsp" %>
     <body style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
         <div id="container">	        	
-			<div class="contentAccueil" id="accueilBlock1" style="background-image:url(${pageContext.request.contextPath}/ImageServlet)">
+			<div class="contentAccueil" id="accueilBlock1" style="background-image:url(${pageContext.request.contextPath}/ServletImageAcceuil)">
 			</div>      	
 			<div class="contentAccueil" id="presentation">
 				<p class="text_intro"> CouchSurfing est un service qui relie les membres d'une communauté française de voyageurs.</p>

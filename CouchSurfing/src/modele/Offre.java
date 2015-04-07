@@ -37,21 +37,6 @@ public class Offre {
 		}		
 	}
 
-	/** Supprime les postulation perimees et met les date des logements concernes a null
-	 * 
-	 */
-	public static void cleanAllLogementByPostulePerimees() {
-		ArrayList<Integer> listLogements= new ArrayList<>();
-		try {
-			listLogements = Postule.getPostulationsPerimees();
-			for(int idLogement : listLogements){				
-				Logement.getLogementById(idLogement).setDateToNull();
-				Postule.deletePostulationByIdLogement(idLogement);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public Logement getLogement() {
 		return logement;

@@ -47,7 +47,7 @@ public class Menu {
 		membre.addLien("Annonces", false);
 		membre.addLien("Demandes", false);
 		membre.addLien("Profil", false);
-		membre.addLien("Messagerie", false);
+		//membre.addLien("Messagerie", false);
 		membre.addLien("Nouvelle", false);
 		membre.addLien("Recherche", false);
 		return membre;
@@ -60,8 +60,14 @@ public class Menu {
 		return invite;
 	}
 	
+	public static Menu getMenuInscription(){
+		Menu inscription = new Menu("inscription");
+		inscription.addLien("Accueil", false);
+		return inscription;
+	}
+	
 	public static HttpServletRequest afficherMenu(HttpServletRequest request,HttpServletResponse response){
-		if (request.getSession().getAttribute("sessionUtilisateur") != null) {
+		if (request.getSession().getAttribute("sessionUtilisateur") == null) {
 			request.setAttribute("menu", Menu.getMenuMembre().getLiensMenu());
 		}
 		else{
@@ -70,4 +76,5 @@ public class Menu {
 		return request;
 	}
 }
+	
 

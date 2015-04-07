@@ -1,10 +1,12 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import modele.Critere;
+import modele.Critere.TypeCritere;
 import modele.Data;
 import modele.Logement;
-import modele.Critere.TypeCritere;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,0 +1,105 @@
+package vue;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import modele.Utilisateur;
+import classes.Menu;
+
+public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
+
+	private static final long serialVersionUID = -7832776795658834441L;
+	
+	@Override
+	protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
+	
+	@Override
+	protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
+
+	protected String getMailInCookie(HttpServletRequest request){
+		Cookie[] lesCookies=request.getCookies();
+		if(lesCookies!=null){
+			for (int i=0;i<lesCookies.length;i++){
+				if(lesCookies[i].getName().equals("cookieUtilisateur")){
+					return lesCookies[i].getValue();
+				}
+			}
+		}
+		return null;
+	}
+	protected Utilisateur getUtilisateurInSession(){
+		if(this.request.getSession().getAttribute("sessionUtilisateur") !=null){
+			return (Utilisateur)this.request.getSession().getAttribute("sessionUtilisateur");
+		}
+		else{
+			return null;
+		}
+	}
+	
+	protected void redirectIfNotConnected(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	
+	public Menu getMenuMembre(){
+		Menu membre = new Menu("membre");
+		membre.addLien("Deconnexion", false);
+		membre.addLien("Annonces", false);
+		membre.addLien("Demandes", false);
+		membre.addLien("Profil", false);
+		membre.addLien("Messagerie", false);
+		membre.addLien("Nouvelle", false);
+		membre.addLien("Recherche", false);
+		return membre;
+	}
+	
+	public Menu getMenuAcceuil(){
+		Menu invite = new Menu("invite");
+		invite.addLien("Connexion", true);
+		invite.addLien("Presentation", true);
+		return invite;
+	}
+	
+	public Menu getMenuInscription(){
+		Menu inscription = new Menu("inscription");
+		inscription.addLien("Accueil", false);
+		return inscription;
+	}
+	
+	public void afficherMenu(){
+		if (this.getUtilisateurInSession() != null) {
+			this.request.setAttribute("menu", getMenuMembre().getLiensMenu());
+		}
+		else{
+			this.request.setAttribute("menu", getMenuAcceuil().getLiensMenu());
+		}
+	}
+
+	public void initAttribut(HttpServletRequest request, HttpServletResponse response) {
+		this.request = request;
+		this.response = response;
+	}
+	
+
+	public void afficherPageErreur(String e){
+		this.request.setAttribute("errorMessage", e);
+		try {
+			this.response.sendRedirect("erreur");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+

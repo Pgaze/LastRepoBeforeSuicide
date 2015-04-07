@@ -3,7 +3,7 @@
 <%@ include file="entete.jsp"%>
 <%@ include file="menu.jsp"%>
 
-<body onload="redirection()"
+<body onload="redirectionAccueil()"
 	style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
 
 	<div id="container">
@@ -32,9 +32,6 @@
 					<input placeholder="Confirmation du mot de passe" required name="mdpC" id="mailC"
 						type="password"></input></br>
 					<button id="valI" name="valI">Suite</button>
-					<p>
-						Retour à <a href="accueil">l'accueil.</a>
-					</p>
 				</div>
 			</div>
 		</form>

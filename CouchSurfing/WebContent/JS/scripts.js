@@ -6,7 +6,7 @@ function redirectionAccueil(){
    var valeur = "${resultat}";
    if(valeur != ""){
 	   alert("${resultat}");
-	   if(valeur == "Inscription réussie !"){
+	   if(valeur == "Inscription reussie"){
 		   window.location = "accueil#connexion";
 	   }
    }

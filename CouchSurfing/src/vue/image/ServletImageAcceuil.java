@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class imageServlet
  */
-@WebServlet("/ImageServlet")
-public class ImageServlet extends HttpServlet {
+@WebServlet("/ServletImageAcceuil")
+public class ServletImageAcceuil extends ServletImage {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ImageServlet() {
+    public ServletImageAcceuil() {
         super();
-        // TODO Auto-generated constructor stub
+        this.name = "couchsurfing";
+        this.type = "png";
     }
 
 	/*
@@ -30,22 +31,8 @@ public class ImageServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		response.setContentType("text/html;charset=UTF-8");
-	    String name = "couchsurfing";
-	    
-	    File image = new File(getServletContext().getRealPath("/images")
-	            + File.separator + name + ".png");
-	    // System.out.println(image);
-       //Files.copy(image.toPath(), response.getOutputStream());
-        
-		byte[] img = Files.readAllBytes(image.toPath());
-		response.setContentType("images/png");
-		response.setContentLength(img.length);
-		response.getOutputStream().write(img);
-
-
-    }
+		super.doGet(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,7 +40,6 @@ public class ImageServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// TODO Auto-generated method stub
 	}
 
 }
