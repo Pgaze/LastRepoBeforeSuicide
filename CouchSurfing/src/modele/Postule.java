@@ -24,6 +24,20 @@ public class Postule {
 		this.logement = logement;
 		this.status = 2;
 	}
+	
+	
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+
 
 	/**
 	 * @return Liste des Postulation de l'utilisateur qui sont encore valides
@@ -81,7 +95,8 @@ public class Postule {
 		ps.setInt(1, this.postulant.getIdUser());
 		ps.setInt(2, this.logement.getIdLogement());
 		ps.setString(3, myDate);
-		ps.setInt(4, this.status);
+		ps.setDate(5, java.sql.Date.valueOf(dateDebut));
+		ps.setDate(6, java.sql.Date.valueOf(dateFin));
 		
 		if(ps.executeUpdate() == 1){
 			return true;

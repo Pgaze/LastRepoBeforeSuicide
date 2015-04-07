@@ -44,6 +44,8 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 		super.afficherMenu();
 		try {
 			Postule postule= (Postule)this.request.getAttribute("postule");
+			postule.setDateDebut(this.request.getParameter("dateDebut"));
+			postule.setDateFin(this.request.getParameter("dateFin"));
 			postule.postulerAUneOffre();
 			Data.BDD_Connection.commit();
 			this.response.sendRedirect("demandes");
