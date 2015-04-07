@@ -7,33 +7,34 @@
         <div id="container">
 	        <h3>Demande(s) envoyé(s)</h3>
 	        	
-			<div id="demandes">
-			    <div id="infosDemandes">
-			    <div id="ical"></div>
-				<ol>
-					<c:forEach items="${demandeEnvoye }" var="postule">
-							<li>
-								<div class="uneDemande" id="">
-									<div class="detailsAnnonce">
-										
-										<h3>Logement de ${postule.hebergeur } à ${postule.logement.adresse.ville }</h3>
-								<!-- 		<div class="uneImg">Img ?</div>   -->
-										<div class="txt">Adresse: ${postule.logement.adresse }</br>
-																Date: 31/01/2015-01/02/2015
+	        <form action="demandes" method="post">
+	        
+				<div class="demandes">
+				    <div class="infosDemandes">
+				    <div id="ical"></div>
+					<ol>
+						<c:forEach items="${demandeEnvoye }" var="postule">
+								<li>
+									<div class="uneDemande" id="">
+										<div class="detailsAnnonce">
+											
+											<h3>Logement de ${postule.hebergeur } à ${postule.logement.adresse.ville }</h3>
+									<!-- 		<div class="uneImg">Img ?</div>   -->
+											<div class="txt">Adresse: ${postule.logement.adresse }</br>
+																	Date: 31/01/2015-01/02/2015
+											</div>
 										</div>
 									</div>
-								</div>
-							</li>
-					</c:forEach>
-				</ol>
-			    </div>
-			</div>
-        </div>
-              <div id="container">
-	        <h3>Demande(s) recu(s)</h3>
-	        	
-			<div id="demandes">
-			    <div id="infosDemandes">
+								</li>
+						</c:forEach>
+					</ol>
+				    </div>
+				</div>
+	        
+		        <h3>Demande(s) recu(s)</h3>
+		        	
+				<div class="demandes">
+			    <div class="infosDemandes">
 			    <div id="ical"></div>
 				<ol>
 					<c:forEach items="${demandeRecu }" var="demande">
@@ -53,7 +54,9 @@
 				</ol>
 			    </div>
 			</div>
-        </div>
+			</form>
+		</div>
+	       
     </body>
     
 	<%@ include file="basdepage.jsp" %>
