@@ -49,8 +49,10 @@ public class FormulaireRechercheAnnonce {
 		boolean dateSpecifiee = this.dateDebut!=null && this.dateFin!=null;
 		
 		result.addAll(getOffreSansPostulation(dateSpecifiee));
-		//result.addAll(getOffreAvecPostulationMaisAvecReste(dateSpecifiee));
-		
+		result.addAll(getOffreAvecPostulationMaisAvecReste(dateSpecifiee));
+		if (result.isEmpty()){
+			throw new Exception("Aucun logement a "+this.ville);
+		}
 		return result;
 	}
 
@@ -78,38 +80,25 @@ public class FormulaireRechercheAnnonce {
 			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
 			result.add(new Offre(l, u, rs.getDate(3), rs.getDate(4)));
 		}
-		if (result.isEmpty()){
-			throw new Exception("Aucun logement a "+this.ville);
-		}
 		return result;
 	}
 	
 	private List<Offre> getOffreAvecPostulationMaisAvecReste(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
+		List<Offre> resultNonAccepte = new ArrayList<Offre>();
+		List<Offre> resultAccepte = new ArrayList<Offre>();
 
-		String strReq = "SELECT DISTINCT Logement.IdLogement,Utilisateur.IdUtilisateur,Logement.DateDebut,Logement.DateFin "
-				+ "FROM Utilisateur,Logement,Postule "
-				+ "WHERE (Logement.IdLogement=Utilisateur.IdLogement AND Logement.ville = ?) ";
-
-		if(this.dateDebut!=null && this.dateFin!=null){
-			strReq += "AND (Logement.DateDebut <= ? AND Logement.DateFin >= ?) ";
+		String strReqNonAccepte = "SELECT IdLogement,IdUtilisateur, "
+						+ "FROM Postule "
+						+ "WHERE (Status=0 OR Status=2) ";
+		PreparedStatement sNonAccepte = Data.BDD_Connection.prepareStatement(strReqNonAccepte);
+		ResultSet rsNonAccepte=sNonAccepte.executeQuery();
+		while (rsNonAccepte.next()){
+			Logement l=Logement.getLogementById(rsNonAccepte.getInt(1));
+			Utilisateur u=Utilisateur.getUtilisateurById(rsNonAccepte.getInt(2));
+			result.add(new Offre(l, u, rsNonAccepte.getDate(3), rsNonAccepte.getDate(4)));
 		}
-		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
-		s.setString(1, this.ville);
-		if(this.dateDebut!=null && this.dateFin!=null){
-			s.setDate(2, Date.valueOf(this.dateFin));
-			s.setDate(3, Date.valueOf(this.dateDebut));
-		}
-
-		ResultSet rs=s.executeQuery();
-		while (rs.next()){
-			Logement l=Logement.getLogementById(rs.getInt(1));
-			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
-			result.add(new Offre(l, u, rs.getDate(3), rs.getDate(4)));
-		}
-		if (result.isEmpty()){
-			throw new Exception("Aucun logement a "+this.ville);
-		}
+		
 		return result;
 	}
 }
