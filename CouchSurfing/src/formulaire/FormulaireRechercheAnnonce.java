@@ -86,9 +86,9 @@ public class FormulaireRechercheAnnonce {
 	private List<Offre> getOffreAvecPostulation(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		List<Offre> resultNonAccepte = new ArrayList<Offre>();
-
 		result.addAll(getRestes(getOffreValideesCompactees(dateSpecifiee)));
-		
+		//TODO : ajouter les offres postulée, non acceptée, avec logement différent de ceux de getRestes
+
 		return result;
 	}
 
