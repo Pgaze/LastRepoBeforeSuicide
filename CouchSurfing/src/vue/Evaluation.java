@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Menu;
-
 /**
  * Servlet implementation class Evaluation
  */
 @WebServlet("/Evaluation")
-public class Evaluation extends HttpServlet {
+public class Evaluation extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -22,7 +20,6 @@ public class Evaluation extends HttpServlet {
      */
     public Evaluation() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -30,10 +27,9 @@ public class Evaluation extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("sessionUtilisateur") == null) {
-			request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(request, response);
-		}
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(this.request, this.response);
 	}
 
 	/**
@@ -41,33 +37,9 @@ public class Evaluation extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		request=Menu.afficherMenu(request, response);
-		try{
-				request.getParameter("");
-			
-			
-			HttpSession utilisateurSession = request.getSession();
-			Utilisateur user= (Utilisateur)utilisateurSession.getAttribute("sessionUtilisateur");
-			FormulaireProposerLogement form=new FormulaireProposerLogement(
-					request.getParameter("batimentEscalier"), request.getParameter("numeroEtVoie"), 
-					request.getParameter("cp"), request.getParameter("residence"), 
-					request.getParameter("complementAdresse"), request.getParameter("ville"), user);
-			if(form.verificationCp()){
-				String result = form.procedureAjoutLogement();
-				if(result.contentEquals("Logement ajoute")){
-					Data.BDD_Connection.commit();
-				}
-				request.setAttribute("resultat", result);
-				response.sendRedirect("profil");
-
-			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/nouvelle.jsp").forward(request, response);
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
-		*/
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(this.request, this.response);
 	}
 
 }

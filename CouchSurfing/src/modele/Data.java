@@ -1,6 +1,7 @@
 package modele;
 
 import java.sql.Connection;
+
 import utilitaire.ConnectionMySQL;
 
 public final class Data {

@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import modele.Data;
-import modele.Utilisateur;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,12 +29,6 @@ public class TestFormulaireInscription {
 		this.form=null;
 	}
 	
-	@Test
-	public void testInsertionBase() throws Exception {
-		Utilisateur t = new Utilisateur("utilisateur@mail.com", "Md5", "Dupont", "Pierre", "Pierrot");
-		assertTrue(this.form.verificationDonnesInscription(t.getFirstName(),t.getName(),t.getPseudo(),t.getMail(),t.getPassword()));
-		assertTrue(t.insererDansLaBase());
-	}
 
 	@Test
 	public void testValidationMail() {
@@ -62,6 +55,12 @@ public class TestFormulaireInscription {
 		this.form.setMail("louisouistiti@mail.com");
 		this.form.setConfirmMdp("lm");
 		assertEquals("Mot de passe invalide",this.form.procedureInscription());
+	}
+	
+	@Test
+	public void testTelValide() throws Exception {
+		assertTrue(this.form.testTelValide("0621611191"));
+		assertFalse(this.form.testTelValide("06RE547"));
 	}
 
 }

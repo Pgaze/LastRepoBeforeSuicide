@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Deconnexion
  */
 @WebServlet("/Deconnexion")
-public class Deconnexion extends SuperServlet {
+public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,12 +29,11 @@ public class Deconnexion extends SuperServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		destroyCookieAndSession(request);
-		HttpSession session = request.getSession();
-		
-        session.invalidate();
-		response.sendRedirect("accueil");
-	    return;
+
+		super.initAttribut(request, response);
+		this.response.addCookie(this.destroyCookieAndSession());
+		this.response.sendRedirect("accueil");
+		return;
 	}
 
 	/**
@@ -45,13 +44,16 @@ public class Deconnexion extends SuperServlet {
 
 	}
 
-	private void destroyCookieAndSession(HttpServletRequest request){
-		request.getSession().invalidate();
-		for( Cookie c : request.getCookies()){
-			if(c.getName().equals("cookieUtilisateur"));
-			c.setMaxAge(-1);
-			break;
+	private Cookie destroyCookieAndSession(){
+		this.request.getSession().invalidate();
+		for( Cookie c : this.request.getCookies()){
+			if(c.getName().equals("cookieUtilisateur")){
+				c.setMaxAge(0);
+				return c;
+			}
 		}
+		return null;
 	}
+	
 
 }

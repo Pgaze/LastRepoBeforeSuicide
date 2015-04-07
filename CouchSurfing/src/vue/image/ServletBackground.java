@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ServletBackground
  */
 @WebServlet("/ServletBackground")
-public class ServletBackground extends HttpServlet {
+public class ServletBackground extends ServletImage {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -22,7 +22,9 @@ public class ServletBackground extends HttpServlet {
      */
     public ServletBackground() {
         super();
-        // TODO Auto-generated constructor stub
+        this.name="couch";
+        this.type="jpg";
+        
     }
 
 	/**
@@ -30,18 +32,7 @@ public class ServletBackground extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-	    String name = "couch";
-	    
-	    File image = new File(getServletContext().getRealPath("/images")
-	            + File.separator + name + ".jpg");
-	    // System.out.println(image);
-       //Files.copy(image.toPath(), response.getOutputStream());
-        
-		byte[] img = Files.readAllBytes(image.toPath());
-		response.setContentType("images/jpg");
-		response.setContentLength(img.length);
-		response.getOutputStream().write(img);
+		super.doGet(request, response);
 	}
 
 	/**
@@ -49,7 +40,6 @@ public class ServletBackground extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

@@ -14,7 +14,7 @@
 	<div id="container" class="content-accueil">
 		<p id="titre_erreur"> Ooooups... !!</p>
 		<div id="containerErreur">
-			 Il y a une erreur : <p style="font-weight: bold;">String</p>
+			 Il y a une erreur : <p style="font-weight: bold;">${errorMessage}</p>
 		</div>
 		<p>
 			Retour à <a href="accueil">l'accueil.</a>

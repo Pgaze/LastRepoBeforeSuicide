@@ -51,7 +51,7 @@ public class TestPostule {
 
 	@Test
 	public void testGetAllPostulationsEnCours() throws Exception {
-		ArrayList<Postule> liste = Postule.getPostulationsEnCoursByUser(this.paul);
+		ArrayList<Postule> liste = Postule.getDemandeEnvoyeByUser(this.paul);
 		assertEquals(1,liste.size());
 	}
 		
