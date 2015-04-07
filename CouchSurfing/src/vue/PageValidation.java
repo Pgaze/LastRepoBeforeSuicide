@@ -1,4 +1,4 @@
-package vue.image;
+package vue;
 
 import java.io.IOException;
 
@@ -8,27 +8,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.Menu;
+
 /**
- * Servlet implementation class ServletRefusDemande
+ * Servlet implementation class PageValidation
  */
-@WebServlet("/ServletRefusDemande")
-public class ServletRefusDemande extends ServletImage {
+//@WebServlet("/pageValidation")
+public class PageValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRefusDemande() {
+    public PageValidation() {
         super();
-        this.name = "croix";
-        this.type = "png";
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
+		request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(request, response);
 	}
 
 	/**
