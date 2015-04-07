@@ -41,14 +41,6 @@
     <url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Annonces</servlet-name>
-    <servlet-class>vue.Annonces</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Annonces</servlet-name>
-    <url-pattern>/annonces</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Profil</servlet-name>
     <servlet-class>vue.Profil</servlet-class>
   </servlet>
