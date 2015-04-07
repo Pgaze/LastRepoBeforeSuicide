@@ -68,14 +68,13 @@ public class Criteres extends LaBifleDuMoyenAgeANosJours {
 				return;
 			}
 			else{
-				this.request.setAttribute("errorMessage","Probleme base de donnees");
-				this.response.sendRedirect("erreur");
+				super.afficherPageErreur("Probleme base de donnees");
+				return ;
 
 			}
 		} catch (Exception e) {
-			this.request.setAttribute("errorMessage",e.getMessage());
-			this.response.sendRedirect("erreur");
-
+			super.afficherPageErreur(e.getMessage());
+			return;
 		}
 	}
 

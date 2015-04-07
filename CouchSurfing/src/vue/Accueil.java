@@ -38,8 +38,8 @@ public class Accueil extends LaBifleDuMoyenAgeANosJours {
 				return;	
 			}
 			catch(SQLException e){
-				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
+				super.afficherPageErreur(e.getMessage());
+				return;
 
 			}
 		}

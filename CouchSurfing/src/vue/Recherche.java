@@ -55,14 +55,13 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 								this.request.getParameter("dateDebut"),this.request.getParameter("dateFin"));
 				List<Offre> lesOffres=form.getListeOffre();
 				this.request.setAttribute("lesOffres", lesOffres);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 			}
 			catch (Exception e){
-				this.request.setAttribute("errorMessage",e.getMessage());
-				this.response.sendRedirect("erreur");
+				e.printStackTrace();
+				super.afficherPageErreur(e.getMessage());
 				return ;
-
 			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/recherche.jsp").forward(this.request, this.response);
 		}
 		//Appui sur un autre bouton
 		else{

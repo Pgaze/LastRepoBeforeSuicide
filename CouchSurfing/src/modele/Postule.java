@@ -12,12 +12,17 @@ public class Postule {
 	private Utilisateur postulant;
 	private Utilisateur hebergeur;
 	private Logement logement;
+	private int status;
+	private String dateDebut;
+	private String dateFin;
+	private String dateValidite;
 	
 	public Postule(Utilisateur postulant, Utilisateur hebergeur, Logement logement) {
 		super();
 		this.postulant = postulant;
 		this.hebergeur = hebergeur;
 		this.logement = logement;
+		this.status = 2;
 	}
 
 	/**
@@ -26,10 +31,9 @@ public class Postule {
 	 */
 	public static ArrayList<Postule> getDemandeEnvoyeByUser(Utilisateur user) throws Exception{
 		ArrayList<Postule> tablePostulation = new ArrayList<Postule>();
-		String sql = "SELECT IdLogement FROM Postule "
+		String sql = "SELECT IdLogement,Status FROM Postule "
 				+ "WHERE IdUtilisateur=?  ";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
-		System.out.println("Test: "+ user.getIdUser());
 		select.setInt(1, user.getIdUser());
 		
 		ResultSet resultSelect=select.executeQuery();
@@ -37,7 +41,9 @@ public class Postule {
 		while(resultSelect.next()){
 			Logement logement=Logement.getLogementById(resultSelect.getInt("IdLogement"));
 			Utilisateur hebergeur = Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
-			tablePostulation.add(new Postule(user, hebergeur, logement));
+			Postule temp = new Postule(user, hebergeur, logement);
+			temp.status = resultSelect.getInt(2);
+			tablePostulation.add(temp);
 		}
 		return tablePostulation;
 	}
@@ -75,7 +81,7 @@ public class Postule {
 		ps.setInt(1, this.postulant.getIdUser());
 		ps.setInt(2, this.logement.getIdLogement());
 		ps.setString(3, myDate);
-		ps.setInt(4, 3);
+		ps.setInt(4, this.status);
 		
 		if(ps.executeUpdate() == 1){
 			return true;
@@ -94,10 +100,14 @@ public class Postule {
 	public Logement getLogement() {
 		return logement;
 	}
+	
+	public int getStatus() {
+		return status;
+	}
 
 	public static List<Postule> getDemandeRecuByUser(Utilisateur user) throws Exception {
 		List<Postule> result = new ArrayList<Postule>();
-		String sql = "select Postule.IdUtilisateur,Postule.IdLogement from Postule,Utilisateur "
+		String sql = "select Postule.IdUtilisateur,Postule.IdLogement,Status from Postule,Utilisateur "
 				+ "where Postule.IdLogement=Utilisateur.IdLogement "
 				+ "and Utilisateur.IdUtilisateur = ?";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
@@ -106,7 +116,9 @@ public class Postule {
 		while(resultSelect.next()){
 			Utilisateur postulant = Utilisateur.getUtilisateurById(resultSelect.getInt(1));
 			Logement logement = Logement.getLogementById(resultSelect.getInt(2));
-			result.add(new Postule(postulant, user, logement));
+			Postule temp= new Postule(postulant, user, logement);
+			temp.status = resultSelect.getInt(3);
+			result.add(temp);
 		}
 		
 		
@@ -126,5 +138,14 @@ public class Postule {
 		else{
 			return false;
 		}
+	}
+	
+	public boolean updateStatus(int newStatus) throws SQLException{
+		String sql= "update Postule set Status = ? where IdUtilisateur=? and IdLogement=?";
+		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
+		update.setInt(1, newStatus);
+		update.setInt(2, this.postulant.getIdUser());
+		update.setInt(3, this.logement.getIdLogement());
+		return update.executeUpdate() ==1;
 	}
 }
