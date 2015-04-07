@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import modele.Data;
 import modele.Logement;
 import modele.Offre;
@@ -49,7 +51,7 @@ public class FormulaireRechercheAnnonce {
 		boolean dateSpecifiee = this.dateDebut!=null && this.dateFin!=null;
 		
 		result.addAll(getOffreSansPostulation(dateSpecifiee));
-		result.addAll(getOffreAvecPostulationMaisAvecReste(dateSpecifiee));
+		//result.addAll(getOffreAvecPostulation(dateSpecifiee));
 		if (result.isEmpty()){
 			throw new Exception("Aucun logement a "+this.ville);
 		}
@@ -69,7 +71,7 @@ public class FormulaireRechercheAnnonce {
 		}
 		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
 		s.setString(1, this.ville);
-		if(this.dateDebut!=null && this.dateFin!=null){
+		if(dateSpecifiee){
 			s.setDate(2, Date.valueOf(this.dateFin));
 			s.setDate(3, Date.valueOf(this.dateDebut));
 		}
@@ -83,22 +85,57 @@ public class FormulaireRechercheAnnonce {
 		return result;
 	}
 	
-	private List<Offre> getOffreAvecPostulationMaisAvecReste(boolean dateSpecifiee) throws Exception {
+	private List<Offre> getOffreAvecPostulation(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		List<Offre> resultNonAccepte = new ArrayList<Offre>();
 		List<Offre> resultAccepte = new ArrayList<Offre>();
 
-		String strReqNonAccepte = "SELECT IdLogement,IdUtilisateur, "
+		String strReqAccepte = "SELECT IdLogement,IdUtilisateur,dateDebut,dateFin "
 						+ "FROM Postule "
-						+ "WHERE (Status=0 OR Status=2) ";
-		PreparedStatement sNonAccepte = Data.BDD_Connection.prepareStatement(strReqNonAccepte);
-		ResultSet rsNonAccepte=sNonAccepte.executeQuery();
-		while (rsNonAccepte.next()){
-			Logement l=Logement.getLogementById(rsNonAccepte.getInt(1));
-			Utilisateur u=Utilisateur.getUtilisateurById(rsNonAccepte.getInt(2));
-			result.add(new Offre(l, u, rsNonAccepte.getDate(3), rsNonAccepte.getDate(4)));
+						+ "WHERE (Status = 1) "
+						+ "ORDER BY IdLogement DESC, dateDebut ASC";
+		if(dateSpecifiee){
+			strReqAccepte += "AND Logement.DateDebut <= ? AND Logement.DateFin >= ? ";
 		}
+		PreparedStatement sAccepte = Data.BDD_Connection.prepareStatement(strReqAccepte);
+		if(dateSpecifiee){
+			sAccepte.setDate(2, Date.valueOf(this.dateFin));
+			sAccepte.setDate(3, Date.valueOf(this.dateDebut));
+		}
+		ResultSet rsAccepte=sAccepte.executeQuery();
+		while (rsAccepte.next()){
+			Logement l=Logement.getLogementById(rsAccepte.getInt(1));
+			Utilisateur u=Utilisateur.getUtilisateurById(rsAccepte.getInt(2));
+			resultAccepte.add(new Offre(l, u, rsAccepte.getDate(3), rsAccepte.getDate(4)));
+		}
+		List<Offre> resultAccepteReste = calculReste(resultAccepte);
+		
 		
 		return result;
+	}
+
+	private List<Offre> calculReste(List<Offre> resultAccepte) throws InvalidAttributeValueException {
+		List<Offre> resultAccepteReste = new ArrayList<Offre>();
+		Logement tempLogement = null;
+
+		for(Offre offre : resultAccepte){
+			resultAccepteReste.get(resultAccepteReste.size()).getLogement();
+			if(offre.getLogement().getIdLogement() == tempLogement.getIdLogement()){
+				//comparer les dates
+				Date debutPlusUnJ = resultAccepteReste.get(resultAccepteReste.size()).getDateDebut();
+				int[] tabDate = CustomDate.splitDate(debutPlusUnJ.toString());
+				debutPlusUnJ = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]+1));
+				//compacter les offres
+				//mettre a jour la liste
+				if(offre.getDateDebut() == debutPlusUnJ) {
+					offre.setDateFin(debutPlusUnJ);
+				}
+			} else {
+				//MaJ des données temporaires
+				tempLogement=offre.getLogement();
+				resultAccepteReste.add(offre);
+			}
+		}
+		return resultAccepteReste;
 	}
 }

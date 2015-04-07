@@ -38,6 +38,15 @@ public class CustomDate {
 		}
 		return res;
 	}
+	
+	public static int[] splitDate(String date) {
+		int[] tabRes = new int[3];
+		String[] tabSplit = date.split("-");
+		for(int i=0 ; i<3 ; i++){
+			tabRes[i]= Integer.valueOf(tabSplit[i]);
+		}
+		return tabRes;
+	}
 
 	/** Reformate si necessaire
 	 * @param date
