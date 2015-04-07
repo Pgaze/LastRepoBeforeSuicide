@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import classes.Menu;
+import vue.Menu;
 
 public class MenuTest {
 	

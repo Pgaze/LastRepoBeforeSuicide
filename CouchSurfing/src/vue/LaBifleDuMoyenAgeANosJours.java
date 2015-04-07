@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modele.Utilisateur;
-import classes.Menu;
 
 public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 	protected HttpServletRequest request;
