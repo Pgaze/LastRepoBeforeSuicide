@@ -1,12 +1,15 @@
 package vue;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import modele.Data;
+import modele.Postule;
 
 /**
  * Servlet implementation class PageValidation
@@ -14,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/pageValidation")
 public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PageValidation() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public PageValidation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +32,7 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(request, response);
 	}
 
@@ -36,7 +40,19 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		super.initAttribut(request, response);
+		super.afficherMenu();
+		try {
+			Postule postule= (Postule)this.request.getAttribute("postule");
+			postule.postulerAUneOffre();
+			Data.BDD_Connection.commit();
+			this.response.sendRedirect("demandes");
+			return ;
+
+		} catch (SQLException e) {
+			super.afficherPageErreur(e.getMessage());
+		}
+
 	}
 
 }

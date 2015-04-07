@@ -88,6 +88,7 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 
 	public void afficherPageErreur(String e){
 		this.request.setAttribute("errorMessage", e);
+		System.err.println(e);
 		try {
 			this.response.sendRedirect("erreur");
 		} catch (IOException e1) {

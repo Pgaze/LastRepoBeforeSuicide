@@ -41,7 +41,7 @@
 							<div id="critereAdresse" class="critereOffre">
 								<h1 id="intituleCritere">Adresse:</h1>
 								<p id="valeurCritere">
-									<c:out value="${ uneOffre.logement.adresse }" />
+									${ uneOffre.logement.adresse }
 								</p>
 								<input type="submit" name="${ uneOffre.logement.idLogement}"
 									value="Postuler">
