@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-#container
+#container, .container
 {
 margin-top: 80px !important;
 margin-bottom: 80px !important;
@@ -79,25 +79,4 @@ div#formConnexion
   padding: 10px 100px 8px 100px;
   border-radius: 31px;
   background-color: rgb(221, 221, 221);
-}
-
-/*.uneDemande:after {
-	
-	content: "";
-	border-top: 100px solid pink;
-	border-bottom: 100px solid pink;
-	border-left: 200px solid pink;
-	position: absolute;
-	right: -200px;
-	
-	/*content: "";
-	border-top: 100px solid pink;
-	border-bottom: 100px solid pink;
-	border-left: 200px solid blue;
-	position: absolute;
-	right: -100px;
-	top: 0;
-	border-top: 100px solid transparent;
-	border-bottom: 100px solid transparent;
-	border-left: 100px solid #3498db;*/
 }

@@ -41,14 +41,6 @@
     <url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Annonces</servlet-name>
-    <servlet-class>vue.Annonces</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Annonces</servlet-name>
-    <url-pattern>/annonces</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Profil</servlet-name>
     <servlet-class>vue.Profil</servlet-class>
   </servlet>
@@ -79,6 +71,14 @@
   <servlet-mapping>
     <servlet-name>Criteres</servlet-name>
     <url-pattern>/criteres</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>PageValidation</servlet-name>
+    <servlet-class>vue.PageValidation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PageValidation</servlet-name>
+    <url-pattern>/pageValidation</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

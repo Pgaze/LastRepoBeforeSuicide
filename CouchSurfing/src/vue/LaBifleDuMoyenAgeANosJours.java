@@ -2,19 +2,27 @@ package vue;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modele.Utilisateur;
-import classes.Menu;
 
 public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 
 	private static final long serialVersionUID = -7832776795658834441L;
+	
+	@Override
+	protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
+	
+	@Override
+	protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException;
 
 	protected String getMailInCookie(HttpServletRequest request){
 		Cookie[] lesCookies=request.getCookies();
@@ -42,26 +50,24 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 	
 	public Menu getMenuMembre(){
 		Menu membre = new Menu("membre");
-		membre.addLien("Deconnexion", false);
-		membre.addLien("Annonces", false);
-		membre.addLien("Demandes", false);
-		membre.addLien("Profil", false);
-		membre.addLien("Messagerie", false);
-		membre.addLien("Nouvelle", false);
-		membre.addLien("Recherche", false);
+		membre.addLien("Deconnexion", "deconnexion");
+		membre.addLien("Mes demandes", "demandes");
+		membre.addLien("Profil", "profil");
+		membre.addLien("Nouvelle annonce", "nouvelle");
+		membre.addLien("Recherche", "recherche");
 		return membre;
 	}
 	
 	public Menu getMenuAcceuil(){
 		Menu invite = new Menu("invite");
-		invite.addLien("Connexion", true);
-		invite.addLien("Presentation", true);
+		invite.addLien("Connexion", "#connexion");
+		invite.addLien("Presentation", "#presentation");
 		return invite;
 	}
 	
 	public Menu getMenuInscription(){
 		Menu inscription = new Menu("inscription");
-		inscription.addLien("Accueil", false);
+		inscription.addLien("Accueil", "accueil");
 		return inscription;
 	}
 	
@@ -82,6 +88,7 @@ public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
 
 	public void afficherPageErreur(String e){
 		this.request.setAttribute("errorMessage", e);
+		System.err.println(e);
 		try {
 			this.response.sendRedirect("erreur");
 		} catch (IOException e1) {

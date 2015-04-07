@@ -3,7 +3,7 @@
 <%@ include file="entete.jsp"%>
 <%@ include file="menu.jsp"%>
 
-<body onload="redirection()"
+<body onload="redirectionAccueil()"
 	style="background-image:url(${pageContext.request.contextPath}/ServletBackground)">
 
 	<div id="container">

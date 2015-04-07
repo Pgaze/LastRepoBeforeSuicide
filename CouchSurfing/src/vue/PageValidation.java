@@ -1,46 +1,58 @@
 package vue;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.Data;
+import modele.Postule;
+
 /**
- * Servlet implementation class Annonces
+ * Servlet implementation class PageValidation
  */
-@WebServlet("/Annonces")
-public class Annonces extends LaBifleDuMoyenAgeANosJours {
+//@WebServlet("/pageValidation")
+public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Annonces() {
+	public PageValidation() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
-		this.afficherMenu();
-		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(this.request, this.response);
-	}
+		super.afficherMenu();
 
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
-		this.afficherMenu();
-		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(this.request, this.response);
+		super.afficherMenu();
+		try {
+			Postule postule= (Postule)this.request.getAttribute("postule");
+			postule.postulerAUneOffre();
+			Data.BDD_Connection.commit();
+			this.response.sendRedirect("demandes");
+			return ;
+
+		} catch (SQLException e) {
+			super.afficherPageErreur(e.getMessage());
+		}
+
 	}
 
 }

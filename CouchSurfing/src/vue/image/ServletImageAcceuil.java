@@ -11,23 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletBackground
+ * Servlet implementation class imageServlet
  */
-@WebServlet("/ServletBackground")
-public class ServletBackground extends ServletImage {
+@WebServlet("/ServletImageAcceuil")
+public class ServletImageAcceuil extends ServletImage {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletBackground() {
+    public ServletImageAcceuil() {
         super();
-        this.name="couch";
-        this.type="jpg";
-        
+        this.name = "couchsurfing";
+        this.type = "png";
     }
 
-	/**
+	/*
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
@@ -40,6 +39,7 @@ public class ServletBackground extends ServletImage {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Deconnexion
@@ -28,6 +29,7 @@ public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		super.initAttribut(request, response);
 		this.response.addCookie(this.destroyCookieAndSession());
 		this.response.sendRedirect("accueil");
