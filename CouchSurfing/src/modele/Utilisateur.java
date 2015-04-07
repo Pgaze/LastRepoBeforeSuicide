@@ -4,7 +4,6 @@ package modele;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import utilitaire.Password;
 
@@ -16,6 +15,7 @@ public class Utilisateur {
 	private String name;
 	private String firstName;
 	private String pseudo;
+	private String tel;
 	private float indiceConfort;
 	private int nbVoteConfort;
 	private float indiceConfiance;
@@ -29,12 +29,13 @@ public class Utilisateur {
 	 * @param firstName
 	 * @throws SQLException 
 	 */
-	public Utilisateur(String mail, String password, String name, String firstName,String pseudo) throws SQLException {
+	public Utilisateur(String mail, String password, String name, String firstName,String pseudo,String tel) throws SQLException {
 		this.setMail(mail);
 		this.setPassword(password);
 		this.setName(name);
 		this.setFirstName(firstName);
 		this.setPseudo(pseudo);
+		this.setTel(tel);
 		this.setIdLogement(0);
 		this.setIndiceConfiance(0);
 		this.setIndiceConfort(0);
@@ -47,7 +48,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur() {}
-
+	
 	public static Utilisateur getUtilisateurParMail(String mail) throws SQLException{
 		Utilisateur result = new Utilisateur(mail);
 		PreparedStatement select = Data.BDD_Connection.prepareStatement("" +
@@ -115,6 +116,16 @@ public class Utilisateur {
 	 */
 	public int getAvgConfiance(){
 		return Math.round(this.getIndiceConfiance());
+	}
+
+	
+	
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	/**
@@ -322,13 +333,14 @@ public class Utilisateur {
 	}*/
 
 	public boolean insererDansLaBase() throws SQLException{
-		String sql = "insert into Utilisateur (Nom,Prenom,Mail,Pseudo,Mdp) values(?,?,?,?,?)";
+		String sql = "insert into Utilisateur (Nom,Prenom,Mail,Pseudo,Mdp,Telephone) values(?,?,?,?,?,?)";
 		PreparedStatement ps=Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
 		ps.setString(1, this.name);
 		ps.setString(2, this.firstName);
 		ps.setString(3, this.mail);
 		ps.setString(4, this.pseudo);
 		ps.setString(5, Password.encrypt(this.password));
+		ps.setString(6, this.tel);
 		if(ps.executeUpdate() ==1){
 			ResultSet rs= ps.getGeneratedKeys();
 			rs.next();
@@ -387,14 +399,12 @@ public class Utilisateur {
 	}
 
 	public boolean aUnLogement() throws SQLException {
-		String sql="select IdLogement from Utilisateur where IdUtilisateur = ?";
+		String sql="select count(IdLogement) from Utilisateur where IdUtilisateur = ?";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
 		select.setInt(1, this.idUser);
 		ResultSet resultSelect = select.executeQuery();
-		if(resultSelect.next()){
-			return true;
-		}
-		return false;
+		resultSelect.next();
+		return resultSelect.getInt(1)!=0;
 	}
 	
 		

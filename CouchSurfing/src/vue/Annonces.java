@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Menu;
-
 /**
  * Servlet implementation class Annonces
  */
 @WebServlet("/Annonces")
-public class Annonces extends HttpServlet {
+public class Annonces extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,8 +27,9 @@ public class Annonces extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(request, response);
+		super.initAttribut(request, response);
+		this.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(this.request, this.response);
 	}
 
 
@@ -39,8 +38,9 @@ public class Annonces extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request = Menu.afficherMenu(request, response);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(request, response);
+		super.initAttribut(request, response);
+		this.afficherMenu();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/annonces.jsp").forward(this.request, this.response);
 	}
 
 }

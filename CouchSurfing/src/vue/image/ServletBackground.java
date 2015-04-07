@@ -22,7 +22,6 @@ public class ServletBackground extends HttpServlet {
      */
     public ServletBackground() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -49,7 +48,6 @@ public class ServletBackground extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

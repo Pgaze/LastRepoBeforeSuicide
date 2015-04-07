@@ -1,6 +1,8 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import modele.Data;
 import modele.Utilisateur;
 
@@ -18,7 +20,7 @@ public class TestUtilisateur {
 	@Before
 	public void setUp() throws Exception {
 		ConnectionMySQL.switchBDD_or_BDDTest(true);
-		this.dubois=new Utilisateur("duboispaul@mail.com","motDePasse1","Dubois","Paul","Paulo");
+		this.dubois=new Utilisateur("duboispaul@mail.com","motDePasse1","Dubois","Paul","Paulo","0621611291");
 	}
 
 	@After
@@ -58,5 +60,34 @@ public class TestUtilisateur {
 		this.dubois.voteConfort(3);
 		this.dubois.updateConfort();
 		assertEquals(3,this.dubois.getAvgConfort());
+	}
+	
+	@Test
+	public void testInsertionBase() throws Exception {
+		Utilisateur u = new Utilisateur("everything.isAwesome@mail.com", "motDePasse1", "Nard", "Ken", "Ken à barbie", "0564845784");
+		assertTrue(u.insererDansLaBase());
+	}
+	
+	@Test
+	public void testGetIdPhotoProfil() throws Exception {
+		Utilisateur u = Utilisateur.getUtilisateurById(1);
+		assertEquals(2, u.getIdPhotoProfil());
+	}
+	
+	@Test
+	public void testSetIdAvatar() throws Exception {
+		Utilisateur u= Utilisateur.getUtilisateurById(3);
+		assertTrue(u.setIdAvatar(2));
+	}
+	
+	@Test
+	public void testGetUtilisateurByIdLogement() throws Exception {
+		assertEquals(2, Utilisateur.getUtilisateurByIdLogement(3).getIdUser());
+	}
+	
+	@Test
+	public void testAUnLogement() throws Exception {
+		assertTrue(Utilisateur.getUtilisateurById(2).aUnLogement());
+		assertFalse(Utilisateur.getUtilisateurById(4).aUnLogement());
 	}
 }

@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modele.Utilisateur;
-import classes.Menu;
 import formulaire.FormulaireConnexion;
 
 /**
  * Servlet implementation class Accueil
  */
 @WebServlet("/Accueil")
-public class Accueil extends SuperServlet {
+public class Accueil extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,22 +28,25 @@ public class Accueil extends SuperServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.initAttribut(request, response);
 		if(super.getMailInCookie(request)!= null){
 			try{
-				Utilisateur user = Utilisateur.getUtilisateurParMail(super.getMailInCookie(request));
-				request.getSession().setAttribute("sessionUtilisateur", user);
-				response.sendRedirect( "recherche" );
+				Utilisateur user = Utilisateur.getUtilisateurParMail(super.getMailInCookie(this.request));
+				this.request.getSession().setAttribute("sessionUtilisateur", user);
+				this.response.sendRedirect( "recherche" );
 				return;	
 			}
 			catch(SQLException e){
-				e.printStackTrace();
+				this.request.setAttribute("errorMessage",e.getMessage());
+				this.response.sendRedirect("erreur");
+
 			}
 		}
-		if (super.getUtilisateurInSession(request) == null ) {
-			request.setAttribute("menu", Menu.getMenuAcceuil().getLiensMenu());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+		if (super.getUtilisateurInSession() == null ) {
+			this.afficherMenu();
+			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(this.request, this.response);
 		}else {
-			response.sendRedirect( "recherche" );
+			this.response.sendRedirect( "recherche" );
 			return;	
 		}
 	}
@@ -52,28 +54,30 @@ public class Accueil extends SuperServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request=Menu.afficherMenu(request, response);
-		HttpSession sessionUtilisateur = request.getSession();
+		super.initAttribut(request,response);
+		super.afficherMenu();
+		HttpSession sessionUtilisateur = this.request.getSession();
 		try{
-			String logA = request.getParameter("login");
-			String mdpA = request.getParameter("mdp");
+			String logA = this.request.getParameter("login");
+			String mdpA = this.request.getParameter("mdp");
 			FormulaireConnexion form =new FormulaireConnexion(logA,mdpA);
 
 			if (form.verificationCoupleMailMotDePasse()){
 				Utilisateur user= Utilisateur.getUtilisateurParMail(logA);
 				sessionUtilisateur.setAttribute("sessionUtilisateur", user);
-				response.addCookie(new Cookie("cookieUtilisateur", logA));
-				response.sendRedirect( "recherche" );
+				this.response.addCookie(new Cookie("cookieUtilisateur", logA));
+				this.response.sendRedirect( "recherche" );
 				return;				
 
 			} else {
 				sessionUtilisateur.setAttribute("sessionUtilisateur", null);
-				request.setAttribute("resultat","Echec authentification" );
+				this.request.setAttribute("resultat","Echec authentification" );
 			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(this.request, this.response);
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			this.request.setAttribute("errorMessage",e.getMessage());
+			this.response.sendRedirect("erreur");
 		}
 	}
 

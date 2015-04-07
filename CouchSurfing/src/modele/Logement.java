@@ -89,7 +89,14 @@ public class Logement {
 		return adresse;
 	}
 	
-	
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
 	public List<Critere> getLesCriteres() {
 		return lesCriteres;
 	}
@@ -162,7 +169,7 @@ public class Logement {
 		}
 		return result;
 	}
-		
+	
 	public int getIdPhotoLogement() throws SQLException{
 		String sql = "SELECT IdImageLogement FROM Logement where IdLogement=?";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
@@ -181,11 +188,7 @@ public class Logement {
 		PreparedStatement update = Data.BDD_Connection.prepareStatement(sql);
 		update.setInt(1, idImage);
 		update.setInt(2, this.getIdLogement());
-		boolean result=false;
-		if(update.executeUpdate()==1){
-			result=true;
-		}
-		return result;
+		return update.executeUpdate()==1;
 	}
 
 	public void setDateDebutFin(Date dateDebut,Date dateFin) throws InvalidAttributeValueException {
@@ -196,15 +199,11 @@ public class Logement {
 	
 	public boolean setDateToNull() throws SQLException{
 		String sql= "UPDATE Logement set DateDebut=? AND DateFin=? WHERE IdLogement=?";
-		boolean result=false;
 		PreparedStatement update=Data.BDD_Connection.prepareStatement(sql);
 		update.setNull(1, Types.DATE);
 		update.setNull(2, Types.DATE);
 		update.setInt(3, this.idLogement);
-		if(update.executeUpdate()==1){
-			result=true;
-		}
-		return result;
+		return update.executeUpdate()==1;
 	}
 	
 	public boolean updateDates() throws SQLException, javax.management.InvalidAttributeValueException {
@@ -227,11 +226,11 @@ public class Logement {
 		return update.executeUpdate() ==1;
 	}
 
-	public static int delete(int idLogement) throws SQLException {
+	public static boolean deleteFromBase(int idLogement) throws SQLException {
 		String sql="delete from Logement where IdLogement=?";
 		PreparedStatement delete = Data.BDD_Connection.prepareStatement(sql);
 		delete.setInt(1, idLogement);
-		return delete.executeUpdate();
+		return delete.executeUpdate()==1;
 	}
 
 	
