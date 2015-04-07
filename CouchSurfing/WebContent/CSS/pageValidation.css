@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+
+#containerInfoPersonnel{
+  background-color: grey;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 15px;
+}
+
+#blockImage{
+width: 50px;
+display: inline;
+height: 50px;
+background-color: red;
+}
+
