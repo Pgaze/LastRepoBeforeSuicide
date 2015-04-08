@@ -11,6 +11,7 @@
 			<div id="blockImage">
 				<img src="${pageContext.request.contextPath}/ServletImageProfilPageValidation" />
 			</div>
+			
 			<div id="blockNomPrenom">
 				<p class="infoPerso"> ${postule.hebergeur.name }</p>
 				<p class="infoPerso"> ${postule.hebergeur.firstName }</p>
@@ -21,6 +22,7 @@
 			<div class="unServiceContainer">
 				<p class="libelleService"> Adresse : </p>
 				<p class="service"> ${postule.logement.adresse }</p>
+				<p>Disponible du ${offre.dateDebut } au ${offre.dateFin }</p>
 			</div>
 			<c:forEach items="${postule.logement.lesCriteres }" var="unCritere">
 				<div class="unServiceContainer">
@@ -30,6 +32,7 @@
 			</c:forEach>
 		</div>
 		<div id="reservationContainer">
+			${erreur }
 			<form id="formPostulationValidation" method="post">
 				<div id="formPostulationValidation_content">
 					<p class="dateLimite"> Date début :</p>

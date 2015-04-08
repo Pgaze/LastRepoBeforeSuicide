@@ -65,6 +65,7 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 				Utilisateur user= super.getUtilisateurInSession();
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
+					this.request.getSession().setAttribute("offrePostulee", offrePostulee);
 					this.request.getSession().setAttribute("postule", postule);
 					this.response.sendRedirect("pageValidation");
 					return ;

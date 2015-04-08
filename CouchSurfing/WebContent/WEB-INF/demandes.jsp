@@ -19,7 +19,7 @@
 										<h3>Logement de ${postule.hebergeur } à ${postule.logement.adresse.ville }</h3>
 								<!-- 		<div class="uneImg">Img ?</div>   -->
 										<div class="txtDemandesEnvoye"><b>Adresse:</b> ${postule.logement.adresse }</br>
-																<b>Date:</b> 31/01/2015-01/02/2015
+																<b>Date:</b> ${postule.affichagePlage }
 										</div>
 									</div>
 								</div>
@@ -45,7 +45,7 @@
 										<h3>Demande de ${demande.postulant }</h3>
 													
 											<div class="txtDemandesRecu">
-												<b>Date:</b> 31/01/2015-01/02/2015 <br/>
+												<b>Date:</b> ${postule.affichagePlage } <br/>
 												<c:if test="${demande.status ==2 }">
 													<input style="height:39px;padding-left: 10px;" type="image" src="${pageContext.request.contextPath}/ServletValidationDemande" name="${demande.postulant.idUser }" value="Accepter"/>
 													<input style="height:31px;padding-left: 15px;" type="image" src="${pageContext.request.contextPath}/ServletRefusDemande" name="${demande.postulant.idUser }" value="Refuser"/>

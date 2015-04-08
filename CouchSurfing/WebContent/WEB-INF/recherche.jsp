@@ -43,6 +43,7 @@
 								<p id="valeurCritere">
 									${ uneOffre.logement.adresse }
 								</p>
+								<p id="dateRecherche">Disponible du ${uneOffre.dateDebut } au ${uneOffre.dateFin }</p>
 								<input type="submit" name="${ uneOffre.logement.idLogement}"
 									value="Postuler">
 							</div>
