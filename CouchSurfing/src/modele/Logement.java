@@ -30,7 +30,7 @@ public class Logement {
 		this.setAdresse(adresse);
 		this.lesCriteres = new ArrayList<Critere>();
 	}
-
+	
 	public Logement() {
 		this.lesCriteres = new ArrayList<Critere>();
 	}
@@ -112,7 +112,7 @@ public class Logement {
 	 */
 	public static Logement getLogementById(int idLogement) throws Exception{
 		Logement result= new Logement();
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville,ListCriteres from Logement where IdLogement=?");
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville,DateDebut,DateFin,ListCriteres from Logement where IdLogement=?");
 		ps.setInt(1, idLogement);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()){
@@ -122,7 +122,10 @@ public class Logement {
 			String numeroEtVoie = rs.getString(4);
 			String residence = rs.getString(5);
 			String ville = rs.getString(6);
+			Date dateDebut = rs.getDate(7);
+			Date dateFin = rs.getDate(8);
 			result=new Logement(new Adresse(batimentEscalier, numeroEtVoie, cp, residence, complementAdresse, ville));
+			result.setDateDebutFin(dateDebut, dateFin);
 			result.setIdLogement(idLogement);
 			Object temp = rs.getObject("ListCriteres");
 			List<Critere> listCritere = (List<Critere>)temp;

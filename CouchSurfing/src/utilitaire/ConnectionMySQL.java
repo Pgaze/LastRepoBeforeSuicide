@@ -41,8 +41,9 @@ public class ConnectionMySQL {
 		}
 		Data.BDD_Connection=null;
 		Data.BDD_Connection=getInstance();
-		if(Data.BDD_Connection==null)
+		if(Data.BDD_Connection==null) {
 			throw new SQLException ("Erreur de switch BDD");
+		}
 	}
 
 }
