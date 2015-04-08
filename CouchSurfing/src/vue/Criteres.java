@@ -69,7 +69,7 @@ public class Criteres extends LaBifleDuMoyenAgeANosJours {
 			}
 			else{
 				super.afficherPageErreur("Probleme base de donnees");
-				return ;
+				return;
 
 			}
 		} catch (Exception e) {

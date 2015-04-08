@@ -27,11 +27,7 @@ public class Menu {
 		this.nom = nom;
 	}
 	
-	public void addLien(String nom,boolean val){
-		String lien = "#";
-		if(val) {
-			lien += nom.toLowerCase();
-		}else lien = nom.toLowerCase();
+	public void addLien(String nom,String lien){
 		this.liensMenu.put(nom, lien);
 	}
 }

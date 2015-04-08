@@ -9,8 +9,8 @@
 			</div>      	
 			<div class="contentAccueil" id="presentation">
 				<p class="text_intro"> CouchSurfing est un service qui relie les membres d'une communauté française de voyageurs.</p>
-				<p class="text_intro"> Utilisez CouchSurfing pour trouver un endroit pour rester ou bien, partager votre maison et ville natale avec les voyageurs.</p>
-				<p class="text_intro"> Les CouchSurfeurs organisent régulièrement des événements dans 30 000 villes à travers la France. Il y a toujours quelques choses à découvrir, de nouveaux amis à rencontrer.</p>
+				<p class="text_intro"> Utilisez CouchSurfing pour trouver un endroit où rester et faire partager votre maison et votre ville natale avec les voyageurs.</p>
+				<p class="text_intro"> Les CouchSurfeurs organisent régulièrement des événements dans 2 000 villes à travers la France. Il y a toujours quelque chose à découvrir, de nouveaux amis à rencontrer.</p>
 				<p class="text_intro"> Venez vite les rencontrer ! </p>
 			</div>      	
 			<div class="contentAccueil" id="connexion">
