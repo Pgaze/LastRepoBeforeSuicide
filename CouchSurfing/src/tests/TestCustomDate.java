@@ -33,7 +33,7 @@ public class TestCustomDate {
 			e.printStackTrace();
 			fail("Exception innatendue");
 		}
-		assertEquals("2000-1-2",p);
+		assertEquals("2000-01-02",p);
 	}
 	
 	@Test (expected = InvalidAttributeValueException.class)

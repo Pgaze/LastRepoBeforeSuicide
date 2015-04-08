@@ -29,6 +29,7 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
@@ -40,6 +41,7 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();

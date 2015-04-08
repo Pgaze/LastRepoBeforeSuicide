@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class Logement {
 		this.setAdresse(adresse);
 		this.lesCriteres = new ArrayList<Critere>();
 	}
-
+	
 	public Logement() {
 		this.lesCriteres = new ArrayList<Critere>();
 	}
@@ -60,7 +61,7 @@ public class Logement {
 	public boolean insererDansLaBase() throws SQLException{
 		String sql = "insert into Logement (BatimentEscalier,NumeroEtVoie,CodePostal,Residence,ComplementAdresse,Ville)"
 					+ "values (?,?,?,?,?,?)";
-		PreparedStatement insert= Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement insert= Data.BDD_Connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		insert.setString(1, this.adresse.getBatimentEscalier());
 		insert.setString(2,this.adresse.getNumeroEtVoie());
 		insert.setString(3, this.adresse.getCp());
@@ -112,7 +113,7 @@ public class Logement {
 	 */
 	public static Logement getLogementById(int idLogement) throws Exception{
 		Logement result= new Logement();
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville,ListCriteres from Logement where IdLogement=?");
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement("select BatimentEscalier,ComplementAdresse,CodePostal,NumeroEtVoie,Residence,Ville,DateDebut,DateFin,ListCriteres from Logement where IdLogement=?");
 		ps.setInt(1, idLogement);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()){
@@ -122,7 +123,10 @@ public class Logement {
 			String numeroEtVoie = rs.getString(4);
 			String residence = rs.getString(5);
 			String ville = rs.getString(6);
+			Date dateDebut = rs.getDate(7);
+			Date dateFin = rs.getDate(8);
 			result=new Logement(new Adresse(batimentEscalier, numeroEtVoie, cp, residence, complementAdresse, ville));
+			result.setDateDebutFin(dateDebut, dateFin);
 			result.setIdLogement(idLogement);
 			Object temp = rs.getObject("ListCriteres");
 			List<Critere> listCritere = (List<Critere>)temp;

@@ -34,9 +34,22 @@ public class CustomDate {
 		if(month <= 0 || day <= 0 || year <= 0 || day > 31 || month > 12){
 			throw new InvalidAttributeValueException("La date avant changement de format est invalide");
 		}else{
-			res = "" + year + "-" + month + "-" + day;
+			res = year + "-" ;
+			res += (month<10 ? "0" : "");
+			res += month + "-";
+			res += (day < 10 ? "0" : "");
+			res += day;
 		}
 		return res;
+	}
+	
+	public static int[] splitDate(String date) {
+		int[] tabRes = new int[3];
+		String[] tabSplit = date.split("-");
+		for(int i=0 ; i<3 ; i++){
+			tabRes[i]= Integer.valueOf(tabSplit[i]);
+		}
+		return tabRes;
 	}
 
 	/** Reformate si necessaire
