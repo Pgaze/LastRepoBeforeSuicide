@@ -95,13 +95,11 @@ public class Postule {
 		ps.setInt(1, this.postulant.getIdUser());
 		ps.setInt(2, this.logement.getIdLogement());
 		ps.setString(3, myDate);
+		ps.setInt(4, 2);
 		ps.setDate(5, java.sql.Date.valueOf(dateDebut));
 		ps.setDate(6, java.sql.Date.valueOf(dateFin));
 		
-		if(ps.executeUpdate() == 1){
-			return true;
-		}		
-		return false;
+		return ps.executeUpdate() == 1;
 	}
 
 	public Utilisateur getPostulant() {
