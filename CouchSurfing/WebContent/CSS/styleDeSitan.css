@@ -78,11 +78,13 @@ div#footer, div#menu
 }
 
 #imgInscription{
-width: 49% !important;
-  height: 55% !important;
+  width: 49% !important;
+  height: 39% !important;
   margin-left: 0 !important;
   background-color: red;
-  margin-top: 5% !important;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-top: 9% !important;
 }
 
 div#saisies_finscription
