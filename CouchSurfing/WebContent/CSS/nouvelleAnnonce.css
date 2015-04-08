@@ -1,50 +1,34 @@
 @CHARSET "ISO-8859-1";
 
-/* formulaire nouvelle annonce */
-#services{
-width: 261px;
-height: 104px;
-display: inline-block;
-border: 1px solid blue;
+#services {
+width : 261px;
+height : 104px;
+display : inline-block;
+border : blue solid 1px;
 }
-
-#saisies_propositionLogement label
-{
-  width: 40%;
-  margin-top: 15px;
+#saisies_propositionLogement label {
+width : 40%;
+margin-top : 15px;
 }
-
-#saisies_propositionLogement input
-{
-  margin-top: 15px;
+#saisies_propositionLogement input {
+margin-top : 15px;
 }
-
-
-#propoLogMidddle
-{
-width: 424px;
-  display: inline-block;
+#propoLogMidddle {
+width : 424px;
+display : inline-block;
 }
-
-#propoLogLeft
-{
-  width: 380px;
-  display: inline-block;
+#propoLogLeft {
+width : 380px;
+display : inline-block;
 }
-
-.alignLeft
-{
-  float: left;
-  margin-left: 30px;
+.alignLeft {
+float : left;
+margin-left : 30px;
 }
-
-.alignMiddle
-{
-  float: left;
-  margin-left: 30px;
+.alignMiddle {
+float : left;
+margin-left : 30px;
 }
-
-#valNouvelleAnnonce
-{
-  float: right;
+#valNouvelleAnnonce {
+float : right;
 }
