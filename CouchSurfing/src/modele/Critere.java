@@ -67,7 +67,31 @@ public class Critere implements Serializable {
 		default:
 			return "";
 		}
+	}
 
+		public String getTitreCritere() {
+			switch (this.type) {
+			case COMMERCE:
+				return "Commerce";
+			case SOINS:
+				return "Soins";
+			case ANIMAUX:
+				return "Animaux";
+			case FUMEUR:
+				return  "Fumeur";
+			case HANDICAPE:
+				return "Handicape";
+			case INTERNET:
+				return "Internet";
+			case PARKING:
+				return "Parking";
+			case RESTAURANT:
+				return "Restaurant";
+			case TRANSPORT:
+				return "Transport";
+			default:
+				return "";
+			}
 		
 		
 	}

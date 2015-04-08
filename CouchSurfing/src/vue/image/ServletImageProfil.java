@@ -36,7 +36,6 @@ public class ServletImageProfil extends HttpServlet {
 			//Recuperation et affichage de l'image de profil
 			int idImageProfil = user.getIdPhotoProfil();
 			Image image;
-			System.out.println("idImage:"+idImageProfil);
 			if(idImageProfil==-1){
 				image = Image.getImageById(1);
 			}

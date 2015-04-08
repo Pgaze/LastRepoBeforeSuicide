@@ -8,7 +8,9 @@
 
 	<div id="container">	        
 		<div id="containerInfoPersonnel">
-			<div id="blockImage"></div>
+			<div id="blockImage">
+				<img src="${pageContext.request.contextPath}/ServletImageProfilPageValidation" />
+			</div>
 			<div id="blockNomPrenom">
 				<p class="infoPerso"> ${postule.hebergeur.name }</p>
 				<p class="infoPerso"> ${postule.hebergeur.firstName }</p>
@@ -22,7 +24,7 @@
 			</div>
 			<c:forEach items="${postule.logement.lesCriteres }" var="unCritere">
 				<div class="unServiceContainer">
-					<p class="libelleService"> Fumeur :</p>
+					<p class="libelleService"> ${unCritere.titreCritere }</p>
 					<p class="service"> ${unCritere.description } </p>
 			</div>
 			</c:forEach>

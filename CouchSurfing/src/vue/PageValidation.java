@@ -45,14 +45,17 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 		super.afficherMenu();
 		try {
 			Postule postule= (Postule)this.request.getSession().getAttribute("postule");
-			postule.setDateDebut(this.request.getParameter("dateDebut"));
-			postule.setDateFin(this.request.getParameter("dateFin"));
-			if(postule.postulerAUneOffre()){
-				Data.BDD_Connection.commit();
-				this.response.sendRedirect("demandes");
-				return ;
+			String dateDebut = this.request.getParameter("dateDebut");
+			String dateFin = this.request.getParameter("dateFin");
+			if (!dateDebut.equals("") && !dateFin.equals("")){
+				postule.setDateDebut(dateDebut);
+				postule.setDateFin(dateFin);	
+				if(postule.postulerAUneOffre()){
+					Data.BDD_Connection.commit();
+					this.response.sendRedirect("demandes");
+					return ;
+				}
 			}
-
 		} catch (SQLException e) {
 			super.afficherPageErreur(e.getMessage());
 		}
