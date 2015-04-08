@@ -1,6 +1,7 @@
 package vue;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.Utilisateur;
+
 /**
  * Servlet implementation class Hebergeur
  */
 @WebServlet("/Hebergeur")
-public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
+public class Hebergeur extends Profil {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Hebergeur() {
-        super();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Hebergeur() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,9 +32,17 @@ public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
-		if(request.getParameter("hebergeur") != null){
-			//TODO traitement affichage de la page de profil lors du clic sur un profil truv� dans une annonce
-			this.getServletContext().getRequestDispatcher("/WEB-INF/profilH.jsp").forward(request, response);
+		try{
+			if(request.getParameter("id") != null){
+				int idUrl = Integer.valueOf(this.request.getParameter("id"));
+				Utilisateur user = Utilisateur.getUtilisateurById(idUrl);
+				this.request.setAttribute("utilisateurProfil", user);
+				afficherLogementUser( user);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
+				.forward(this.request, this.response);
+			}
+		}catch (Exception e){
+			
 		}
 	}
 
@@ -40,7 +51,7 @@ public class Hebergeur extends LaBifleDuMoyenAgeANosJours {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }

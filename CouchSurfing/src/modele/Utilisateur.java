@@ -121,7 +121,7 @@ public class Utilisateur {
 	
 	
 	public String getTel() {
-		return tel;
+		return (tel!=null?tel : "Non renseigné");
 	}
 
 	public void setTel(String tel) {

@@ -46,24 +46,7 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 			HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
-		Utilisateur user = null;
-		//TODO Utiliser la servlet Hebergeur  a la place
-		if (this.request.getParameter("id") == null) {
-			if (super.getUtilisateurInSession() != null) {
-				user = super.getUtilisateurInSession();
-			}
-		} else {
-			try {
-				int idUrl = Integer.valueOf(this.request.getParameter("id"));
-				user = Utilisateur.getUtilisateurById(idUrl);
-			} catch (SQLException e) {
-				this.request.setAttribute("errorMessage",e.getMessage());
-				this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
-				//this.request.setAttribute("errorMessage",e.getMessage());
-				//this.response.sendRedirect("erreur");
-
-			}
-		}
+		Utilisateur user = getUtilisateurInSession();
 		this.request.setAttribute("utilisateurProfil", user);
 		try {
 			afficherLogementUser( user);
@@ -73,9 +56,6 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 		} catch (Exception e) {
 			this.request.setAttribute("errorMessage",e.getMessage());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
-			//this.request.setAttribute("errorMessage",e.getMessage());
-			//this.response.sendRedirect("erreur");
-
 		}
 
 
@@ -146,7 +126,7 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 	}
 
 	
-	private void afficherLogementUser(Utilisateur user) throws Exception {
+	protected void afficherLogementUser(Utilisateur user) throws Exception {
 		Logement logementUtilisateur = Logement.getLogementById(user.getIdLogement());
 		if (logementUtilisateur != null) {
 			this.setCritereOnRequest(logementUtilisateur);

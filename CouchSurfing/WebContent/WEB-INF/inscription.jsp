@@ -9,6 +9,7 @@
 	<div id="container">
 		<form id="form_inscription" method="post" action="inscription">
 			<h5>Merci de remplir ce formulaire !</h5>
+			<div id="imgInscription" style="background-image:url(${pageContext.request.contextPath}/ServletImageInscription)"></div>
 			<div id="form_in_finscription">
 				<div id="saisies_finscription">
 					<label for="prenom">Prénom :</label>

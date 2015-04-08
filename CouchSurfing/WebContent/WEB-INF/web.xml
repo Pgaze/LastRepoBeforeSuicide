@@ -72,7 +72,7 @@
     <servlet-name>Criteres</servlet-name>
     <url-pattern>/criteres</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>PageValidation</servlet-name>
     <servlet-class>vue.PageValidation</servlet-class>
   </servlet>
