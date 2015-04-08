@@ -17,7 +17,7 @@ import modele.Postule;
 //@WebServlet("/pageValidation")
 public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
-
+	//TODO s'assurer que les dates de reservation soient incluses dans celle de la recherche
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */

@@ -23,7 +23,6 @@ public class Accueil extends LaBifleDuMoyenAgeANosJours {
 
 	public Accueil() {
 		super();
-		System.out.println("Je suis dans le constructeur de la servlet");
 	}
 
 

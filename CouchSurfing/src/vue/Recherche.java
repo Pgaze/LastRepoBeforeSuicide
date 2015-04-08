@@ -22,7 +22,7 @@ import formulaire.FormulaireRechercheAnnonce;
 @WebServlet("/Recherche")
 public class Recherche extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
-
+	//TODO afficher les dates generes par le code de bastien
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
