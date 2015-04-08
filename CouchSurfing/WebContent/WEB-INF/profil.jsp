@@ -47,7 +47,7 @@
 						</div>
 						<div class="infoSessionContainer">
 							<p class="intitule_profil">Tel</p>
-							<p class="info_profil">0672914568</p>
+							<p class="info_profil">${utilisateurProfil.tel }</p>
 						</div>
 					</div>
 
