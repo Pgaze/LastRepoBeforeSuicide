@@ -32,6 +32,7 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
+		this.request.setAttribute("postule", this.request.getSession().getAttribute("postule"));
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pageValidation.jsp").forward(request, response);
 	}
@@ -43,11 +44,14 @@ public class PageValidation extends LaBifleDuMoyenAgeANosJours {
 		super.initAttribut(request, response);
 		super.afficherMenu();
 		try {
-			Postule postule= (Postule)this.request.getAttribute("postule");
-			postule.postulerAUneOffre();
-			Data.BDD_Connection.commit();
-			this.response.sendRedirect("demandes");
-			return ;
+			Postule postule= (Postule)this.request.getSession().getAttribute("postule");
+			postule.setDateDebut(this.request.getParameter("dateDebut"));
+			postule.setDateFin(this.request.getParameter("dateFin"));
+			if(postule.postulerAUneOffre()){
+				Data.BDD_Connection.commit();
+				this.response.sendRedirect("demandes");
+				return ;
+			}
 
 		} catch (SQLException e) {
 			super.afficherPageErreur(e.getMessage());
