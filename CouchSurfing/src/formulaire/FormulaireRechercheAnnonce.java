@@ -85,10 +85,11 @@ public class FormulaireRechercheAnnonce {
 
 	private List<Offre> getOffreAvecPostulation(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
-		List<Offre> resultNonAccepte = new ArrayList<Offre>();
-		result.addAll(getRestes(getOffreValideesCompactees(dateSpecifiee)));
-		//TODO : ajouter les offres postulée, non acceptée, avec logement différent de ceux de getRestes
-
+		List<Offre> resultAccepte = getRestes(getOffreValideesCompactees(dateSpecifiee));
+		List<Offre> resultNonAccepte = getNonAccepteLogementDiffDesAcceptes(dateSpecifiee,resultAccepte);
+		result.addAll(resultAccepte);
+		result.addAll(resultNonAccepte);
+		
 		return result;
 	}
 
@@ -153,38 +154,77 @@ public class FormulaireRechercheAnnonce {
 		for(Offre offre : offreValideesCompactees){
 			if(result.isEmpty()){
 				nouveauLogement = Logement.getLogementById(offre.getLogement().getIdLogement());
-			} else {
-				//si il manquai le dernier bout du logement précédant
-				if(offre.getLogement().getIdLogement() != nouveauLogement.getIdLogement()){
-					if(nouveauLogement.getDateDebut().compareTo(nouveauLogement.getDateFin()) <= 0 ){
-						//ajout de la plage libre
-						result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),nouveauLogement.getDateFin()));
-					}
-					nouveauLogement=offre.getLogement();
-				}
-				
-				if(nouveauLogement.getDateDebut().compareTo(offre.getDateDebut()) < 0 ){
-					//logement [---------]
-					//demande  [---x*****]
-					//date moins un jour
-					Date debutMoinsUnJ = offre.getDateDebut();
-					int[] tabDate = CustomDate.splitDate(debutMoinsUnJ.toString());
-					debutMoinsUnJ = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]-1));
-					//ajout de la plage libre
-					result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),debutMoinsUnJ));
-				}
-				if(nouveauLogement.getDateFin().compareTo(offre.getDateFin()) > 0 ){						// date moins un jour
-					//logement [---------]
-					//demande  [*****x---]
-					//date plus un jour
-					Date finPlusUnJ = offre.getDateDebut();
-					int[] tabDate = CustomDate.splitDate(finPlusUnJ.toString());
-					finPlusUnJ = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]+1));
-					//maj du logment => il restera que la partie de droite (voir ci dessus)
-					nouveauLogement.setDateDebutFin(finPlusUnJ,nouveauLogement.getDateFin());
+			}else{
+				//si il manquait le dernier bout du logement précédant
+				if(offre.getLogement().getIdLogement() == nouveauLogement.getIdLogement()){
+					result.remove(result.size()-1);
 				}
 			}
+			
+			//il y a un reste avant la demande
+			if(nouveauLogement.getDateDebut().compareTo(offre.getDateDebut()) < 0 ){
+				//date moins un jour
+				Date dateModif = offre.getDateDebut();
+				int[] tabDate = CustomDate.splitDate(dateModif.toString());
+				dateModif = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]-1));
+				//ajout de la plage libre
+				result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),dateModif));
+				
+				//date plus un jour
+				dateModif = offre.getDateFin();
+				tabDate = CustomDate.splitDate(dateModif.toString());
+				dateModif = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]+1));
+				//maj du debut logement libre
+				nouveauLogement.setDateDebutFin(dateModif, nouveauLogement.getDateFin());
+			}
+			//il y a un reste apres la demande
+			if(nouveauLogement.getDateFin().compareTo(offre.getDateFin()) > 0 ){
+				//date plus un jour
+				Date dateModif = offre.getDateFin();
+				int[] tabDate = CustomDate.splitDate(dateModif.toString());
+				dateModif = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]+1));
+				//maj du logment => il restera que la partie de droite (voir ci dessus)
+				nouveauLogement.setDateDebutFin(dateModif,nouveauLogement.getDateFin());
+				//attention, date début a été mis ajour
+				//ajout du logement
+				result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),nouveauLogement.getDateFin()));
+			}
 		}
+		return result;
+	}
+	
+	private List<Offre> getNonAccepteLogementDiffDesAcceptes(boolean dateSpecifiee,List<Offre> resultAccepte) throws Exception {
+		List<Offre> result = new ArrayList<Offre>();
+		
+		String strReq = ""
+				+ "SELECT Postule.IdLogement,Postule.IdUtilisateur "
+				//Pourquoi utiliser la table utilisateur???
+				+ "FROM Logement,Postule "
+				+ "WHERE Postule.IdLogement = Logement.IdLogement "
+				+ "AND Logement.ville = ? "
+				+ "AND Postule.Status != 1 "
+				+ (dateSpecifiee ? "AND Logement.DateDebut <= ? AND Logement.DateFin >= ? " : "")
+				+ "AND Postule.IdLogement NOT IN "
+					+ "(SELECT Postule.IdLogement "
+					+ "FROM Postule "
+					+ "WHERE Postule.Status=1)";
+					
+		PreparedStatement s = Data.BDD_Connection.prepareStatement(strReq);
+		s.setString(1, this.ville);
+
+		if(dateSpecifiee){
+			s.setDate(2, Date.valueOf(this.dateFin));
+			s.setDate(3, Date.valueOf(this.dateDebut));
+		}
+
+		ResultSet rs=s.executeQuery();
+		while (rs.next()){
+			Logement l=Logement.getLogementById(rs.getInt(1));
+			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
+			result.add(new Offre(l, u, l.getDateDebut(),l.getDateFin()));
+		}
+		
+		
 		return result;
 	}
 }
