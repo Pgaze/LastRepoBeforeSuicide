@@ -17,10 +17,12 @@
 	<%@ include file="../CSS/nouvelleAnnonce.css" %>
 	<%@ include file="../CSS/recherche.css" %>
 	<%@ include file="../CSS/fontello-codes.css" %>
+	<%@ include file="../CSS/annonceNouvelle.css" %>
 	<%@ include file="../CSS/fontello-embedded.css" %>
 	<%@ include file="../CSS/fontello-ie7-codes.css" %>
 	<%@ include file="../CSS/fontello-ie7.css" %>
 	<%@ include file="../CSS/fontello.css" %>
-	<%@ include file="../CSS/evaluation.css" %></style>
+	<%@ include file="../CSS/evaluation.css" %>
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
