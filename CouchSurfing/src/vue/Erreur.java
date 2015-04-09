@@ -28,7 +28,6 @@ public class Erreur extends LaBifleDuMoyenAgeANosJours {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
-		System.out.println(request.getParameter("errorMessage"));
 		this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
 	}
 

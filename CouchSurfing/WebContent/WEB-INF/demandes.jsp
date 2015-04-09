@@ -45,7 +45,7 @@
 										<h3>Demande de ${demande.postulant }</h3>
 													
 											<div class="txtDemandesRecu">
-												<b>Date:</b> ${postule.affichagePlage } <br/>
+												<b>Date:</b> ${demande.affichagePlage } <br/>
 												<c:if test="${demande.status ==2 }">
 													<input style="height:39px;padding-left: 10px;" type="image" src="${pageContext.request.contextPath}/ServletValidationDemande" name="${demande.postulant.idUser }" value="Accepter"/>
 													<input style="height:31px;padding-left: 15px;" type="image" src="${pageContext.request.contextPath}/ServletRefusDemande" name="${demande.postulant.idUser }" value="Refuser"/>

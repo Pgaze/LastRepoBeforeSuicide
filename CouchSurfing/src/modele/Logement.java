@@ -126,14 +126,14 @@ public class Logement {
 			Date dateDebut = rs.getDate(7);
 			Date dateFin = rs.getDate(8);
 			result=new Logement(new Adresse(batimentEscalier, numeroEtVoie, cp, residence, complementAdresse, ville));
-			result.setDateDebutFin(dateDebut, dateFin);
+			result.dateDebut = dateDebut;
+			result.dateFin = dateFin;
 			result.setIdLogement(idLogement);
 			Object temp = rs.getObject("ListCriteres");
 			List<Critere> listCritere = (List<Critere>)temp;
 			if(listCritere!=null){
 				result.lesCriteres = listCritere;
 			}
-			System.out.println("lesCriteres:"+result.lesCriteres);
 		}
 		else{
 			throw new Exception("Id inexistant");
