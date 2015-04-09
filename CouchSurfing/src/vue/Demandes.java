@@ -47,8 +47,6 @@ public class Demandes extends LaBifleDuMoyenAgeANosJours {
 		} catch (Exception e) {
 			this.request.setAttribute("errorMessage",e.getMessage());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
-			//this.response.sendRedirect("erreur");
-			//return ; //Servlet Erreur.java inutile ?
 		}
 	}
 
@@ -74,6 +72,15 @@ public class Demandes extends LaBifleDuMoyenAgeANosJours {
 				result.updateStatus(0);
 			}
 			Data.BDD_Connection.commit();
+			Utilisateur user=super.getUtilisateurInSession();
+			List<Postule> demandeEnvoye,demandeRecues;
+			demandeEnvoye = Postule.getDemandeEnvoyeByUser(user);
+			this.request.setAttribute("demandeEnvoye", demandeEnvoye);
+			demandeRecues = Postule.getDemandeRecuByUser(user);
+			this.request.setAttribute("demandeRecu", demandeRecues);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/demandes.jsp").forward(this.request, this.response);
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
