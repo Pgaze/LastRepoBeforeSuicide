@@ -41,7 +41,7 @@ public class FormulaireRechercheAnnonce {
 	}
 
 	/**
-	 * @return liste des offres pour une ville donnï¿½e
+	 * @return liste des offres pour une ville donnee
 	 * @throws Exception
 	 */
 	public List<Offre> getListeOffre() throws Exception {
@@ -56,6 +56,11 @@ public class FormulaireRechercheAnnonce {
 		return result;
 	}
 
+	/**
+	 * @param dateSpecifiee (si des dates ont ete specifiees pour la recherche)
+	 * @return la liste des logement proposes n'ayant recu aucune demande
+	 * @throws Exception
+	 */
 	private List<Offre> getOffreSansPostulation(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		String strReq;
@@ -86,13 +91,18 @@ public class FormulaireRechercheAnnonce {
 	private List<Offre> getOffreAvecPostulation(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		List<Offre> resultAccepte = getRestes(getOffreValideesCompactees(dateSpecifiee));
-		List<Offre> resultNonAccepte = getNonAccepteLogementDiffDesAcceptes(dateSpecifiee,resultAccepte);
+		List<Offre> resultNonAccepte = getNonAccepteLogementDiffDesAcceptes(dateSpecifiee);
 		result.addAll(resultAccepte);
 		result.addAll(resultNonAccepte);
 		
 		return result;
 	}
 
+	/**
+	 * @param dateSpecifiee (si des dates ont ete specifiees pour la recherche)
+	 * @return la liste des offres validees
+	 * @throws Exception
+	 */
 	private List<Offre> getOffreValidees(boolean dateSpecifiee) throws Exception{
 		List<Offre> resultAccepte = new ArrayList<Offre>();
 
@@ -118,6 +128,11 @@ public class FormulaireRechercheAnnonce {
 		return resultAccepte;
 	}
 
+	/**
+	 * @param dateSpecifiee (si des dates ont ete specifiees pour la recherche)
+	 * @return la liste des plages de dates bloquees par les offres validees, apres compactage
+	 * @throws Exception
+	 */
 	private List<Offre> getOffreValideesCompactees(boolean dateSpecifiee) throws Exception {		
 		List<Offre> resultAccepteReste = new ArrayList<Offre>();
 		Offre derniereOffre = null;
@@ -147,6 +162,11 @@ public class FormulaireRechercheAnnonce {
 		return resultAccepteReste;
 	}
 
+	/**
+	 * @param offreValideesCompactees 
+	 * @return liste des possibilites de postulation en ne considerant que les restes laisses par les offres aceptees
+	 * @throws Exception
+	 */
 	private List<Offre> getRestes(List<Offre> offreValideesCompactees) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		Logement nouveauLogement = null;
@@ -155,7 +175,8 @@ public class FormulaireRechercheAnnonce {
 			if(result.isEmpty()){
 				nouveauLogement = Logement.getLogementById(offre.getLogement().getIdLogement());
 			}else{
-				//si il manquait le dernier bout du logement précédant
+				//le dernier bout a été ajouté par défaut a la passe précédante
+				//si on a pas changé de logement, on supprime ce "bout", pour le corriger
 				if(offre.getLogement().getIdLogement() == nouveauLogement.getIdLogement()){
 					result.remove(result.size()-1);
 				}
@@ -195,7 +216,12 @@ public class FormulaireRechercheAnnonce {
 		return result;
 	}
 	
-	private List<Offre> getNonAccepteLogementDiffDesAcceptes(boolean dateSpecifiee,List<Offre> resultAccepte) throws Exception {
+	/** 
+	 * @param dateSpecifiee (si des dates ont ete specifiees pour la recherche)
+	 * @return liste des possibilites de postulation, qui ne concernant pas des logements impliques dans des postulation acceptees
+	 * @throws Exception
+	 */
+	private List<Offre> getNonAccepteLogementDiffDesAcceptes(boolean dateSpecifiee) throws Exception {
 		List<Offre> result = new ArrayList<Offre>();
 		
 		String strReq = ""
