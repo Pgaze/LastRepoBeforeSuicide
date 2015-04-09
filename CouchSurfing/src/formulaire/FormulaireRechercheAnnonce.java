@@ -224,7 +224,6 @@ public class FormulaireRechercheAnnonce {
 			result.add(new Offre(l, u, l.getDateDebut(),l.getDateFin()));
 		}
 		
-		
 		return result;
 	}
 }
