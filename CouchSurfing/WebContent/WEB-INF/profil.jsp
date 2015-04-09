@@ -78,7 +78,7 @@
 							</c:if>
 							<c:if test="${crRestaurant !=null}">
 								<div id="serviceRestaurant" class="serviceDiv">
-									<p class="icon-food intitule_profil_service">Restaurant</p>
+									<p class="icon-restaurant intitule_profil_service">Restaurant</p>
 									<p class="info_profil_service">${crRestaurant }</p>
 								</div>
 							</c:if>

@@ -96,4 +96,30 @@ public class Critere implements Serializable {
 		
 	}
 
+		public String getICone() {
+			switch (this.type) {
+			case COMMERCE:
+				return "icon-basket-1";
+			case SOINS:
+				return "icon-h-sigh";
+			case ANIMAUX:
+				return "icon-paw";
+			case FUMEUR:
+				return  "icon-fire";
+			case HANDICAPE:
+				return "icon-wheelchair";
+			case INTERNET:
+				return "icon-signal";
+			case PARKING:
+				return "icon-cab";
+			case RESTAURANT:
+				return "icon-restaurant";
+			case TRANSPORT:
+				return "Transport";
+			default:
+				return "";
+			}
+		
+		
+	}
 }

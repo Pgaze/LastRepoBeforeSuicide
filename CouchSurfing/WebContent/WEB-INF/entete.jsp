@@ -17,7 +17,6 @@
 	<%@ include file="../CSS/nouvelleAnnonce.css" %>
 	<%@ include file="../CSS/recherche.css" %>
 	<%@ include file="../CSS/fontello-codes.css" %>
-	<%@ include file="../CSS/annonceNouvelle.css" %>
 	<%@ include file="../CSS/fontello-embedded.css" %>
 	<%@ include file="../CSS/fontello-ie7-codes.css" %>
 	<%@ include file="../CSS/fontello-ie7.css" %>

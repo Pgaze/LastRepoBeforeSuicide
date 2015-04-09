@@ -12,7 +12,11 @@ width: 60%;
 border: 30px solid rgb(188, 188, 188);
 }
 
+
+
 /* css de nouvelle annonce */
+
+
 
 #services {
 width : 261px;
@@ -45,4 +49,9 @@ margin-left : 30px;
 }
 #valNouvelleAnnonce {
 float : right;
+}
+#libelleAsterix{
+	  margin-top: 35px;
+  font-size: 10px;
+  margin-left: 10px;
 }
