@@ -8,9 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import vue.LaBifleDuMoyenAgeANosJours;
+import vue.SuperServlet;
 
-public class ServletImage extends LaBifleDuMoyenAgeANosJours {
+public class ServletImage extends SuperServlet {
 	
 	protected String name;
 	protected String type;

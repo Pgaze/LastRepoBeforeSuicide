@@ -17,7 +17,7 @@ import formulaire.FormulaireCritere;
  * Servlet implementation class Criteres
  */
 @WebServlet("/Criteres")
-public class Criteres extends LaBifleDuMoyenAgeANosJours {
+public class Criteres extends SuperServlet {
 	private static final long serialVersionUID = 1L;
        
     /**

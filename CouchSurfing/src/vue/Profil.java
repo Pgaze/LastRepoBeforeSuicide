@@ -25,7 +25,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * Servlet implementation class Profil
  */
 @WebServlet("/Profil")
-public class Profil extends LaBifleDuMoyenAgeANosJours {
+public class Profil extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

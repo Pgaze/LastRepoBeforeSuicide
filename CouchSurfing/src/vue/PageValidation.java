@@ -17,7 +17,7 @@ import modele.Postule;
  * Servlet implementation class PageValidation
  */
 //@WebServlet("/pageValidation")
-public class PageValidation extends LaBifleDuMoyenAgeANosJours {
+public class PageValidation extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#HttpServlet()

@@ -19,7 +19,7 @@ import modele.Utilisateur;
  * Servlet implementation class Demandes
  */
 @WebServlet("/Demandes")
-public class Demandes extends LaBifleDuMoyenAgeANosJours {
+public class Demandes extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modele.Utilisateur;
 
-public abstract class LaBifleDuMoyenAgeANosJours extends HttpServlet {
+public abstract class SuperServlet extends HttpServlet {
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 

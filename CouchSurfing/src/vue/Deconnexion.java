@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Deconnexion
  */
 @WebServlet("/Deconnexion")
-public class Deconnexion extends LaBifleDuMoyenAgeANosJours {
+public class Deconnexion extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -17,7 +17,7 @@ import formulaire.FormulaireConnexion;
  * Servlet implementation class Accueil
  */
 @WebServlet("/Accueil")
-public class Accueil extends LaBifleDuMoyenAgeANosJours {
+public class Accueil extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 

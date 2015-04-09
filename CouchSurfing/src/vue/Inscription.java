@@ -14,7 +14,7 @@ import formulaire.FormulaireInscription;
  * Servlet implementation class incription
  */
 @WebServlet("/incription")
-public class Inscription extends LaBifleDuMoyenAgeANosJours {
+public class Inscription extends SuperServlet {
 	private static final long serialVersionUID = 1L;
 
 	public Inscription() {

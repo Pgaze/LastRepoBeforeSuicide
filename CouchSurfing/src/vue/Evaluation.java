@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Evaluation
  */
 @WebServlet("/Evaluation")
-public class Evaluation extends LaBifleDuMoyenAgeANosJours {
+public class Evaluation extends SuperServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
