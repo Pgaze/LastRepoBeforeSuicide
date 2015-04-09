@@ -77,7 +77,7 @@ public class FormulaireRechercheAnnonce {
 		ResultSet rs=s.executeQuery();
 		while (rs.next()){
 			Logement l=Logement.getLogementById(rs.getInt(1));
-			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
+			Utilisateur u=Utilisateur.getUtilisateurByIdLogement(rs.getInt(1));
 			result.add(new Offre(l, u, rs.getDate(3), rs.getDate(4)));
 		}
 		return result;
@@ -112,7 +112,7 @@ public class FormulaireRechercheAnnonce {
 		ResultSet rsAccepte = sAccepte.executeQuery();
 		while (rsAccepte.next()){
 			Logement l=Logement.getLogementById(rsAccepte.getInt(1));
-			Utilisateur u=Utilisateur.getUtilisateurById(rsAccepte.getInt(2));
+			Utilisateur u=Utilisateur.getUtilisateurByIdLogement(rsAccepte.getInt(1));
 			resultAccepte.add(new Offre(l, u, rsAccepte.getDate(3), rsAccepte.getDate(4)));
 		}
 		return resultAccepte;
@@ -168,7 +168,8 @@ public class FormulaireRechercheAnnonce {
 				int[] tabDate = CustomDate.splitDate(dateModif.toString());
 				dateModif = Date.valueOf(CustomDate.creerStringDate(tabDate[0],tabDate[1],tabDate[2]-1));
 				//ajout de la plage libre
-				result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),dateModif));
+				Utilisateur u=Utilisateur.getUtilisateurByIdLogement(nouveauLogement.getIdLogement());
+				result.add(new Offre(nouveauLogement,u,nouveauLogement.getDateDebut(),dateModif));
 				
 				//date plus un jour
 				dateModif = offre.getDateFin();
@@ -187,7 +188,8 @@ public class FormulaireRechercheAnnonce {
 				nouveauLogement.setDateDebutFin(dateModif,nouveauLogement.getDateFin());
 				//attention, date début a été mis ajour
 				//ajout du logement
-				result.add(new Offre(nouveauLogement,offre.getHebergeur(),nouveauLogement.getDateDebut(),nouveauLogement.getDateFin()));
+				Utilisateur u=Utilisateur.getUtilisateurByIdLogement(nouveauLogement.getIdLogement());
+				result.add(new Offre(nouveauLogement,u,nouveauLogement.getDateDebut(),nouveauLogement.getDateFin()));
 			}
 		}
 		return result;
@@ -220,7 +222,7 @@ public class FormulaireRechercheAnnonce {
 		ResultSet rs=s.executeQuery();
 		while (rs.next()){
 			Logement l=Logement.getLogementById(rs.getInt(1));
-			Utilisateur u=Utilisateur.getUtilisateurById(rs.getInt(2));
+			Utilisateur u=Utilisateur.getUtilisateurByIdLogement(rs.getInt(1));
 			result.add(new Offre(l, u, l.getDateDebut(),l.getDateFin()));
 		}
 		
