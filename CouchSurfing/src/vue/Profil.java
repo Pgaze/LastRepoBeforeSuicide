@@ -132,10 +132,10 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 		Logement logementUtilisateur = Logement.getLogementById(user.getIdLogement());
 		if (logementUtilisateur != null) {
 			this.setCritereOnRequest(logementUtilisateur);
-			this.request.setAttribute("adresseLogement", logementUtilisateur.getAdresse().toString());
+			this.request.setAttribute("logementUtilisateur", logementUtilisateur);
 		} else {
 			this.request.setAttribute(
-					"adresseLogement",
+					"logementUtilisateur",
 					"<p>Vous n'avez pas de logement enregistr�. <a href='nouvelle'>Cr�ez en un !</a></p>");
 		}
 	}

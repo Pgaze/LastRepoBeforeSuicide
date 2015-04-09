@@ -59,72 +59,17 @@
 
 						<div id="serviceAdresse" class="serviceDiv">
 							<p class="intitule_profil_service">Adresse</p>
-							<p class="info_profil_service">${ adresseLogement }</p>
+							<p class="info_profil_service">${ logementUtilisateur.adresse }</p>
 						</div>
 						<p id="intituleService">Service à proximité</p>
 						<div id="serviceContainer">
-							<c:if test="${crCommerce !=null}">
+						<c:forEach items="${logementUtilisateur.lesCriteres }" var="unCritere">
 								<div id="serviceCommerce" class="serviceDiv">
-									<p class="icon-basket-1 intitule_profil_service">Commerce</p>
-									<p class="info_profil_service">${crCommerce }</p>
+									<p class="${unCritere.icone } intitule_profil_service">${unCritere.titreCritere}</p>
+									<p class="info_profil_service">${unCritere.description }</p>
 								</div>
-							</c:if>
-							<c:if test="${crSoins !=null}">
-
-								<div id="serviceSoins" class="serviceDiv">
-									<p class="icon-h-sigh intitule_profil_service">Soins</p>
-									<p class="info_profil_service">${crSoins }</p>
-								</div>
-							</c:if>
-							<c:if test="${crRestaurant !=null}">
-								<div id="serviceRestaurant" class="serviceDiv">
-									<p class="icon-restaurant intitule_profil_service">Restaurant</p>
-									<p class="info_profil_service">${crRestaurant }</p>
-								</div>
-							</c:if>
-							<c:if test="${crTransport !=null}">
-
-								<div id="serviceTransport" class="serviceDiv">
-									<p class="icon-bus intitule_profil_service">Transport</p>
-									<p class="info_profil_service">${crTransport }</p>
-								</div>
-							</c:if>
-							<c:if test="${crAnimaux !=null}">
-
-								<div id="serviceCAnimaux" class="serviceDiv">
-									<p class="icon-paw intitule_profil_service">Animaux</p>
-									<p class="info_profil_service">${crAnimaux }</p>
-								</div>
-							</c:if>
-							<c:if test="${crInternet !=null}">
-
-								<div id="serviceInternet" class="serviceDiv">
-									<p class="icon-signal intitule_profil_service">Internet</p>
-									<p class="info_profil_service">${crInternet }</p>
-								</div>
-							</c:if>
-							<c:if test="${crParking !=null}">
-
-								<div id="serviceParking" class="serviceDiv">
-									<p class="icon-cab intitule_profil_service">Parking</p>
-									<p class="info_profil_service">${crParking }</p>
-								</div>
-							</c:if>
-							<c:if test="${crFumeur !=null}">
-
-								<div id="serviceParking" class="serviceDiv">
-									<p class="icon-fire intitule_profil_service">Fumeur</p>
-									<p class="info_profil_service">${crFumeur }</p>
-								</div>
-							</c:if>
-							<c:if test="${crHandicape !=null}">
-
-								<div id="serviceHandicape" class="serviceDiv">
-									<p class="icon-wheelchair intitule_profil_service">Handicape</p>
-									<p class="info_profil_service">${crHandicape }</p>
-								</div>
-							</c:if>
-						</div>
+							</c:forEach>
+							</div>
 					</div>
 				</div>
 			</div>
