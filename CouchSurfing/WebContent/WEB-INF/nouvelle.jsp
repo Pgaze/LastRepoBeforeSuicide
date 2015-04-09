@@ -22,7 +22,7 @@
 				 		</div>
 			    	</div>
 			    	<button id="valNouvelleAnnonce" name="val_nouvelleAnnonce">Suite</button>
-			    	<p id="libelleAsterix"> Les champs avec une '*' doivent être renseigné.</p>
+			    	<p id="libelleAsterix"> Les champs avec une '*' doivent être renseignés.</p>
 			    </div>
 			</form>
         </div>
