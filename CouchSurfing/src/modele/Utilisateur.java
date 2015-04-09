@@ -53,7 +53,7 @@ public class Utilisateur {
 	public static Utilisateur getUtilisateurParMail(String mail) throws SQLException{
 		Utilisateur result = new Utilisateur(mail);
 		PreparedStatement select = Data.BDD_Connection.prepareStatement("" +
-				"select IdUtilisateur,Nom,Prenom,Mdp,Pseudo,IdLogement,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance from Utilisateur where Mail=?");
+				"select IdUtilisateur,Nom,Prenom,Mdp,Pseudo,IdLogement,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance,Telephone from Utilisateur where Mail=?");
 		select.setString(1, mail);
 		ResultSet rs=select.executeQuery();
 		if(rs.next()){
@@ -67,6 +67,7 @@ public class Utilisateur {
 			result.setNbVoteConfort(rs.getInt(8));
 			result.setIndiceConfiance(rs.getInt(9));
 			result.setNbVoteConfiance(rs.getInt(10));
+			result.tel = rs.getString(11);
 		}
 		else {
 			result = null;
@@ -82,7 +83,7 @@ public class Utilisateur {
 	public static Utilisateur getUtilisateurById(int idUtilisateur) throws SQLException{
 		Utilisateur result = new Utilisateur();
 		PreparedStatement select = Data.BDD_Connection.prepareStatement("" +
-				"select Nom,Prenom,Mdp,Pseudo,IdLogement,Mail,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance from Utilisateur where IdUtilisateur=?");
+				"select Nom,Prenom,Mdp,Pseudo,IdLogement,Mail,IndiceConfort,NVoteConfort,IndiceConfiance,NVoteConfiance,Telephone from Utilisateur where IdUtilisateur=?");
 		select.setInt(1, idUtilisateur);
 		ResultSet rs=select.executeQuery();
 		if(rs.next()){
@@ -96,6 +97,7 @@ public class Utilisateur {
 			result.setNbVoteConfort(rs.getInt(8));
 			result.setIndiceConfiance(rs.getInt(9));
 			result.setNbVoteConfiance(rs.getInt(10));
+			result.tel = rs.getString(11);
 			result.idUser = idUtilisateur;
 		}
 		else{
@@ -122,7 +124,7 @@ public class Utilisateur {
 	
 	
 	public String getTel() {
-		return (tel!=null?tel : "Non renseigné");
+		return (this.tel!=null ? this.tel :"Non renseigné");
 	}
 
 	public void setTel(String tel) {
