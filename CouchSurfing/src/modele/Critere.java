@@ -115,7 +115,7 @@ public class Critere implements Serializable {
 			case RESTAURANT:
 				return "icon-restaurant";
 			case TRANSPORT:
-				return "Transport";
+				return "icon-bus";
 			default:
 				return "";
 			}
