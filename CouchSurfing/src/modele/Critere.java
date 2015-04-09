@@ -96,7 +96,7 @@ public class Critere implements Serializable {
 		
 	}
 
-		public String getICone() {
+		public String getIcone() {
 			switch (this.type) {
 			case COMMERCE:
 				return "icon-basket-1";

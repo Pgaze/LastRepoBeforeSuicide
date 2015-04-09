@@ -26,7 +26,7 @@
 			</div>
 			<c:forEach items="${postule.logement.lesCriteres }" var="unCritere">
 				<div class="unServiceContainer">
-					<p class="libelleService"> ${unCritere.titreCritere }</p>
+					<p class="libelleService ${unCritere.icone}"> ${unCritere.titreCritere }</p>
 					<p class="service"> ${unCritere.description } </p>
 			</div>
 			</c:forEach>
