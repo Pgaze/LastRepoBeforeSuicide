@@ -2,7 +2,6 @@ package vue;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -46,14 +45,17 @@ public class Profil extends LaBifleDuMoyenAgeANosJours {
 			HttpServletResponse response) throws ServletException, IOException {
 		super.initAttribut(request, response);
 		super.afficherMenu();
-		Utilisateur user = getUtilisateurInSession();
+		Utilisateur user = super.getUtilisateurInSession();
 		this.request.setAttribute("utilisateurProfil", user);
 		try {
-			afficherLogementUser( user);
+			if(user.getIdLogement() != 0){
+				afficherLogementUser( user);
+			}
 			this.getServletContext().getRequestDispatcher("/WEB-INF/profil.jsp")
 			.forward(this.request, this.response);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.request.setAttribute("errorMessage",e.getMessage());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(this.request, this.response);
 		}

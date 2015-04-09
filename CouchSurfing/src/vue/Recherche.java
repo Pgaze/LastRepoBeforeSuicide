@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modele.Data;
 import modele.Offre;
 import modele.Postule;
 import modele.Utilisateur;
@@ -22,7 +21,7 @@ import formulaire.FormulaireRechercheAnnonce;
 @WebServlet("/Recherche")
 public class Recherche extends LaBifleDuMoyenAgeANosJours {
 	private static final long serialVersionUID = 1L;
-
+	//TODO afficher les dates generes par le code de bastien
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -66,6 +65,7 @@ public class Recherche extends LaBifleDuMoyenAgeANosJours {
 				Utilisateur user= super.getUtilisateurInSession();
 				Postule postule = new Postule(user, offrePostulee.getHebergeur(), offrePostulee.getLogement());
 				if(!postule.existInBase()){
+					this.request.getSession().setAttribute("offrePostulee", offrePostulee);
 					this.request.getSession().setAttribute("postule", postule);
 					this.response.sendRedirect("pageValidation");
 					return ;

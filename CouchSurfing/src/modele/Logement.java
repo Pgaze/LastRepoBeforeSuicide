@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class Logement {
 	public boolean insererDansLaBase() throws SQLException{
 		String sql = "insert into Logement (BatimentEscalier,NumeroEtVoie,CodePostal,Residence,ComplementAdresse,Ville)"
 					+ "values (?,?,?,?,?,?)";
-		PreparedStatement insert= Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement insert= Data.BDD_Connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		insert.setString(1, this.adresse.getBatimentEscalier());
 		insert.setString(2,this.adresse.getNumeroEtVoie());
 		insert.setString(3, this.adresse.getCp());

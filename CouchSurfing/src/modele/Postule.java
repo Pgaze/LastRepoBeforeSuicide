@@ -45,7 +45,7 @@ public class Postule {
 	 */
 	public static ArrayList<Postule> getDemandeEnvoyeByUser(Utilisateur user) throws Exception{
 		ArrayList<Postule> tablePostulation = new ArrayList<Postule>();
-		String sql = "SELECT IdLogement,Status FROM Postule "
+		String sql = "SELECT IdLogement,Status,DateDebut,DateFin FROM Postule "
 				+ "WHERE IdUtilisateur=?  ";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
 		select.setInt(1, user.getIdUser());
@@ -57,6 +57,8 @@ public class Postule {
 			Utilisateur hebergeur = Utilisateur.getUtilisateurByIdLogement(resultSelect.getInt("IdLogement"));
 			Postule temp = new Postule(user, hebergeur, logement);
 			temp.status = resultSelect.getInt(2);
+			temp.dateDebut = resultSelect.getDate(3).toString();
+			temp.dateFin = resultSelect.getDate(4).toString();
 			tablePostulation.add(temp);
 		}
 		return tablePostulation;
@@ -117,10 +119,14 @@ public class Postule {
 	public int getStatus() {
 		return status;
 	}
+	
+	public String getAffichagePlage(){
+		return "Du "+this.dateDebut +" au "+this.dateFin;
+	}
 
 	public static List<Postule> getDemandeRecuByUser(Utilisateur user) throws Exception {
 		List<Postule> result = new ArrayList<Postule>();
-		String sql = "select Postule.IdUtilisateur,Postule.IdLogement,Status from Postule,Utilisateur "
+		String sql = "select Postule.IdUtilisateur,Postule.IdLogement,Status,DateDebut,DateFin from Postule,Utilisateur "
 				+ "where Postule.IdLogement=Utilisateur.IdLogement "
 				+ "and Utilisateur.IdUtilisateur = ?";
 		PreparedStatement select = Data.BDD_Connection.prepareStatement(sql);
@@ -131,6 +137,8 @@ public class Postule {
 			Logement logement = Logement.getLogementById(resultSelect.getInt(2));
 			Postule temp= new Postule(postulant, user, logement);
 			temp.status = resultSelect.getInt(3);
+			temp.dateDebut = resultSelect.getDate(4).toString();
+			temp.dateFin = resultSelect.getDate(5).toString();
 			result.add(temp);
 		}
 		

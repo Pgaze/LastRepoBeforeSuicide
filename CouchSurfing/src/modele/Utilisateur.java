@@ -4,6 +4,7 @@ package modele;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import utilitaire.Password;
 
@@ -334,7 +335,7 @@ public class Utilisateur {
 
 	public boolean insererDansLaBase() throws SQLException{
 		String sql = "insert into Utilisateur (Nom,Prenom,Mail,Pseudo,Mdp,Telephone) values(?,?,?,?,?,?)";
-		PreparedStatement ps=Data.BDD_Connection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps=Data.BDD_Connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, this.name);
 		ps.setString(2, this.firstName);
 		ps.setString(3, this.mail);

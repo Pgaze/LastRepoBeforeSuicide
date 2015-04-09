@@ -1,8 +1,6 @@
 package vue.image;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
