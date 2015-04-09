@@ -9,16 +9,17 @@ border : blue solid 1px;
 #saisies_propositionLogement label {
 width : 40%;
 margin-top : 15px;
+font-size:12px;
 }
 #saisies_propositionLogement input {
 margin-top : 15px;
 }
 #propoLogMidddle {
-width : 424px;
+width : 49%;
 display : inline-block;
 }
 #propoLogLeft {
-width : 380px;
+width : 47%;
 display : inline-block;
 }
 .alignLeft {
@@ -30,5 +31,7 @@ float : left;
 margin-left : 30px;
 }
 #valNouvelleAnnonce {
-float : right;
+  float: right;
+  margin-top: 15px;
+  margin-right: 33px;
 }

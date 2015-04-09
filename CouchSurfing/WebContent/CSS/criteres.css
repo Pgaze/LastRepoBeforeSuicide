@@ -64,6 +64,8 @@ padding-top: 0%;
   float: left;
   height: 35px;
   width: 70px;
+  margin-top: 10px;
+  margin-left: 4px;
 }
 
 #form_criteres {

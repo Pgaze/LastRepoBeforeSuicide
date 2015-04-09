@@ -16,7 +16,7 @@ border: 30px solid rgb(188, 188, 188);
 
 /* css de nouvelle annonce */
 
-
+/*
 
 #services {
 width : 261px;
@@ -27,16 +27,18 @@ border : blue solid 1px;
 #saisies_propositionLogement label {
 width : 40%;
 margin-top : 15px;
+ font-size: 12px;
+
 }
 #saisies_propositionLogement input {
 margin-top : 15px;
 }
 #propoLogMidddle {
-width : 424px;
+width : 49%;
 display : inline-block;
 }
 #propoLogLeft {
-width : 380px;
+width : 47%;
 display : inline-block;
 }
 .alignLeft {
@@ -54,4 +56,4 @@ float : right;
 	  margin-top: 35px;
   font-size: 10px;
   margin-left: 10px;
-}
+}*/

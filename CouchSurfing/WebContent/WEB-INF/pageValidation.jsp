@@ -8,9 +8,8 @@
 
 	<div id="container">	        
 		<div id="containerInfoPersonnel">
-			<div id="blockImage">
-				<img src="${pageContext.request.contextPath}/ServletImageProfilPageValidation" />
-			</div>
+			<div id="blockImage" style="background-image:url(${pageContext.request.contextPath}/ServletImageProfilPageValidation);">
+					</div>
 			
 			<div id="blockNomPrenom">
 				<p class="infoPerso"> ${postule.hebergeur.name }</p>

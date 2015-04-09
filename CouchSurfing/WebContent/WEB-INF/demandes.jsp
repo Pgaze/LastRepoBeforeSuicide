@@ -42,7 +42,7 @@
 								<div class="uneDemande" id="">
 									<div class="detailsAnnonce">
 												
-										<h3>Demande de ${demande.postulant }</h3>
+										<h3>Demande de ${demande.postulant }<a id="lienProfilDemandes" href="${pageContext.request.contextPath}/Hebergeur?id=${demande.postulant.idUser}">Voir le profil</a></h3>
 													
 											<div class="txtDemandesRecu">
 												<b>Date:</b> ${demande.affichagePlage } <br/>

@@ -110,3 +110,10 @@ width: 79%;
 
 .demandes {
 }
+
+#lienProfilDemandes{
+		font-size: 13px;
+		color: white;
+		margin-left : 10px;
+	
+}
