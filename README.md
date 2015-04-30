@@ -1,5 +1,7 @@
 # CouchSurfing
 
-C'est la biiiiifle finaaaale !
-Aujourd'hui et demaiiiiin
-L'internationaahaaleuh [....]
+Pour utiliser le site : 
+  -depuis eclipse J2EE, cloner le repertoire github.
+  -clic-droit sur le repo ->imports project.
+  -deployer sur tomcat
+  -lancer tomcat
