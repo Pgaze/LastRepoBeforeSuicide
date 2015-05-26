@@ -84,4 +84,5 @@ public class Adresse {
 		res += (complementAdresse.equals("") ? "" : "<br/> "+complementAdresse);
 		return res;
 	}
+	
 }
